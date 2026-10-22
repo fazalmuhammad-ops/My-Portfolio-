@@ -55,7 +55,7 @@ include 'includes/header.php';
                         <small class="text-white text-opacity-60" style="font-size: 0.78rem;">Runner-Up '26</small>
                     </div>
                     <div class="col-3">
-                        <h4 class="fw-bold text-white mb-0">2</h4>
+                        <h4 class="fw-bold text-white mb-0">3</h4>
                         <small class="text-white text-opacity-60" style="font-size: 0.78rem;">Projects</small>
                     </div>
                 </div>

@@ -44,27 +44,38 @@ The portfolio demonstrates proficiency across full-stack web technologies, moder
 
 <table>
   <tr>
-    <td width="50%" valign="top">
+    <td width="33.3%" valign="top">
       <h3 align="center">🏍️ Core Rider</h3>
       <p align="center">
         <img src="https://img.shields.io/badge/Award-Runner--Up%20%40%20BitHack%20'26-F59E0B?style=flat-square&logo=trophy" alt="Runner-Up">
         <img src="https://img.shields.io/badge/Platform-Mobile%20App-0284C7?style=flat-square&logo=flutter" alt="Mobile App">
       </p>
       <p>
-        An innovative on-demand campus and urban micro-mobility mobile application engineered to tackle commuter transit challenges. Features peer ride-pooling algorithms, live driver telemetry via Google Maps, automated transparent fare calculation, and emergency SOS broadcasting.
+        On-demand micro-mobility and campus ride-pooling mobile application built to solve commuter transit bottlenecks with real-time GPS telemetry, peer ride matching, automated fare estimation, and emergency safety features.
       </p>
-      <p><strong>Tech Stack:</strong> <code>Flutter (Dart)</code>, <code>Firebase Auth</code>, <code>Cloud Firestore</code>, <code>Node.js</code>, <code>Google Maps Platform API</code></p>
+      <p><strong>Tech Stack:</strong> <code>Flutter (Dart)</code>, <code>Firebase</code>, <code>Node.js</code>, <code>Google Maps Platform API</code></p>
     </td>
-    <td width="50%" valign="top">
+    <td width="33.3%" valign="top">
+      <h3 align="center">🌏 Lanka Travellers</h3>
+      <p align="center">
+        <img src="https://img.shields.io/badge/Platform-Web%20Platform-059669?style=flat-square&logo=google-chrome" alt="Web Platform">
+        <img src="https://img.shields.io/badge/Stack-Vanilla%20JS%20%7C%20CSS3-F7DF1E?style=flat-square" alt="Tech">
+      </p>
+      <p>
+        Modern tourism and travel agency web platform built with semantic HTML5, modern CSS3, and vanilla JavaScript. Features dynamic URL-based package pre-selection, touch-optimized mobile navigation drawer, interactive FAQ accordions, and automated dark mode adaptation.
+      </p>
+      <p><strong>Tech Stack:</strong> <code>HTML5</code>, <code>CSS3 Grid/Flexbox</code>, <code>Vanilla JS (ES6+)</code>, <code>Dark Mode</code></p>
+    </td>
+    <td width="33.3%" valign="top">
       <h3 align="center">💻 My Portfolio</h3>
       <p align="center">
         <img src="https://img.shields.io/badge/Type-University%20Portfolio-2563EB?style=flat-square&logo=php" alt="Web Dev">
         <img src="https://img.shields.io/badge/Stack-PHP%20%7C%20Bootstrap-7952B3?style=flat-square" alt="Tech">
       </p>
       <p>
-        A modular, mobile-responsive academic portfolio website built with clean PHP layouts, Bootstrap 5 UI framework, custom CSS variables, dynamic JavaScript category filtering with zero page reloads, and a secure backend contact processing system.
+        A dynamic personal portfolio website built with modular PHP templates, Bootstrap 5 UI framework, custom CSS, client-side dynamic JavaScript filtering with zero page reloads, and a secure backend contact processing system.
       </p>
-      <p><strong>Tech Stack:</strong> <code>PHP 8+</code>, <code>Bootstrap 5.3.3</code>, <code>MySQL / MariaDB</code>, <code>JavaScript (ES6+)</code>, <code>CSS3</code></p>
+      <p><strong>Tech Stack:</strong> <code>PHP 8+</code>, <code>Bootstrap 5.3.3</code>, <code>MySQL</code>, <code>JavaScript</code>, <code>CSS3</code></p>
     </td>
   </tr>
 </table>

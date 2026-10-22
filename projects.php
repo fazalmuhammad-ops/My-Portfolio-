@@ -34,14 +34,14 @@ include 'includes/header.php';
                     <i class="fa-solid fa-code me-1"></i> Web Dev
                 </button>
             </div>
-            <div class="mt-2 text-muted small" id="filterResultCount">Showing all 2 projects</div>
+            <div class="mt-2 text-muted small" id="filterResultCount">Showing all 3 projects</div>
         </div>
 
         <!-- Project Cards Grid -->
-        <div class="row g-4 justify-content-center" id="projectsContainer">
+        <div class="row g-4" id="projectsContainer">
 
             <!-- Project 1: Core Rider (Runner-Up at BitHack 2026) -->
-            <div class="col-lg-5 col-md-6 project-item" data-category="mobile-app" id="core-rider">
+            <div class="col-lg-4 col-md-6 project-item" data-category="mobile-app" id="core-rider">
                 <div class="project-card border-warning border-opacity-50">
                     <div class="project-img-wrapper" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #78350f 100%);">
                         <!-- Runner-Up Trophy Badge -->
@@ -84,8 +84,44 @@ include 'includes/header.php';
                 </div>
             </div>
 
-            <!-- Project 2: My Portfolio (Web Dev) -->
-            <div class="col-lg-5 col-md-6 project-item" data-category="web-dev" id="my-portfolio">
+            <!-- Project 2: Lanka Travellers (Modern Tourism & Travel Platform) -->
+            <div class="col-lg-4 col-md-6 project-item" data-category="web-dev" id="lanka-travellers">
+                <div class="project-card">
+                    <div class="project-img-wrapper" style="background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #0f766e 100%);">
+                        <i class="fa-solid fa-plane-departure text-info project-icon-placeholder"></i>
+                        <span class="project-badge bg-success">
+                            <i class="fa-solid fa-earth-asia me-1"></i> Web Dev
+                        </span>
+                    </div>
+                    <div class="project-card-body">
+                        <h5 class="fw-bold mb-1">Lanka Travellers</h5>
+                        <small class="text-success fw-semibold d-block mb-2">
+                            Modern Tourism & Travel Platform
+                        </small>
+                        <p class="text-secondary small mb-3 flex-grow-1">
+                            A responsive, accessible, and high-performance multi-page travel agency web platform built with semantic HTML5, modern CSS3, and vanilla JavaScript. Features dynamic URL-based package pre-selection, touch-optimized mobile navigation, interactive FAQ accordions, and automated dark mode adaptation.
+                        </p>
+                        <div class="d-flex flex-wrap gap-1 mb-3">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Vanilla JS</span>
+                            <span class="tech-tag">Dark Mode</span>
+                            <span class="tech-tag">Responsive UI</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                            <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#modalProjectLankaTravellers">
+                                <i class="fa-solid fa-circle-info me-1"></i> Details
+                            </button>
+                            <a href="https://github.com/fazalmuhammad-ops/Traveling-Website" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                                <i class="fa-brands fa-github me-1"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: My Portfolio (Web Dev) -->
+            <div class="col-lg-4 col-md-6 project-item" data-category="web-dev" id="my-portfolio">
                 <div class="project-card">
                     <div class="project-img-wrapper" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);">
                         <i class="fa-solid fa-laptop-code text-info project-icon-placeholder"></i>
@@ -197,6 +233,89 @@ include 'includes/header.php';
                     <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-brands fa-node-js text-success me-1"></i> Node.js API Service</span>
                     <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-solid fa-map text-primary me-1"></i> Google Maps Platform</span>
                     <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-solid fa-bolt text-warning me-1"></i> Cloud Functions</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Lanka Travellers -->
+<div class="modal fade" id="modalProjectLankaTravellers" tabindex="-1" aria-labelledby="modalProjectLankaTravellersLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-dark text-white border-bottom border-success border-opacity-50">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fw-bold px-2 py-1 rounded-pill">
+                        <i class="fa-solid fa-earth-asia me-1"></i> Tourism Platform
+                    </span>
+                    <h5 class="modal-title fw-bold mb-0" id="modalProjectLankaTravellersLabel">Lanka Travellers</h5>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="p-3 bg-success-subtle border border-success border-opacity-50 rounded-3 mb-4 d-flex align-items-center gap-3">
+                    <i class="fa-solid fa-compass text-success display-6 flex-shrink-0"></i>
+                    <div>
+                        <h6 class="fw-bold mb-1 text-dark">Modern Tourism & Travel Platform</h6>
+                        <small class="text-secondary d-block">
+                            A responsive, accessible, and high-performance multi-page travel agency web platform built with semantic HTML5, modern CSS3, and vanilla JavaScript.
+                        </small>
+                    </div>
+                </div>
+
+                <h6 class="fw-bold text-dark mb-2">Platform Overview:</h6>
+                <p class="text-secondary small leading-relaxed mb-4">
+                    <strong>Lanka Travellers</strong> is engineered to guide domestic and international tourists through curated holiday destinations and tour packages across Sri Lanka. It combines modern UI aesthetics with accessible and lightweight vanilla web technologies.
+                </p>
+
+                <h6 class="fw-bold text-dark mb-2">Key Features & Technical Innovations:</h6>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-3 h-100 border">
+                            <span class="fw-semibold text-primary d-block mb-1"><i class="fa-solid fa-link me-2"></i>URL-Based Package Pre-Selection</span>
+                            <small class="text-secondary">Dynamically parses query parameters using URLSearchParams to automatically pre-select and highlight tour packages from featured cards.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-3 h-100 border">
+                            <span class="fw-semibold text-success d-block mb-1"><i class="fa-solid fa-mobile-screen me-2"></i>Touch-Optimized Mobile Navigation</span>
+                            <small class="text-secondary">Off-canvas drawer navigation optimized for touch gestures, thumb reach, and smooth mobile usability.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-3 h-100 border">
+                            <span class="fw-semibold text-warning-emphasis d-block mb-1"><i class="fa-solid fa-circle-question me-2"></i>Interactive FAQ Accordions</span>
+                            <small class="text-secondary">Custom-coded collapsible accordions providing instant answers to travel and booking inquiries without heavy third-party scripts.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-3 h-100 border">
+                            <span class="fw-semibold text-info d-block mb-1"><i class="fa-solid fa-moon me-2"></i>Automated Dark Mode Adaptation</span>
+                            <small class="text-secondary">Detects and adapts seamlessly to OS color preferences (prefers-color-scheme) using CSS custom properties.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="fw-bold text-dark mb-2">Technology Stack:</h6>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-brands fa-html5 text-danger me-1"></i> Semantic HTML5</span>
+                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-brands fa-css3-alt text-primary me-1"></i> Modern CSS3 (Grid & Flexbox)</span>
+                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-brands fa-js text-warning me-1"></i> Vanilla JavaScript (ES6+)</span>
+                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-solid fa-circle-half-stroke text-secondary me-1"></i> Dark Mode Theming</span>
+                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-solid fa-universal-access text-success me-1"></i> WCAG Accessibility</span>
+                </div>
+
+                <div class="p-3 bg-dark text-white rounded-3 d-flex align-items-center justify-content-between flex-wrap gap-2">
+                    <div>
+                        <span class="d-block small text-secondary">GitHub Repository</span>
+                        <strong class="small">fazalmuhammad-ops / Traveling-Website</strong>
+                    </div>
+                    <a href="https://github.com/fazalmuhammad-ops/Traveling-Website" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-sm rounded-pill px-3">
+                        <i class="fa-brands fa-github me-1"></i> View on GitHub
+                    </a>
                 </div>
             </div>
             <div class="modal-footer">
