@@ -76,6 +76,11 @@ $currentScript = basename($_SERVER['PHP_SELF']);
                             <i class="fa-solid fa-envelope me-1 d-lg-none"></i> Contact
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 <?php echo ($currentScript === 'view-messages.php') ? 'active fw-semibold' : ''; ?>" href="view-messages.php">
+                            <i class="fa-solid fa-inbox me-1 d-lg-none"></i> Messages
+                        </a>
+                    </li>
                     <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
                         <a class="btn btn-outline-primary btn-sm px-3 rounded-pill d-inline-flex align-items-center gap-2" href="contact.php">
                             <span>Let's Connect</span>

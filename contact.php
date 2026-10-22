@@ -29,13 +29,20 @@ $errorMessage = isset($_GET['msg']) ? trim($_GET['msg']) : '';
         <div class="row justify-content-center mb-4">
             <div class="col-lg-10">
                 <?php if ($status === 'success'): ?>
-                    <div class="alert alert-success alert-dismissible fade show shadow-sm status-alert-box d-flex align-items-center gap-3 p-3 rounded-3" role="alert">
-                        <i class="fa-solid fa-circle-check fs-3 text-success"></i>
-                        <div>
-                            <strong class="d-block">Message Received Successfully!</strong>
-                            <span>Thank you! Your message has been recorded and appended to the local messages log for testing.</span>
+                    <div class="alert alert-success alert-dismissible fade show shadow-sm status-alert-box d-flex align-items-center justify-content-between flex-wrap gap-3 p-3 rounded-3" role="alert">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-circle-check fs-3 text-success"></i>
+                            <div>
+                                <strong class="d-block">Message Received Successfully!</strong>
+                                <span>Thank you! Your message has been safely recorded and stored.</span>
+                            </div>
                         </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <div class="d-flex align-items-center gap-2">
+                            <a href="view-messages.php" class="btn btn-sm btn-success text-white px-3 rounded-pill fw-semibold shadow-sm">
+                                <i class="fa-solid fa-inbox me-1"></i> View Inbox
+                            </a>
+                            <button type="button" class="btn-close position-static" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                     </div>
                 <?php elseif ($status === 'error'): ?>
                     <div class="alert alert-danger alert-dismissible fade show shadow-sm status-alert-box d-flex align-items-center gap-3 p-3 rounded-3" role="alert">
@@ -114,18 +121,27 @@ $errorMessage = isset($_GET['msg']) ? trim($_GET['msg']) : '';
                         </div>
                     </div>
 
-                    <!-- Social Presence -->
-                    <div class="pt-3 border-top border-white border-opacity-10">
-                        <small class="text-secondary d-block mb-2 text-uppercase tracking-wider">Social Channels</small>
-                        <div class="d-flex gap-2">
-                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub" aria-label="GitHub">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn" aria-label="LinkedIn">
-                                <i class="fa-brands fa-linkedin-in"></i>
-                            </a>
-                            <a href="mailto:fazalaamuhammad@gmail.com" class="social-btn" title="Email" aria-label="Email">
-                                <i class="fa-solid fa-envelope"></i>
+                    <!-- Social Presence & Inbox Shortcut -->
+                    <div>
+                        <div class="pt-3 border-top border-white border-opacity-10 mb-3">
+                            <small class="text-secondary d-block mb-2 text-uppercase tracking-wider">Social Channels</small>
+                            <div class="d-flex gap-2">
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub" aria-label="GitHub">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn" aria-label="LinkedIn">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </a>
+                                <a href="mailto:fazalaamuhammad@gmail.com" class="social-btn" title="Email" aria-label="Email">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <a href="view-messages.php" class="btn btn-outline-light btn-sm w-100 rounded-pill d-flex align-items-center justify-content-center gap-2 py-2">
+                                <i class="fa-solid fa-inbox text-primary"></i>
+                                <span>Check Received Messages</span>
                             </a>
                         </div>
                     </div>

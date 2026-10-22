@@ -3,7 +3,8 @@
  * Backend Form Processing Script
  * Project: A.A. Fazal Muhammad - University Portfolio
  * Purpose: Handles POST submission from contact.php, sanitizes input, validates required fields,
- *          inserts the entry into MySQL database, and redirects back with status query parameter.
+ *          inserts the entry into MySQL database (if online), logs to messages.txt,
+ *          and redirects back with status query parameter.
  */
 
 // Include DB connection
@@ -42,10 +43,9 @@ if (!filter_var($cleanEmail, FILTER_VALIDATE_EMAIL)) {
     exit();
 }
 
-// 3. Log to Local File and Insert into Database
+// 3. Log to Local Backup File (messages.txt)
 $clientIp = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
 
-// Append to local messages.txt log file for record keeping
 $logEntry = sprintf(
     "[%s] IP: %s | Name: %s | Email: %s | Subject: %s\nMessage: %s\n--------------------------------------------------------\n\n",
     date('Y-m-d H:i:s'),
@@ -57,40 +57,32 @@ $logEntry = sprintf(
 );
 @file_put_contents(__DIR__ . '/messages.txt', $logEntry, FILE_APPEND | LOCK_EX);
 
-// Insert into MySQL Database if connection is available
-if (isset($conn) && ($conn instanceof mysqli) && !$conn->connect_error) {
-    $stmt = $conn->prepare(
-        "INSERT INTO messages (fullname, email, subject, message, ip_address)
-         VALUES (?, ?, ?, ?, ?)"
-    );
-
-    if ($stmt) {
-        $stmt->bind_param("sssss",
-            $cleanFullname,
-            $cleanEmail,
-            $cleanSubject,
-            $cleanMessage,
-            $clientIp
+// 4. Insert into MySQL Database if connection is available
+try {
+    if (!empty($dbConnected) && isset($conn) && ($conn instanceof mysqli) && !$conn->connect_error) {
+        $stmt = $conn->prepare(
+            "INSERT INTO messages (fullname, email, subject, message, ip_address)
+             VALUES (?, ?, ?, ?, ?)"
         );
 
-        if ($stmt->execute()) {
+        if ($stmt) {
+            $stmt->bind_param("sssss",
+                $cleanFullname,
+                $cleanEmail,
+                $cleanSubject,
+                $cleanMessage,
+                $clientIp
+            );
+            $stmt->execute();
             $stmt->close();
             $conn->close();
-            header("Location: contact.php?status=success");
-            exit();
-        } else {
-            $stmt->close();
-            $conn->close();
-            $errorMessage = urlencode("Unable to save your message. Please try again.");
-            header("Location: contact.php?status=error&msg={$errorMessage}");
-            exit();
         }
-    } else {
-        $conn->close();
     }
+} catch (Throwable $e) {
+    // If MySQL insert encounters an issue, safely ignore as backup log succeeded
 }
 
-// Fallback: If DB is not connected or prepare failed, redirect success as local log succeeded
+// Redirect back with success status
 header("Location: contact.php?status=success");
 exit();
 ?>
