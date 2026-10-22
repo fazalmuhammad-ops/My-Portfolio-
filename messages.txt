@@ -1,0 +1,6 @@
+# ========================================================
+# Portfolio Contact Form Messages Log
+# ========================================================
+# All messages submitted through contact.php & process-form.php
+# will be safely recorded here for testing.
+# ========================================================
