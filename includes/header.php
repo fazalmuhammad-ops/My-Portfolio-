@@ -32,6 +32,8 @@ $currentScript = basename($_SERVER['PHP_SELF']);
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- 3D Signature Journeys CSS -->
+    <link rel="stylesheet" href="css/journeys-3d.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -69,6 +71,11 @@ $currentScript = basename($_SERVER['PHP_SELF']);
                     <li class="nav-item">
                         <a class="nav-link px-3 <?php echo ($currentScript === 'projects.php') ? 'active fw-semibold' : ''; ?>" href="projects.php">
                             <i class="fa-solid fa-laptop-code me-1 d-lg-none"></i> Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="index.php#expeditionsSection">
+                            <i class="fa-solid fa-compass me-1 text-warning"></i> 3D Journeys
                         </a>
                     </li>
                     <li class="nav-item">

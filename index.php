@@ -110,6 +110,225 @@ include 'includes/header.php';
     </div>
 </div>
 
+<!-- ======================================================================= -->
+<!-- SECTION 1: THE EXPEDITIONS SHOWCASE ("SIGNATURE JOURNEYS") -->
+<!-- ======================================================================= -->
+<section class="expeditions-showcase-section" id="expeditionsSection">
+    <!-- Atmospheric Ambient Glows & Canvas Particles -->
+    <canvas id="fireflyCanvas" class="firefly-canvas"></canvas>
+    <div class="ambient-glow-left"></div>
+    <div class="ambient-glow-right"></div>
+
+    <div class="container position-relative" style="z-index: 10;">
+        <!-- Header & Mode Switcher -->
+        <div class="text-center mb-4">
+            <div class="d-flex justify-content-center mb-3">
+                <div class="experience-mode-bar">
+                    <button type="button" class="experience-mode-btn active" id="modeBtnTourism">
+                        <i class="fa-solid fa-compass"></i>
+                        <span>Lanka Travellers (Luxury Tours)</span>
+                    </button>
+                    <button type="button" class="experience-mode-btn" id="modeBtnPortfolio">
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <span>Fazal's Engineering Expeditions</span>
+                    </button>
+                </div>
+            </div>
+
+            <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-40 rounded-pill px-3 py-1 mb-2 fw-semibold" id="expeditionsBadge">
+                Signature Journeys
+            </span>
+            <h2 class="fw-bold display-5 text-white mb-2" id="expeditionsTitle">
+                The Expeditions Showcase
+            </h2>
+            <p class="text-white text-opacity-75 col-md-8 mx-auto fs-6 mb-0" id="expeditionsSubtitle">
+                Traverse panoramic 3D destination portals across emerald mist, ancient Sigiriya water gardens, and colonial coastal ramparts.
+            </p>
+        </div>
+
+        <!-- 3D Trail Viewport Container -->
+        <div class="trail-viewport">
+            <!-- 3D Winding Trail Vector Path -->
+            <svg class="trail-svg-path" viewBox="0 0 1000 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 50 420 C 300 450, 200 280, 500 250 C 800 220, 700 80, 950 50" 
+                      stroke="url(#trailGoldEmeraldGrad)" stroke-width="5" class="trail-glowing-line" />
+                <defs>
+                    <linearGradient id="trailGoldEmeraldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#34d399" stop-opacity="0.8" />
+                        <stop offset="50%" stop-color="#facc15" stop-opacity="0.95" />
+                        <stop offset="100%" stop-color="#065f46" stop-opacity="0.4" />
+                    </linearGradient>
+                </defs>
+            </svg>
+
+            <!-- Navigation Buttons -->
+            <button class="trail-nav-btn prev-btn" id="trailPrevBtn" aria-label="Previous Expedition">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="trail-nav-btn next-btn" id="trailNextBtn" aria-label="Next Expedition">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- 3D Panoramic Destination Portal Cards Stage -->
+            <div id="portalCardsStage" class="w-100 h-100 d-flex align-items-center justify-content-center">
+                <!-- Dynamically populated by journeys-3d.js -->
+            </div>
+
+            <!-- Reflective Watery Mirror Floor (Sigiriya Water Gardens tribute) -->
+            <div class="water-mirror-floor">
+                <div class="water-reflection-glow"></div>
+                <div class="water-shimmer-layer"></div>
+            </div>
+        </div>
+
+        <!-- Dynamic Bottom Status Dock (Below Viewport) -->
+        <div class="dynamic-bottom-dock">
+            <div class="dock-card mx-auto col-lg-10 col-xl-9">
+                <div class="row align-items-center g-3">
+                    <div class="col-md-5">
+                        <div class="dock-title-label" id="dockTitleLabel">Royal Cultural Odyssey</div>
+                        <h4 class="dock-package-name" id="dockPackageName">Sigiriya Lion Rock</h4>
+                    </div>
+                    <div class="col-sm-6 col-md-3 text-md-center">
+                        <span class="dock-duration-badge" id="dockDuration">
+                            <i class="fa-regular fa-clock me-1"></i> 5 Days / 4 Nights
+                        </span>
+                    </div>
+                    <div class="col-sm-6 col-md-4 text-md-end d-flex align-items-center justify-content-md-end justify-content-between gap-3">
+                        <div>
+                            <div class="dock-price-val" id="dockPrice">From LKR 135,000</div>
+                            <div class="dock-price-sub" id="dockPriceSub">per person &bull; all-inclusive</div>
+                        </div>
+                        <button type="button" class="dock-action-btn" id="dockActionBtn">
+                            Book This Journey
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================================================================= -->
+<!-- SECTION 2: WHY LANKA TRAVELLERS ("WHY TRAVEL WITH US") - 3D ORBITAL SYSTEM -->
+<!-- ======================================================================= -->
+<section class="orbital-showcase-section" id="orbitalSection">
+    <!-- Huge Faint Outlined Typography Watermark -->
+    <div class="orbital-watermark-text" id="orbitalWatermark">SERENDIPITY</div>
+
+    <div class="container position-relative" style="z-index: 5;">
+        <!-- Section Header -->
+        <div class="text-center mb-5">
+            <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-40 rounded-pill px-3 py-1 mb-2 fw-semibold" id="orbitalBadge">
+                Why Lanka Travellers
+            </span>
+            <h2 class="fw-bold display-5 text-white mb-2" id="orbitalTitle">
+                Why Travel With Us
+            </h2>
+            <p class="text-white text-opacity-75 col-md-7 mx-auto fs-6 mb-0" id="orbitalSubtitle">
+                A floating 3D orbital journey demonstrating our commitment to luxury, authentic heritage, and round-the-clock peace of mind.
+            </p>
+        </div>
+
+        <!-- 3D Parallax Tilt Stage -->
+        <div class="orbital-parallax-stage" id="orbitalParallaxStage">
+            <!-- Central Illuminated 3D Heritage Compass / Golden Emblem -->
+            <div class="heritage-compass-emblem">
+                <div class="compass-inner-core">
+                    <div class="compass-dial-needle"></div>
+                    <i class="fa-solid fa-compass position-relative" style="z-index: 2;"></i>
+                </div>
+            </div>
+
+            <!-- Two Glowing Orbital Rings -->
+            <div class="orbital-ring orbital-ring-1"></div>
+            <div class="orbital-ring orbital-ring-2"></div>
+
+            <!-- 4 Orbital Benefit Cards (Dynamically populated by journeys-3d.js) -->
+        </div>
+
+        <!-- Vertical Progress Indicator Dots on Right Side -->
+        <div class="orbital-progress-nav" id="orbitalProgressNav">
+            <!-- Dynamically populated by journeys-3d.js -->
+        </div>
+    </div>
+</section>
+
+<!-- ======================================================================= -->
+<!-- BOOKING / INQUIRY MODAL (End-to-End Functional with process-form.php) -->
+<!-- ======================================================================= -->
+<div class="modal fade" id="modalSignatureBooking" tabindex="-1" aria-labelledby="modalSignatureBookingLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border-0 shadow-lg" style="border: 1px solid rgba(250, 204, 21, 0.4) !important; border-radius: 24px; overflow: hidden;">
+            <div class="modal-header border-bottom border-secondary border-opacity-25 py-3 px-4" style="background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);">
+                <div>
+                    <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill mb-1">
+                        <i class="fa-solid fa-gem me-1"></i> Luxury Journey Reservation
+                    </span>
+                    <h5 class="modal-title fw-bold text-white mb-0" id="modalSignatureBookingLabel">
+                        Lanka Travellers &mdash; Reserve Your Experience
+                    </h5>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <!-- Package Summary Banner -->
+                <div class="p-3 rounded-3 mb-4 d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3" 
+                     style="background: rgba(4, 47, 36, 0.7); border: 1px solid rgba(250, 204, 21, 0.3);">
+                    <div>
+                        <small class="text-warning text-uppercase fw-bold d-block" style="font-size: 0.72rem; letter-spacing: 0.08em;">Selected Itinerary</small>
+                        <h6 class="fw-bold text-white mb-0" id="modalBookingPackageTitle">Sigiriya Lion Rock &mdash; Royal Cultural Odyssey</h6>
+                    </div>
+                    <div class="text-sm-end">
+                        <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-50 px-2 py-1 rounded-pill small" id="modalBookingDuration">5 Days / 4 Nights</span>
+                        <div class="fw-bold text-warning fs-5 mt-1" id="modalBookingPrice">From LKR 135,000</div>
+                    </div>
+                </div>
+
+                <!-- Booking Submission Form -->
+                <form action="process-form.php" method="POST" id="signatureBookingForm">
+                    <input type="hidden" name="subject" id="modalBookingPackageInput" value="Lanka Travellers Booking">
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="bookingName" class="form-label small fw-semibold text-light">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control bg-black bg-opacity-50 text-white border-secondary border-opacity-50" id="bookingName" name="fullname" placeholder="e.g. Alexander Perera" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="bookingEmail" class="form-label small fw-semibold text-light">Email Address <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control bg-black bg-opacity-50 text-white border-secondary border-opacity-50" id="bookingEmail" name="email" placeholder="alexander@example.com" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="bookingDate" class="form-label small fw-semibold text-light">Preferred Travel Date</label>
+                            <input type="date" class="form-control bg-black bg-opacity-50 text-white border-secondary border-opacity-50" id="bookingDate">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="bookingGuests" class="form-label small fw-semibold text-light">Number of Guests</label>
+                            <select class="form-select bg-black bg-opacity-50 text-white border-secondary border-opacity-50" id="bookingGuests">
+                                <option value="2 Guests (Private Hybrid SUV)">2 Guests (Private Hybrid SUV)</option>
+                                <option value="Solo Traveler (Private Guide)">Solo Traveler (Private Guide)</option>
+                                <option value="Family / Small Group (3 - 5 Guests)">Family / Small Group (3 - 5 Guests)</option>
+                                <option value="Executive Group (6+ Guests)">Executive Group (6+ Guests)</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="bookingMessage" class="form-label small fw-semibold text-light">Special Requests or Customization Notes <span class="text-danger">*</span></label>
+                            <textarea class="form-control bg-black bg-opacity-50 text-white border-secondary border-opacity-50" id="bookingMessage" name="message" rows="3" placeholder="Specify any dietary requirements, luxury boutique hotel preferences, or private helicopter transfers..." required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top border-secondary border-opacity-25">
+                        <button type="button" class="btn btn-outline-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-warning text-dark fw-bold rounded-pill px-4" style="background: linear-gradient(135deg, #facc15 0%, #eab308 100%);">
+                            <i class="fa-solid fa-paper-plane me-1"></i> Submit Reservation Request
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- 3-Column Features Section -->
 <section class="py-5 bg-white">
     <div class="container py-4">

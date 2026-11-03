@@ -1,0 +1,858 @@
+/* ==========================================================================
+   Lanka Travellers & Portfolio: 3D Interactive Signature Experiences
+   Section 1: The Expeditions Showcase ("Signature Journeys")
+   Section 2: Why Lanka Travellers ("Why Travel With Us") - 3D Orbital System
+   ========================================================================== */
+
+:root {
+    --emerald-deep: #021a14;
+    --emerald-dark: #042f24;
+    --emerald-mid: #064e3b;
+    --emerald-glow: rgba(16, 185, 129, 0.35);
+    --gold-primary: #facc15;
+    --gold-warm: #fbbf24;
+    --gold-glow: rgba(250, 204, 21, 0.45);
+    --gold-rim: 0 0 35px rgba(250, 204, 21, 0.55), 0 0 70px rgba(16, 185, 129, 0.3);
+    --water-mirror-bg: linear-gradient(180deg, rgba(2, 26, 20, 0.1) 0%, rgba(6, 78, 59, 0.3) 35%, rgba(2, 26, 20, 0.95) 100%);
+    --card-glass: rgba(6, 44, 34, 0.78);
+    --card-border: rgba(250, 204, 21, 0.25);
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* ==========================================================================
+   COMMON STYLING & TOGGLE HEADER
+   ========================================================================== */
+.experience-mode-bar {
+    background: rgba(4, 35, 27, 0.85);
+    border: 1px solid rgba(250, 204, 21, 0.3);
+    backdrop-filter: blur(12px);
+    border-radius: 50px;
+    padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(250, 204, 21, 0.15);
+}
+
+.experience-mode-btn {
+    border: none;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 0.86rem;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 30px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.experience-mode-btn:hover {
+    color: #facc15;
+}
+
+.experience-mode-btn.active {
+    background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+    color: #042f24;
+    box-shadow: 0 4px 15px rgba(250, 204, 21, 0.4);
+}
+
+/* ==========================================================================
+   SECTION 1: THE EXPEDITIONS SHOWCASE ("SIGNATURE JOURNEYS")
+   ========================================================================== */
+.expeditions-showcase-section {
+    position: relative;
+    background: radial-gradient(ellipse at 50% 20%, #064e3b 0%, #032d22 45%, #021a14 75%, #010d0a 100%);
+    color: #ffffff;
+    min-height: 920px;
+    overflow: hidden;
+    perspective: 1200px;
+    padding: 70px 0 60px;
+    border-top: 1px solid rgba(250, 204, 21, 0.2);
+    border-bottom: 1px solid rgba(250, 204, 21, 0.2);
+}
+
+/* Tropical Firefly Canvas */
+.firefly-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Ambient Emerald & Gold Atmospheric Glows */
+.ambient-glow-left {
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(40px);
+}
+
+.ambient-glow-right {
+    position: absolute;
+    top: 15%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(40px);
+}
+
+/* 3D Trail Stage Container */
+.trail-viewport {
+    position: relative;
+    height: 560px;
+    width: 100%;
+    transform-style: preserve-3d;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 3D Curved Trail Line Graphic */
+.trail-svg-path {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(65deg) translateZ(-40px);
+    width: 100%;
+    max-width: 980px;
+    height: 480px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.65;
+}
+
+.trail-glowing-line {
+    stroke-dasharray: 8 6;
+    animation: dashDrift 20s linear infinite;
+    filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.8));
+}
+
+@keyframes dashDrift {
+    to { stroke-dashoffset: -300; }
+}
+
+/* 3D Panoramic Destination Cards */
+.portal-card {
+    position: absolute;
+    width: 480px;
+    max-width: 88vw;
+    height: 440px;
+    border-radius: 24px;
+    background: var(--card-glass);
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+/* 3D Depth Positions along the Winding Trail */
+.portal-card.card-pos-active {
+    transform: translate3d(0, 0, 120px) rotateY(0deg) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+    z-index: 10;
+    border: 1.5px solid rgba(250, 204, 21, 0.75);
+    box-shadow: var(--gold-rim), 0 35px 80px rgba(0, 0, 0, 0.85);
+}
+
+.portal-card.card-pos-prev {
+    transform: translate3d(-340px, -20px, -60px) rotateY(18deg) scale(0.82);
+    opacity: 0.42;
+    filter: blur(4px);
+    z-index: 5;
+}
+
+.portal-card.card-pos-next {
+    transform: translate3d(340px, -20px, -60px) rotateY(-18deg) scale(0.82);
+    opacity: 0.42;
+    filter: blur(4px);
+    z-index: 5;
+}
+
+.portal-card.card-pos-far {
+    transform: translate3d(0, -60px, -220px) rotateY(0deg) scale(0.68);
+    opacity: 0.15;
+    filter: blur(8px);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Inside the Portal Card */
+.portal-image-container {
+    position: relative;
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.portal-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s ease;
+}
+
+.portal-card:hover .portal-card-img {
+    transform: scale(1.08);
+}
+
+.portal-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(2, 26, 20, 0.1) 0%, rgba(2, 26, 20, 0.7) 70%, rgba(2, 26, 20, 0.98) 100%);
+}
+
+.portal-badge-pill {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(2, 26, 20, 0.85);
+    border: 1px solid rgba(250, 204, 21, 0.45);
+    color: #facc15;
+    padding: 5px 14px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    backdrop-filter: blur(8px);
+    text-transform: uppercase;
+}
+
+.portal-rating-pill {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(250, 204, 21, 0.2);
+    border: 1px solid rgba(250, 204, 21, 0.5);
+    color: #ffffff;
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+}
+
+.portal-card-body {
+    padding: 22px 26px;
+    position: relative;
+    z-index: 2;
+}
+
+.portal-card-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.45rem;
+    color: #ffffff;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.portal-card-desc {
+    color: #cbd5e1;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.portal-meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.portal-tag {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #34d399;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   REFLECTIVE WATERY MIRROR FLOOR (Sigiriya Water Gardens tribute)
+   ========================================================================== */
+.water-mirror-floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 240px;
+    background: var(--water-mirror-bg);
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+    border-top: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.water-shimmer-layer {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(250, 204, 21, 0.02) 0px,
+        rgba(16, 185, 129, 0.05) 40px,
+        rgba(250, 204, 21, 0.02) 80px
+    );
+    opacity: 0.8;
+    animation: waterRipple 8s ease-in-out infinite alternate;
+}
+
+@keyframes waterRipple {
+    0% { transform: scaleY(1) translateY(0); filter: blur(2px); }
+    100% { transform: scaleY(1.15) translateY(-6px); filter: blur(3px); }
+}
+
+.water-reflection-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 520px;
+    height: 120px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(250, 204, 21, 0.35) 0%, rgba(16, 185, 129, 0.15) 50%, transparent 80%);
+    filter: blur(15px);
+}
+
+/* Trail Control Arrows */
+.trail-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(4, 47, 36, 0.75);
+    border: 1px solid rgba(250, 204, 21, 0.4);
+    color: #facc15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    z-index: 20;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.trail-nav-btn:hover {
+    background: #facc15;
+    color: #042f24;
+    border-color: #facc15;
+    box-shadow: 0 0 25px rgba(250, 204, 21, 0.6);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.trail-nav-btn.prev-btn { left: 24px; }
+.trail-nav-btn.next-btn { right: 24px; }
+
+/* ==========================================================================
+   DYNAMIC BOTTOM STATUS DOCK (BELOW VIEWPORT)
+   ========================================================================== */
+.dynamic-bottom-dock {
+    position: relative;
+    z-index: 10;
+    margin-top: 25px;
+}
+
+.dock-card {
+    background: rgba(3, 35, 27, 0.85);
+    border: 1px solid rgba(250, 204, 21, 0.35);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 24px;
+    padding: 20px 32px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(16, 185, 129, 0.15);
+    transition: all 0.4s ease;
+}
+
+.dock-title-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #facc15;
+    margin-bottom: 2px;
+}
+
+.dock-package-name {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: #ffffff;
+    margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dock-duration-badge {
+    background: rgba(250, 204, 21, 0.15);
+    border: 1px solid rgba(250, 204, 21, 0.4);
+    color: #fef08a;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dock-price-val {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: #34d399;
+}
+
+.dock-price-sub {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.dock-action-btn {
+    background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+    color: #022c22 !important;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 12px 28px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0 6px 20px rgba(250, 204, 21, 0.4);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.dock-action-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(250, 204, 21, 0.6);
+    background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+}
+
+/* ==========================================================================
+   SECTION 2: WHY LANKA TRAVELLERS ("WHY TRAVEL WITH US") - 3D ORBITAL SYSTEM
+   ========================================================================== */
+.orbital-showcase-section {
+    position: relative;
+    background: radial-gradient(ellipse at 50% 50%, #042f24 0%, #021a14 55%, #010c09 100%);
+    color: #ffffff;
+    min-height: 860px;
+    overflow: hidden;
+    perspective: 1200px;
+    padding: 90px 0;
+    border-bottom: 1px solid rgba(250, 204, 21, 0.15);
+}
+
+/* Huge Faint Outlined Typography Watermark */
+.orbital-watermark-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: clamp(6.5rem, 18vw, 16rem);
+    letter-spacing: 0.18em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(250, 204, 21, 0.08);
+    text-transform: uppercase;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+    white-space: nowrap;
+    opacity: 0.8;
+}
+
+/* The 3D Orbital Tilt Stage (Tracks Mouse Movement) */
+.orbital-parallax-stage {
+    position: relative;
+    width: 100%;
+    height: 580px;
+    transform-style: preserve-3d;
+    transition: transform 0.2s cubic-bezier(0.1, 1, 0.2, 1);
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Central Illuminated 3D Heritage Compass Emblem */
+.heritage-compass-emblem {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #facc15 0%, #ca8a04 60%, #854d0e 100%);
+    box-shadow: 0 0 50px rgba(250, 204, 21, 0.6), 0 0 100px rgba(16, 185, 129, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 15;
+    animation: emblemFloat 6s ease-in-out infinite alternate;
+    transform-style: preserve-3d;
+}
+
+@keyframes emblemFloat {
+    0% { transform: translateZ(30px) translateY(-8px) rotate(0deg); }
+    100% { transform: translateZ(30px) translateY(8px) rotate(5deg); }
+}
+
+.compass-inner-core {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: #022c22;
+    border: 3px solid #facc15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #facc15;
+    font-size: 2.8rem;
+    box-shadow: inset 0 0 20px rgba(250, 204, 21, 0.5);
+    position: relative;
+}
+
+.compass-dial-needle {
+    position: absolute;
+    width: 6px;
+    height: 80px;
+    background: linear-gradient(180deg, #ef4444 50%, #facc15 50%);
+    border-radius: 4px;
+    animation: needleWiggle 4s ease-in-out infinite alternate;
+}
+
+@keyframes needleWiggle {
+    0% { transform: rotate(-18deg); }
+    100% { transform: rotate(24deg); }
+}
+
+/* Two Glowing Orbital Rings */
+.orbital-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    pointer-events: none;
+    transform-style: preserve-3d;
+}
+
+.orbital-ring-1 {
+    width: 580px;
+    height: 580px;
+    margin-left: -290px;
+    margin-top: -290px;
+    border: 2px dashed rgba(250, 204, 21, 0.45);
+    box-shadow: 0 0 25px rgba(250, 204, 21, 0.2);
+    transform: rotateX(68deg) rotateY(12deg);
+    animation: ringOrbit1 32s linear infinite;
+    z-index: 5;
+}
+
+.orbital-ring-2 {
+    width: 680px;
+    height: 680px;
+    margin-left: -340px;
+    margin-top: -340px;
+    border: 1.5px solid rgba(52, 211, 153, 0.35);
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+    transform: rotateX(60deg) rotateY(-22deg);
+    animation: ringOrbit2 45s linear infinite reverse;
+    z-index: 6;
+}
+
+@keyframes ringOrbit1 {
+    from { transform: rotateX(68deg) rotateY(12deg) rotateZ(0deg); }
+    to { transform: rotateX(68deg) rotateY(12deg) rotateZ(360deg); }
+}
+
+@keyframes ringOrbit2 {
+    from { transform: rotateX(60deg) rotateY(-22deg) rotateZ(0deg); }
+    to { transform: rotateX(60deg) rotateY(-22deg) rotateZ(360deg); }
+}
+
+/* Orbital Benefit Cards */
+.orbital-card {
+    position: absolute;
+    width: 320px;
+    max-width: 82vw;
+    background: rgba(3, 38, 29, 0.86);
+    border: 1px solid rgba(250, 204, 21, 0.25);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 20px;
+    padding: 24px;
+    transform-style: preserve-3d;
+    transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    user-select: none;
+}
+
+/* 4 Spatial Positions around the 3D Elliptical Orbit */
+.orbital-card.orbit-pos-0 {
+    /* Front & Active */
+    transform: translate3d(0, 110px, 160px) scale(1.08);
+    opacity: 1;
+    filter: blur(0px);
+    z-index: 20;
+    border-color: rgba(250, 204, 21, 0.75);
+    box-shadow: 0 0 35px rgba(250, 204, 21, 0.4), 0 25px 60px rgba(0, 0, 0, 0.8);
+}
+
+.orbital-card.orbit-pos-1 {
+    /* Right Side */
+    transform: translate3d(360px, 0, -40px) rotateY(-30deg) scale(0.88);
+    opacity: 0.55;
+    filter: blur(2px);
+    z-index: 10;
+}
+
+.orbital-card.orbit-pos-2 {
+    /* Back / Top */
+    transform: translate3d(0, -140px, -180px) scale(0.74);
+    opacity: 0.25;
+    filter: blur(5px);
+    z-index: 5;
+}
+
+.orbital-card.orbit-pos-3 {
+    /* Left Side */
+    transform: translate3d(-360px, 0, -40px) rotateY(30deg) scale(0.88);
+    opacity: 0.55;
+    filter: blur(2px);
+    z-index: 10;
+}
+
+.orbital-icon-box {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+    border: 1px solid rgba(250, 204, 21, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #facc15;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.orbital-card-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.orbital-card-text {
+    font-size: 0.86rem;
+    color: #cbd5e1;
+    line-height: 1.55;
+    margin-bottom: 0;
+}
+
+/* Vertical Progress Indicator Dots on Right Side */
+.orbital-progress-nav {
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 30;
+}
+
+.orbital-dot-btn {
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 4px;
+    outline: none;
+}
+
+.orbital-dot-circle {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(250, 204, 21, 0.3);
+    transition: all 0.3s ease;
+}
+
+.orbital-dot-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #94a3b8;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.orbital-dot-btn:hover .orbital-dot-label,
+.orbital-dot-btn.active .orbital-dot-label {
+    opacity: 1;
+    transform: translateX(0);
+    color: #facc15;
+}
+
+.orbital-dot-btn.active .orbital-dot-circle {
+    background: #facc15;
+    border-color: #facc15;
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.8);
+    transform: scale(1.3);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN ADAPTATIONS
+   ========================================================================== */
+@media (max-width: 991.98px) {
+    .expeditions-showcase-section {
+        min-height: 840px;
+        padding: 50px 0;
+    }
+    
+    .trail-viewport {
+        height: 500px;
+    }
+
+    .portal-card {
+        width: 380px;
+        height: 410px;
+    }
+    
+    .portal-image-container {
+        height: 210px;
+    }
+
+    .portal-card.card-pos-prev {
+        transform: translate3d(-240px, -10px, -50px) rotateY(15deg) scale(0.78);
+    }
+
+    .portal-card.card-pos-next {
+        transform: translate3d(240px, -10px, -50px) rotateY(-15deg) scale(0.78);
+    }
+
+    .orbital-showcase-section {
+        min-height: 800px;
+        padding: 60px 0;
+    }
+
+    .orbital-card.orbit-pos-1 {
+        transform: translate3d(240px, 0, -40px) rotateY(-25deg) scale(0.8);
+    }
+
+    .orbital-card.orbit-pos-3 {
+        transform: translate3d(-240px, 0, -40px) rotateY(25deg) scale(0.8);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .portal-card {
+        width: 320px;
+        height: 380px;
+    }
+
+    .portal-card.card-pos-prev {
+        transform: translate3d(-140px, 0, -40px) scale(0.75);
+        opacity: 0.25;
+    }
+
+    .portal-card.card-pos-next {
+        transform: translate3d(140px, 0, -40px) scale(0.75);
+        opacity: 0.25;
+    }
+
+    .trail-nav-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+    }
+    
+    .trail-nav-btn.prev-btn { left: 8px; }
+    .trail-nav-btn.next-btn { right: 8px; }
+
+    .orbital-progress-nav {
+        right: 10px;
+    }
+
+    .orbital-dot-label {
+        display: none;
+    }
+
+    .orbital-card {
+        width: 270px;
+        padding: 18px;
+    }
+
+    .orbital-card.orbit-pos-0 {
+        transform: translate3d(0, 90px, 120px) scale(1);
+    }
+
+    .orbital-card.orbit-pos-1 {
+        transform: translate3d(160px, 0, -40px) scale(0.75);
+        opacity: 0.35;
+    }
+
+    .orbital-card.orbit-pos-3 {
+        transform: translate3d(-160px, 0, -40px) scale(0.75);
+        opacity: 0.35;
+    }
+
+    .heritage-compass-emblem {
+        width: 110px;
+        height: 110px;
+    }
+
+    .compass-inner-core {
+        width: 80px;
+        height: 80px;
+        font-size: 1.8rem;
+    }
+
+    .compass-dial-needle {
+        height: 55px;
+    }
+}
