@@ -66,7 +66,7 @@ include 'includes/header.php';
                 <div class="profile-wrapper">
                     <div class="profile-ring"></div>
                     <div class="profile-image-inner">
-                        <img src="images/profile.jpg" alt="A.A. Fazal Muhammad" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Fazal+Muhammad&background=0f172a&color=38bdf8&size=512';">
+                        <img src="images/profile.jpg?v=<?php echo file_exists('images/profile.jpg') ? filemtime('images/profile.jpg') : '1'; ?>" alt="A.A. Fazal Muhammad" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Fazal+Muhammad&background=0f172a&color=38bdf8&size=512';">
                     </div>
                     <!-- Status Badge -->
                     <div class="status-floating-badge">

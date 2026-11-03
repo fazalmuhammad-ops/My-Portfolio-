@@ -350,6 +350,187 @@ include 'includes/header.php';
         </div>
     </div>
 </div>
+ <div class="col-lg-4 col-md-6 project-item" data-category="web-dev" id="lanka-travellers">
+                <div class="project-card">
+                    <div class="project-img-wrapper" style="background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #0f766e 100%);">
+                        <i class="fa-solid fa-plane-departure text-info project-icon-placeholder"></i>
+                        <span class="project-badge bg-success">
+                            <i class="fa-solid fa-earth-asia me-1"></i> Web Dev
+                        </span>
+                    </div>
+                    <div class="project-card-body">
+                        <h5 class="fw-bold mb-1">Lanka Travellers</h5>
+                        <small class="text-success fw-semibold d-block mb-2">
+                            Modern Tourism & Travel Platform
+                        </small>
+                        <p class="text-secondary small mb-3 flex-grow-1">
+                            A responsive, accessible, and high-performance multi-page travel agency web platform built with semantic HTML5, modern CSS3, and vanilla JavaScript. Features dynamic URL-based package pre-selection, touch-optimized mobile navigation, interactive FAQ accordions, and automated dark mode adaptation.
+                        </p>
+                        <div class="d-flex flex-wrap gap-1 mb-3">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Vanilla JS</span>
+                            <span class="tech-tag">Dark Mode</span>
+                            <span class="tech-tag">Responsive UI</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                            <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#modalProjectLankaTravellers">
+                                <i class="fa-solid fa-circle-info me-1"></i> Details
+                            </button>
+                            <a href="https://github.com/fazalmuhammad-ops/Traveling-Website" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                                <i class="fa-brands fa-github me-1"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: My Portfolio (Web Dev) -->
+            <div class="col-lg-4 col-md-6 project-item" data-category="web-dev" id="my-portfolio">
+                <div class="project-card">
+                    <div class="project-img-wrapper" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);">
+                        <i class="fa-solid fa-laptop-code text-info project-icon-placeholder"></i>
+                        <span class="project-badge bg-primary">
+                            <i class="fa-solid fa-code me-1"></i> Web Dev
+                        </span>
+                    </div>
+                    <div class="project-card-body">
+                        <h5 class="fw-bold mb-1">My Portfolio</h5>
+                        <small class="text-primary fw-semibold d-block mb-2">
+                            Department of ICT &bull; University of Sri Jayewardenepura
+                        </small>
+                        <p class="text-secondary small mb-3 flex-grow-1">
+                            A dynamic, responsive personal portfolio website built with modular PHP templates, Bootstrap 5 UI framework, custom CSS, client-side dynamic filtering, and a secure backend contact form system.
+                        </p>
+                        <div class="d-flex flex-wrap gap-1 mb-3">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">Bootstrap 5</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">CSS3</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                            <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#modalProjectMyPortfolio">
+                                <i class="fa-solid fa-circle-info me-1"></i> Details
+                            </button>
+                            <a href="index.php" class="btn btn-sm btn-primary rounded-pill px-3">
+                                <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> View Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /row -->
+
+        <!-- Empty state fallback if filter returns nothing -->
+        <div id="noProjectsAlert" class="text-center py-5 d-none">
+            <i class="fa-solid fa-folder-open text-muted fa-3x mb-3"></i>
+            <h5 class="text-secondary">No projects found in this category</h5>
+            <p class="text-muted small">Try selecting another filter above.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- Modals for Project Details -->
+<!-- Modal Core Rider -->
+<div class="modal fade" id="modalProjectCoreRider" tabindex="-1" aria-labelledby="modalProjectCoreRiderLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-dark text-white border-bottom border-warning border-opacity-50">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-warning text-dark fw-bold px-2 py-1 rounded-pill">
+                        <i class="fa-solid fa-trophy me-1"></i> Runner-Up
+                    </span>
+                    <h5 class="modal-title fw-bold mb-0" id="modalProjectCoreRiderLabel">Core Rider — Mobile App</h5>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="p-3 bg-warning-subtle border border-warning border-opacity-50 rounded-3 mb-4 d-flex align-items-center gap-3">
+                    <i class="fa-solid fa-award text-warning display-6 flex-shrink-0"></i>
+                    <div>
+                        <h6 class="fw-bold mb-1 text-dark">BitHack 2026 Runner-Up Achievement</h6>
+                        <small class="text-secondary d-block">
+                            Awarded <strong>Runner-Up</strong> distinction at <strong>BitHack 2026</strong>, organized by <strong>Eastern University, Sri Lanka (EUSL) Trincomalee Campus</strong>, for architecting and prototyping this innovative micro-mobility solution.
+                        </small>
+                    </div>
+                </div>
+
+                <h6 class="fw-bold text-dark mb-2">Project Overview & Problem Statement:</h6>
+                <p class="text-secondary small leading-relaxed mb-4">
+                    Commuters and university students frequently face unreliable intra-campus transportation, steep single-passenger fares, and an absence of verified passenger safety. <strong>Core Rider</strong> was conceived and rapidly prototyped during the BitHack 2026 hackathon to solve these challenges through affordable, verified, on-demand ride-pooling and micro-transit sharing.
+                </p>
+
+                <h6 class="fw-bold text-dark mb-2">Core Features & Innovations:</h6>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-3 h-100 border">
+                            <span class="fw-semibold text-primary d-block mb-1"><i class="fa-solid fa-map-location-dot me-2"></i>Live Telemetry & GPS</span>
+                            <small class="text-secondary">Integrated Google Maps SDK for real-time driver tracking, optimal route mapping, and live estimated time of arrival (ETA).</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-3 h-100 border">
+                            <span class="fw-semibold text-success d-block mb-1"><i class="fa-solid fa-users me-2"></i>Smart Ride-Pooling</span>
+                            <small class="text-secondary">Intelligent passenger-driver pairing algorithm connecting commuters travelling along shared campus corridors to cut emissions and trip costs.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-3 h-100 border">
+                            <span class="fw-semibold text-warning-emphasis d-block mb-1"><i class="fa-solid fa-calculator me-2"></i>Automated Fare Matrix</span>
+                            <small class="text-secondary">Transparent distance and peak-hour fare calculation model preventing unfair surge costs, integrated with cashless payment logging.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-3 h-100 border">
+                            <span class="fw-semibold text-danger d-block mb-1"><i class="fa-solid fa-shield-halved me-2"></i>Emergency SOS & Safety</span>
+                            <small class="text-secondary">One-tap emergency broadcast mechanism dispatching live location telemetry to designated emergency contacts and campus security.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="fw-bold text-dark mb-2">Technology Stack:</h6>
+                <div class="d-flex flex-wrap gap-2">
+                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-brands fa-flutter text-info me-1"></i> Flutter (Dart)</span>
+                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-solid fa-fire text-danger me-1"></i> Firebase Auth & Cloud Firestore</span>
+                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-brands fa-node-js text-success me-1"></i> Node.js API Service</span>
+                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-solid fa-map text-primary me-1"></i> Google Maps Platform</span>
+                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="fa-solid fa-bolt text-warning me-1"></i> Cloud Functions</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Lanka Travellers -->
+<div class="modal fade" id="modalProjectLankaTravellers" tabindex="-1" aria-labelledby="modalProjectLankaTravellersLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-dark text-white border-bottom border-success border-opacity-50">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fw-bold px-2 py-1 rounded-pill">
+                        <i class="fa-solid fa-earth-asia me-1"></i> Tourism Platform
+                    </span>
+                    <h5 class="modal-title fw-bold mb-0" id="modalProjectLankaTravellersLabel">Lanka Travellers</h5>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="p-3 bg-success-subtle border border-success border-opacity-50 rounded-3 mb-4 d-flex align-items-center gap-3">
+                    <i class="fa-solid fa-compass text-success display-6 flex-shrink-0"></i>
+                    <div>
+                        <h6 class="fw-bold mb-1 text-dark">Modern Tourism & Travel Platform</h6>
+                        <small class="text-secondary d-block">
+                            A responsive, accessible, and high-performance multi-page travel agency web platform built with semantic HTML5, modern CSS3, and vanilla JavaScript.
+                        </small>
+                    </div>
+                </div>
+
 
 <?php
 include 'includes/footer.php';
