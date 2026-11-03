@@ -12,10 +12,12 @@
 // Turn off default exception throwing to handle connection failures gracefully
 mysqli_report(MYSQLI_REPORT_OFF);
 
-$host     = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'portfolio_db';
+// Support cloud environment variables with local XAMPP defaults
+$host     = getenv('DB_HOST') ?: 'localhost';
+$username = getenv('DB_USER') ?: 'root';
+$password = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
+$database = getenv('DB_NAME') ?: 'portfolio_db';
+$port     = (int)(getenv('DB_PORT') ?: 3306);
 
 $conn = null;
 $dbConnected = false;
@@ -23,7 +25,7 @@ $dbConnectionError = '';
 
 try {
     // Attempt connecting to MySQL server
-    $tempConn = @new mysqli($host, $username, $password);
+    $tempConn = @new mysqli($host, $username, $password, '', $port);
 
     if ($tempConn && !$tempConn->connect_error) {
         // Ensure portfolio_db exists
