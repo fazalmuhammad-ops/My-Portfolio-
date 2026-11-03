@@ -75,7 +75,7 @@ $currentScript = basename($_SERVER['PHP_SELF']);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3" href="index.php#expeditionsSection">
-                            <i class="fa-solid fa-compass me-1 text-warning"></i> 3D Journeys
+                            <i class="fa-solid fa-cubes me-1 text-warning"></i> 3D Showcase
                         </a>
                     </li>
                     <li class="nav-item">

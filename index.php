@@ -111,7 +111,7 @@ include 'includes/header.php';
 </div>
 
 <!-- ======================================================================= -->
-<!-- SECTION 1: THE EXPEDITIONS SHOWCASE ("SIGNATURE JOURNEYS") -->
+<!-- SECTION 1: THE ENGINEERING EXPEDITIONS ("SIGNATURE WORKS") -->
 <!-- ======================================================================= -->
 <section class="expeditions-showcase-section" id="expeditionsSection">
     <!-- Atmospheric Ambient Glows & Canvas Particles -->
@@ -120,29 +120,16 @@ include 'includes/header.php';
     <div class="ambient-glow-right"></div>
 
     <div class="container position-relative" style="z-index: 10;">
-        <!-- Header & Mode Switcher -->
+        <!-- Header -->
         <div class="text-center mb-4">
-            <div class="d-flex justify-content-center mb-3">
-                <div class="experience-mode-bar">
-                    <button type="button" class="experience-mode-btn active" id="modeBtnTourism">
-                        <i class="fa-solid fa-compass"></i>
-                        <span>Lanka Travellers (Luxury Tours)</span>
-                    </button>
-                    <button type="button" class="experience-mode-btn" id="modeBtnPortfolio">
-                        <i class="fa-solid fa-laptop-code"></i>
-                        <span>Fazal's Engineering Expeditions</span>
-                    </button>
-                </div>
-            </div>
-
             <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-40 rounded-pill px-3 py-1 mb-2 fw-semibold" id="expeditionsBadge">
-                Signature Journeys
+                <i class="fa-solid fa-code me-1 text-warning"></i> Signature Works
             </span>
             <h2 class="fw-bold display-5 text-white mb-2" id="expeditionsTitle">
-                The Expeditions Showcase
+                The Engineering Expeditions
             </h2>
             <p class="text-white text-opacity-75 col-md-8 mx-auto fs-6 mb-0" id="expeditionsSubtitle">
-                Traverse panoramic 3D destination portals across emerald mist, ancient Sigiriya water gardens, and colonial coastal ramparts.
+                Traverse 3D panoramic portals showcasing my flagship mobile systems, modern web platforms, and university infrastructure simulations.
             </p>
         </div>
 
@@ -186,21 +173,22 @@ include 'includes/header.php';
             <div class="dock-card mx-auto col-lg-10 col-xl-9">
                 <div class="row align-items-center g-3">
                     <div class="col-md-5">
-                        <div class="dock-title-label" id="dockTitleLabel">Royal Cultural Odyssey</div>
-                        <h4 class="dock-package-name" id="dockPackageName">Sigiriya Lion Rock</h4>
+                        <div class="dock-title-label" id="dockTitleLabel">Mobile App Engineering</div>
+                        <h4 class="dock-package-name" id="dockPackageName">Core Rider (Smart Mobility)</h4>
                     </div>
                     <div class="col-sm-6 col-md-3 text-md-center">
                         <span class="dock-duration-badge" id="dockDuration">
-                            <i class="fa-regular fa-clock me-1"></i> 5 Days / 4 Nights
+                            <i class="fa-solid fa-award me-1 text-warning"></i> BitHack 2026 Award
                         </span>
                     </div>
                     <div class="col-sm-6 col-md-4 text-md-end d-flex align-items-center justify-content-md-end justify-content-between gap-3">
                         <div>
-                            <div class="dock-price-val" id="dockPrice">From LKR 135,000</div>
-                            <div class="dock-price-sub" id="dockPriceSub">per person &bull; all-inclusive</div>
+                            <div class="dock-price-val" id="dockPrice">BitHack '26 Runner-Up</div>
+                            <div class="dock-price-sub" id="dockPriceSub">Flutter &bull; Firebase &bull; Node.js</div>
                         </div>
                         <button type="button" class="dock-action-btn" id="dockActionBtn">
-                            Book This Journey
+                            <span>View Project Details</span>
+                            <i class="fa-solid fa-arrow-right-long ms-1"></i>
                         </button>
                     </div>
                 </div>
@@ -210,33 +198,33 @@ include 'includes/header.php';
 </section>
 
 <!-- ======================================================================= -->
-<!-- SECTION 2: WHY LANKA TRAVELLERS ("WHY TRAVEL WITH US") - 3D ORBITAL SYSTEM -->
+<!-- SECTION 2: WHY CHOOSE FAZAL ("CORE ENGINEERING PILLARS") - 3D ORBITAL SYSTEM -->
 <!-- ======================================================================= -->
 <section class="orbital-showcase-section" id="orbitalSection">
     <!-- Huge Faint Outlined Typography Watermark -->
-    <div class="orbital-watermark-text" id="orbitalWatermark">SERENDIPITY</div>
+    <div class="orbital-watermark-text" id="orbitalWatermark">INNOVATION</div>
 
     <div class="container position-relative" style="z-index: 5;">
         <!-- Section Header -->
         <div class="text-center mb-5">
             <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-40 rounded-pill px-3 py-1 mb-2 fw-semibold" id="orbitalBadge">
-                Why Lanka Travellers
+                <i class="fa-solid fa-compass me-1 text-warning"></i> Why Choose Fazal
             </span>
             <h2 class="fw-bold display-5 text-white mb-2" id="orbitalTitle">
-                Why Travel With Us
+                Core Engineering Pillars
             </h2>
             <p class="text-white text-opacity-75 col-md-7 mx-auto fs-6 mb-0" id="orbitalSubtitle">
-                A floating 3D orbital journey demonstrating our commitment to luxury, authentic heritage, and round-the-clock peace of mind.
+                A floating 3D orbital experience representing the technical disciplines, university rigor, and problem-solving passion driving my work.
             </p>
         </div>
 
         <!-- 3D Parallax Tilt Stage -->
         <div class="orbital-parallax-stage" id="orbitalParallaxStage">
-            <!-- Central Illuminated 3D Heritage Compass / Golden Emblem -->
+            <!-- Central Illuminated 3D Developer Emblem & Heritage Compass -->
             <div class="heritage-compass-emblem">
                 <div class="compass-inner-core">
                     <div class="compass-dial-needle"></div>
-                    <i class="fa-solid fa-compass position-relative" style="z-index: 2;"></i>
+                    <i class="fa-solid fa-code position-relative" style="z-index: 2;"></i>
                 </div>
             </div>
 
@@ -253,81 +241,6 @@ include 'includes/header.php';
         </div>
     </div>
 </section>
-
-<!-- ======================================================================= -->
-<!-- BOOKING / INQUIRY MODAL (End-to-End Functional with process-form.php) -->
-<!-- ======================================================================= -->
-<div class="modal fade" id="modalSignatureBooking" tabindex="-1" aria-labelledby="modalSignatureBookingLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-dark text-white border-0 shadow-lg" style="border: 1px solid rgba(250, 204, 21, 0.4) !important; border-radius: 24px; overflow: hidden;">
-            <div class="modal-header border-bottom border-secondary border-opacity-25 py-3 px-4" style="background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);">
-                <div>
-                    <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill mb-1">
-                        <i class="fa-solid fa-gem me-1"></i> Luxury Journey Reservation
-                    </span>
-                    <h5 class="modal-title fw-bold text-white mb-0" id="modalSignatureBookingLabel">
-                        Lanka Travellers &mdash; Reserve Your Experience
-                    </h5>
-                </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4 p-md-5">
-                <!-- Package Summary Banner -->
-                <div class="p-3 rounded-3 mb-4 d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3" 
-                     style="background: rgba(4, 47, 36, 0.7); border: 1px solid rgba(250, 204, 21, 0.3);">
-                    <div>
-                        <small class="text-warning text-uppercase fw-bold d-block" style="font-size: 0.72rem; letter-spacing: 0.08em;">Selected Itinerary</small>
-                        <h6 class="fw-bold text-white mb-0" id="modalBookingPackageTitle">Sigiriya Lion Rock &mdash; Royal Cultural Odyssey</h6>
-                    </div>
-                    <div class="text-sm-end">
-                        <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-50 px-2 py-1 rounded-pill small" id="modalBookingDuration">5 Days / 4 Nights</span>
-                        <div class="fw-bold text-warning fs-5 mt-1" id="modalBookingPrice">From LKR 135,000</div>
-                    </div>
-                </div>
-
-                <!-- Booking Submission Form -->
-                <form action="process-form.php" method="POST" id="signatureBookingForm">
-                    <input type="hidden" name="subject" id="modalBookingPackageInput" value="Lanka Travellers Booking">
-
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="bookingName" class="form-label small fw-semibold text-light">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control bg-black bg-opacity-50 text-white border-secondary border-opacity-50" id="bookingName" name="fullname" placeholder="e.g. Alexander Perera" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="bookingEmail" class="form-label small fw-semibold text-light">Email Address <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control bg-black bg-opacity-50 text-white border-secondary border-opacity-50" id="bookingEmail" name="email" placeholder="alexander@example.com" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="bookingDate" class="form-label small fw-semibold text-light">Preferred Travel Date</label>
-                            <input type="date" class="form-control bg-black bg-opacity-50 text-white border-secondary border-opacity-50" id="bookingDate">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="bookingGuests" class="form-label small fw-semibold text-light">Number of Guests</label>
-                            <select class="form-select bg-black bg-opacity-50 text-white border-secondary border-opacity-50" id="bookingGuests">
-                                <option value="2 Guests (Private Hybrid SUV)">2 Guests (Private Hybrid SUV)</option>
-                                <option value="Solo Traveler (Private Guide)">Solo Traveler (Private Guide)</option>
-                                <option value="Family / Small Group (3 - 5 Guests)">Family / Small Group (3 - 5 Guests)</option>
-                                <option value="Executive Group (6+ Guests)">Executive Group (6+ Guests)</option>
-                            </select>
-                        </div>
-                        <div class="col-12">
-                            <label for="bookingMessage" class="form-label small fw-semibold text-light">Special Requests or Customization Notes <span class="text-danger">*</span></label>
-                            <textarea class="form-control bg-black bg-opacity-50 text-white border-secondary border-opacity-50" id="bookingMessage" name="message" rows="3" placeholder="Specify any dietary requirements, luxury boutique hotel preferences, or private helicopter transfers..." required></textarea>
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top border-secondary border-opacity-25">
-                        <button type="button" class="btn btn-outline-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-warning text-dark fw-bold rounded-pill px-4" style="background: linear-gradient(135deg, #facc15 0%, #eab308 100%);">
-                            <i class="fa-solid fa-paper-plane me-1"></i> Submit Reservation Request
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- 3-Column Features Section -->
 <section class="py-5 bg-white">
@@ -438,5 +351,6 @@ include 'includes/header.php';
 </section>
 
 <?php
+include 'includes/project-modals.php';
 include 'includes/footer.php';
 ?>

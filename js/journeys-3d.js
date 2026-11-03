@@ -1,224 +1,126 @@
 /**
- * Lanka Travellers & Portfolio: 3D Interactive Signature Experiences
- * Section 1: The Expeditions Showcase ("Signature Journeys")
- * Section 2: Why Lanka Travellers ("Why Travel With Us") - 3D Orbital System
+ * A.A. Fazal Muhammad - University & Developer Portfolio
+ * 3D Interactive Signature Experiences:
+ * Section 1: The Engineering Expeditions ("Signature Works") - 3D Winding Trail
+ * Section 2: Why Work With Fazal ("Core Engineering Pillars") - 3D Orbital Universe
  */
 
 (function () {
     'use strict';
 
     // =========================================================================
-    // 1. DATA REPOSITORIES FOR DUAL MODES
+    // 1. PORTFOLIO EXPEDITIONS & PILLARS DATA
     // =========================================================================
-    const SHOWCASE_DATA = {
-        // Mode A: Lanka Travellers Luxury Sri Lankan Tours
-        tourism: {
-            watermark: 'SERENDIPITY',
-            section1Badge: 'Signature Journeys',
-            section1Title: 'The Expeditions Showcase',
-            section1Sub: 'Traverse panoramic 3D destination portals across emerald mist, ancient Sigiriya water gardens, and colonial coastal ramparts.',
-            cards: [
-                {
-                    id: 'sigiriya',
-                    badge: 'UNESCO World Heritage',
-                    rating: '★ 4.98 (240+ Reviews)',
-                    title: 'Sigiriya Lion Rock',
-                    desc: 'Ascend King Kashyapa’s 5th-century ancient citadel perched atop an obsidian monolith surrounded by symmetrical water gardens and boulder frescoes.',
-                    tags: ['Ancient Citadel', 'Water Gardens', 'Monolithic Fortress'],
-                    image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80',
-                    fallbackGradient: 'linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%)',
-                    packageLabel: 'Royal Cultural Odyssey',
-                    duration: '5 Days / 4 Nights',
-                    price: 'From LKR 135,000',
-                    priceSub: 'per person &bull; all-inclusive',
-                    buttonText: 'Book This Journey',
-                    actionType: 'booking'
-                },
-                {
-                    id: 'galle',
-                    badge: 'Dutch Colonial Bastion',
-                    rating: '★ 4.95 (180+ Reviews)',
-                    title: 'Galle Fort & Lighthouse',
-                    desc: 'Stroll the cobbled seaside ramparts of the 17th-century ocean fortress, colonial villas, and emerald tides meeting the historic ivory lighthouse.',
-                    tags: ['Ocean Ramparts', 'Cobblestone Alleys', 'Maritime Sunset'],
-                    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=1000&q=80',
-                    fallbackGradient: 'linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #0284c7 100%)',
-                    packageLabel: 'Southern Coast Heritage',
-                    duration: '4 Days / 3 Nights',
-                    price: 'From LKR 110,000',
-                    priceSub: 'per person &bull; private chauffeur',
-                    buttonText: 'Book This Journey',
-                    actionType: 'booking'
-                },
-                {
-                    id: 'nine-arches',
-                    badge: 'Highland Engineering Marvel',
-                    rating: '★ 4.99 (310+ Reviews)',
-                    title: 'Nine Arches Bridge & Ella',
-                    desc: 'Watch the azure hill-country train glide across the towering brick viaduct engulfed in misty tea estates and highland waterfalls.',
-                    tags: ['Misty Highlands', 'Scenic Train Trail', 'Demodara Viaduct'],
-                    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1000&q=80',
-                    fallbackGradient: 'linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%)',
-                    packageLabel: 'Highland Cloud Forest Tour',
-                    duration: '6 Days / 5 Nights',
-                    price: 'From LKR 155,000',
-                    priceSub: 'per person &bull; first-class train seats',
-                    buttonText: 'Book This Journey',
-                    actionType: 'booking'
-                },
-                {
-                    id: 'kandy',
-                    badge: 'Sacred Royal Kingdom',
-                    rating: '★ 4.94 (220+ Reviews)',
-                    title: 'Temple of the Tooth',
-                    desc: 'Experience the venerated sanctuary of Sri Dalada Maligawa beside Kandy Lake, echoing with ceremonial drummers and fragrant lotus blooms.',
-                    tags: ['Sacred Relic', 'Kandyan Architecture', 'Royal Lakeside'],
-                    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1000&q=80',
-                    fallbackGradient: 'linear-gradient(135deg, #713f12 0%, #854d0e 50%, #a16207 100%)',
-                    packageLabel: 'Sacred Kingdom Pilgrimage',
-                    duration: '3 Days / 2 Nights',
-                    price: 'From LKR 85,000',
-                    priceSub: 'per person &bull; cultural pass included',
-                    buttonText: 'Book This Journey',
-                    actionType: 'booking'
-                }
-            ],
-            // Section 2: Why Lanka Travellers Orbital Benefits
-            orbitalSectionBadge: 'Why Lanka Travellers',
-            orbitalSectionTitle: 'Why Travel With Us',
-            orbitalSectionSub: 'A floating 3D orbital journey demonstrating our commitment to luxury, authentic heritage, and round-the-clock peace of mind.',
-            benefits: [
-                {
-                    icon: 'fa-solid fa-compass',
-                    title: 'Certified Native Guides',
-                    desc: 'Deep cultural fluency and licensed storytelling experts unveiling hidden legends from Sigiriya to Jaffna.'
-                },
-                {
-                    icon: 'fa-solid fa-receipt',
-                    title: 'Transparent LKR Pricing',
-                    desc: 'All-inclusive, guaranteed rates with zero hidden foreign surcharges or surprise tourist commissions.'
-                },
-                {
-                    icon: 'fa-solid fa-route',
-                    title: 'Tailor-Made Flexibility',
-                    desc: 'Customizable itineraries, private luxury hybrid fleets, and hand-selected boutique heritage villas.'
-                },
-                {
-                    icon: 'fa-solid fa-shield-halved',
-                    title: '24/7 On-Tour Guardian Support',
-                    desc: 'Dedicated round-the-clock concierge and emergency medical/travel dispatch ensuring continuous peace of mind.'
-                }
-            ]
-        },
+    const PORTFOLIO_DATA = {
+        watermark: 'INNOVATION',
+        section1Badge: 'Signature Works',
+        section1Title: 'The Engineering Expeditions',
+        section1Sub: 'Traverse 3D panoramic portals showcasing my flagship mobile systems, modern web platforms, and enterprise network architectures.',
+        
+        // 4 Signature Project Portals along the 3D Winding Trail
+        projects: [
+            {
+                id: 'core-rider',
+                badge: 'BitHack 2026 Runner-Up',
+                badgeClass: 'badge-gold',
+                highlight: 'Inter-Campus Hackathon Distinction',
+                title: 'Core Rider (Smart Mobility)',
+                desc: 'On-demand campus micro-mobility and peer ride-pooling mobile application conceived and prototyped at BitHack 2026 (EUSL Trincomalee Campus). Features live Google Maps telemetry, optimal route mapping, and emergency passenger SOS dispatch.',
+                tags: ['Flutter (Dart)', 'Firebase Auth', 'Cloud Firestore', 'Node.js', 'Google Maps SDK'],
+                image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1000&q=80',
+                fallbackGradient: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%)',
+                categoryLabel: 'Mobile App Engineering &bull; Smart Mobility',
+                metricBadge: 'BitHack 2026 Award',
+                techHighlight: 'Flutter &bull; Firebase &bull; Node.js',
+                buttonText: 'View Project Details',
+                targetModal: '#modalProjectCoreRider'
+            },
+            {
+                id: 'lanka-travellers',
+                badge: 'Flagship Web Platform',
+                badgeClass: 'badge-emerald',
+                highlight: 'High-Performance Web Architecture',
+                title: 'Lanka Travellers Platform',
+                desc: 'A responsive, accessible, and high-performance multi-page travel agency web platform built with semantic HTML5, modern CSS3, and vanilla JavaScript. Features dynamic URL-based package pre-selection, touch-optimized mobile navigation, and automated dark mode adaptation.',
+                tags: ['Semantic HTML5', 'Modern CSS3', 'Vanilla JS', 'Dark Mode', 'Responsive UI'],
+                image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1000&q=80',
+                fallbackGradient: 'linear-gradient(135deg, #064e3b 0%, #065f46 50%, #0f766e 100%)',
+                categoryLabel: 'Modern Web Development &bull; Tourism',
+                metricBadge: 'Production Web App',
+                techHighlight: 'HTML5 &bull; CSS3 &bull; Vanilla JS',
+                buttonText: 'View Project Details',
+                targetModal: '#modalProjectLankaTravellers'
+            },
+            {
+                id: 'portfolio-sys',
+                badge: 'Full-Stack PHP System',
+                badgeClass: 'badge-blue',
+                highlight: 'Modular Backend & Live Database',
+                title: 'USJ Academic Portfolio',
+                desc: 'Full-stack personal portfolio system architected with modular PHP include templates, Bootstrap 5 UI, and a resilient database integration. Includes safe MySQL connection handling with auto-provisioning and local backup file parsing.',
+                tags: ['PHP 8.2', 'MySQL / MariaDB', 'Bootstrap 5', 'Form Sanitization', 'Admin Inbox'],
+                image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1000&q=80',
+                fallbackGradient: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2563eb 100%)',
+                categoryLabel: 'Full-Stack Web &bull; USJ FHSS',
+                metricBadge: 'DIT Year 2026',
+                techHighlight: 'PHP 8.2 &bull; MySQL &bull; Bootstrap 5',
+                buttonText: 'View Architecture',
+                targetModal: '#modalProjectPortfolio'
+            },
+            {
+                id: 'network-infra',
+                badge: 'Cisco Systems Simulation',
+                badgeClass: 'badge-cyan',
+                highlight: 'High-Availability Campus Network',
+                title: 'Campus Network Infrastructure',
+                desc: 'Enterprise multi-building campus network topology architected with inter-VLAN routing, dynamic OSPF, DHCP redundancy, VLSM subnet design, and access-control list (ACL) packet firewalls.',
+                tags: ['Cisco Packet Tracer', 'VLSM Subnetting', 'VLAN Trunking', 'OSPF', 'Network Security'],
+                image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80',
+                fallbackGradient: 'linear-gradient(135deg, #042f24 0%, #065f46 50%, #0d9488 100%)',
+                categoryLabel: 'Enterprise Networking &bull; Cisco Lab',
+                metricBadge: 'Cisco Certified Simulation',
+                techHighlight: 'VLSM &bull; VLANs &bull; OSPF &bull; ACLs',
+                buttonText: 'View Network Specs',
+                targetModal: '#modalProjectNetwork'
+            }
+        ],
 
-        // Mode B: Fazal Muhammad's Academic & Engineering Portfolio
-        portfolio: {
-            watermark: 'INNOVATION',
-            section1Badge: 'Signature Creations',
-            section1Title: 'The Engineering Expeditions',
-            section1Sub: 'A winding 3D showcase through flagship mobile systems, modern web platforms, and university infrastructure simulations.',
-            cards: [
-                {
-                    id: 'core-rider',
-                    badge: 'BitHack 2026 Runner-Up',
-                    rating: '★ Award Winner Distinction',
-                    title: 'Core Rider (Smart Mobility)',
-                    desc: 'Real-time on-demand campus micro-mobility and peer ride-pooling platform featuring live Google Maps telemetry and SOS dispatch.',
-                    tags: ['Flutter (Dart)', 'Firebase Auth', 'Node.js', 'Google Maps'],
-                    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1000&q=80',
-                    fallbackGradient: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%)',
-                    packageLabel: 'BitHack 2026 Hackathon Distinction',
-                    duration: 'Mobile App Project',
-                    price: 'EUSL Trincomalee',
-                    priceSub: 'Runner-Up Distinction',
-                    buttonText: 'View Project Details',
-                    actionType: 'project-modal',
-                    targetModal: '#modalProjectCoreRider'
-                },
-                {
-                    id: 'lanka-travellers',
-                    badge: 'Modern Tourism Platform',
-                    rating: '★ High-Performance Web App',
-                    title: 'Lanka Travellers Web Platform',
-                    desc: 'Multi-page luxury travel web application featuring dynamic URL-based package selection, dark mode adaptation, and responsive UI.',
-                    tags: ['Semantic HTML5', 'Modern CSS3', 'Vanilla JS', 'Dark Mode'],
-                    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1000&q=80',
-                    fallbackGradient: 'linear-gradient(135deg, #064e3b 0%, #065f46 50%, #0f766e 100%)',
-                    packageLabel: 'Flagship Web Development',
-                    duration: 'Full-Stack Architecture',
-                    price: 'Lanka Travellers',
-                    priceSub: 'Production Grade',
-                    buttonText: 'Explore System Details',
-                    actionType: 'project-modal',
-                    targetModal: '#modalProjectLankaTravellers'
-                },
-                {
-                    id: 'portfolio-sys',
-                    badge: 'USJ Academic Project',
-                    rating: '★ Full-Stack Web App',
-                    title: 'USJ Portfolio & Database Engine',
-                    desc: 'Modular PHP backend with MySQL persistence, resilient offline logging, XSS protection, and responsive Bootstrap 5 styling.',
-                    tags: ['PHP 8.2', 'MySQL / MariaDB', 'Bootstrap 5', 'REST Safe'],
-                    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1000&q=80',
-                    fallbackGradient: 'linear-gradient(135deg, #172554 0%, #1e40af 50%, #2563eb 100%)',
-                    packageLabel: 'Dept. of ICT &bull; USJ FHSS',
-                    duration: 'DIT Year 2026',
-                    price: 'Full-Stack PHP',
-                    priceSub: 'Live Database Powered',
-                    buttonText: 'Explore Architecture',
-                    actionType: 'project-modal',
-                    targetModal: '#modalProjectPortfolio'
-                },
-                {
-                    id: 'network-infra',
-                    badge: 'Cisco Networking',
-                    rating: '★ Enterprise Simulation',
-                    title: 'Campus Network Infrastructure',
-                    desc: 'Enterprise multi-building campus network topology configured with inter-VLAN routing, OSPF, DHCP redundancy, and ACL firewalls.',
-                    tags: ['Cisco Packet Tracer', 'VLSM Subnetting', 'VLAN Trunking', 'OSPF'],
-                    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80',
-                    fallbackGradient: 'linear-gradient(135deg, #064e3b 0%, #047857 50%, #10b981 100%)',
-                    packageLabel: 'Computer Networking Laboratory',
-                    duration: 'Infrastructure Topology',
-                    price: 'Cisco Systems',
-                    priceSub: 'High-Availability Routing',
-                    buttonText: 'View Network Specs',
-                    actionType: 'project-modal',
-                    targetModal: '#modalProjectNetwork'
-                }
-            ],
-            // Section 2: Why Collaborate With Fazal
-            orbitalSectionBadge: 'Why Work With Fazal',
-            orbitalSectionTitle: 'Core Engineering Pillars',
-            orbitalSectionSub: 'Key principles and proven capabilities defining my technical craftsmanship, academic consistency, and problem-solving drive.',
-            benefits: [
-                {
-                    icon: 'fa-solid fa-trophy',
-                    title: 'Award-Winning Innovation',
-                    desc: 'Proven hackathon track record (Runner-Up at BitHack 2026), building rapid, high-impact prototypes that solve real community challenges.'
-                },
-                {
-                    icon: 'fa-solid fa-code',
-                    title: 'Full-Stack Technical Craft',
-                    desc: 'Proficient in PHP, relational MySQL modeling, modern CSS3 styling, and JavaScript architecture with clean documentation.'
-                },
-                {
-                    icon: 'fa-solid fa-network-wired',
-                    title: 'Enterprise Systems & Networks',
-                    desc: 'Rigorous understanding of computer networking, VLSM subnetting, VLAN segmentation, and resilient system communications.'
-                },
-                {
-                    icon: 'fa-solid fa-graduation-cap',
-                    title: 'USJ Academic Dedication',
-                    desc: 'Diploma in Information Technology student at University of Sri Jayewardenepura, driven by continuous learning and adaptability.'
-                }
-            ]
-        }
+        // 4 Pillars Orbiting in 3D around Developer Emblem
+        section2Badge: 'Why Choose Fazal',
+        section2Title: 'Core Engineering Pillars',
+        section2Sub: 'A floating 3D orbital experience representing the technical disciplines, university rigor, and problem-solving passion driving my work.',
+        pillars: [
+            {
+                icon: 'fa-solid fa-trophy',
+                iconColor: 'text-warning',
+                title: 'Award-Winning Innovation',
+                desc: 'Proven engineering stamina under competitive pressure, earning Runner-Up honors at BitHack 2026 (EUSL Trincomalee Campus) with rapid real-world prototyping.'
+            },
+            {
+                icon: 'fa-solid fa-laptop-code',
+                iconColor: 'text-primary',
+                title: 'Full-Stack Technical Craft',
+                desc: 'Proficient in semantic HTML5/CSS3, responsive Bootstrap 5, modular PHP server-side architectures, and relational MySQL database modeling.'
+            },
+            {
+                icon: 'fa-solid fa-network-wired',
+                iconColor: 'text-success',
+                title: 'Enterprise Systems & Networks',
+                desc: 'Strong university-trained understanding of computer networking, IPv4/IPv6 VLSM subnetting, switching, VLAN trunking, and Cisco routing protocols.'
+            },
+            {
+                icon: 'fa-solid fa-graduation-cap',
+                iconColor: 'text-info',
+                title: 'USJ Academic Rigor & Drive',
+                desc: 'Diploma in Information Technology student at University of Sri Jayewardenepura, driven by continuous learning, clean documentation, and dedication.'
+            }
+        ]
     };
 
-    let currentMode = 'tourism'; // default: 'tourism' (or switch to 'portfolio')
-    let currentCardIndex = 0;
-    let currentBenefitIndex = 0;
+    let currentProjectIndex = 0;
+    let currentPillarIndex = 0;
+    let autoRotateInterval = null;
+    let isHovering = false;
 
     // =========================================================================
     // 2. CANVAS FIREFLY & TROPICAL MIST PARTICLE SYSTEM
@@ -240,18 +142,18 @@
         });
 
         const particles = [];
-        const PARTICLE_COUNT = 45;
+        const PARTICLE_COUNT = 40;
 
         for (let i = 0; i < PARTICLE_COUNT; i++) {
             particles.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                radius: Math.random() * 2.2 + 0.8,
-                speedX: (Math.random() - 0.5) * 0.45,
-                speedY: (Math.random() - 0.5) * 0.35,
+                radius: Math.random() * 2 + 0.8,
+                speedX: (Math.random() - 0.5) * 0.4,
+                speedY: (Math.random() - 0.5) * 0.3,
                 alpha: Math.random() * 0.7 + 0.2,
                 alphaSpeed: Math.random() * 0.015 + 0.005,
-                isGold: Math.random() > 0.45
+                isGold: Math.random() > 0.4
             });
         }
 
@@ -294,16 +196,15 @@
     }
 
     // =========================================================================
-    // 3. SECTION 1: 3D WINDING TRAIL CARDS SHOWCASE
+    // 3. SECTION 1: 3D WINDING TRAIL PROJECT CARDS
     // =========================================================================
     function renderSection1Cards() {
         const container = document.getElementById('portalCardsStage');
         if (!container) return;
 
-        const data = SHOWCASE_DATA[currentMode];
         container.innerHTML = '';
 
-        data.cards.forEach((item, index) => {
+        PORTFOLIO_DATA.projects.forEach((item, index) => {
             const cardEl = document.createElement('div');
             cardEl.className = 'portal-card';
             cardEl.setAttribute('data-index', index);
@@ -313,8 +214,8 @@
                     <img src="${item.image}" alt="${item.title}" class="portal-card-img" 
                          onerror="this.onerror=null; this.style.display='none';">
                     <div class="portal-image-overlay"></div>
-                    <span class="portal-badge-pill">${item.badge}</span>
-                    <span class="portal-rating-pill">${item.rating}</span>
+                    <span class="portal-badge-pill ${item.badgeClass}">${item.badge}</span>
+                    <span class="portal-rating-pill">${item.highlight}</span>
                 </div>
                 <div class="portal-card-body">
                     <h3 class="portal-card-title">${item.title}</h3>
@@ -325,9 +226,8 @@
                 </div>
             `;
 
-            // Clicking any card brings it into focus
             cardEl.addEventListener('click', () => {
-                setCardIndex(index);
+                setProjectIndex(index);
             });
 
             container.appendChild(cardEl);
@@ -344,7 +244,7 @@
         cards.forEach((card, i) => {
             card.classList.remove('card-pos-active', 'card-pos-prev', 'card-pos-next', 'card-pos-far');
 
-            const diff = (i - currentCardIndex + total) % total;
+            const diff = (i - currentProjectIndex + total) % total;
 
             if (diff === 0) {
                 card.classList.add('card-pos-active');
@@ -357,14 +257,12 @@
             }
         });
 
-        // Update Dynamic Bottom Status Dock
         updateBottomDock();
     }
 
     function updateBottomDock() {
-        const data = SHOWCASE_DATA[currentMode];
-        const activeCard = data.cards[currentCardIndex];
-        if (!activeCard) return;
+        const activeItem = PORTFOLIO_DATA.projects[currentProjectIndex];
+        if (!activeItem) return;
 
         const dockPackage = document.getElementById('dockPackageName');
         const dockDuration = document.getElementById('dockDuration');
@@ -373,72 +271,58 @@
         const dockActionBtn = document.getElementById('dockActionBtn');
         const dockLabel = document.getElementById('dockTitleLabel');
 
-        if (dockLabel) dockLabel.textContent = activeCard.packageLabel;
-        if (dockPackage) dockPackage.textContent = activeCard.title;
-        if (dockDuration) dockDuration.innerHTML = `<i class="fa-regular fa-clock me-1"></i> ${activeCard.duration}`;
-        if (dockPrice) dockPrice.textContent = activeCard.price;
-        if (dockPriceSub) dockPriceSub.innerHTML = activeCard.priceSub;
+        if (dockLabel) dockLabel.textContent = activeItem.categoryLabel;
+        if (dockPackage) dockPackage.textContent = activeItem.title;
+        if (dockDuration) dockDuration.innerHTML = `<i class="fa-solid fa-award me-1 text-warning"></i> ${activeItem.metricBadge}`;
+        if (dockPrice) dockPrice.textContent = activeItem.metricBadge;
+        if (dockPriceSub) dockPriceSub.innerHTML = activeItem.techHighlight;
 
         if (dockActionBtn) {
-            dockActionBtn.textContent = activeCard.buttonText;
-
-            // Handle booking modal vs project modal
-            if (activeCard.actionType === 'booking') {
-                dockActionBtn.setAttribute('data-bs-toggle', 'modal');
-                dockActionBtn.setAttribute('data-bs-target', '#modalSignatureBooking');
-                dockActionBtn.onclick = () => {
-                    populateBookingModal(activeCard);
-                };
-            } else if (activeCard.actionType === 'project-modal') {
-                dockActionBtn.setAttribute('data-bs-toggle', 'modal');
-                dockActionBtn.setAttribute('data-bs-target', activeCard.targetModal || '#modalProjectCoreRider');
-                dockActionBtn.onclick = null;
-            }
+            dockActionBtn.innerHTML = `<span>${activeItem.buttonText}</span> <i class="fa-solid fa-arrow-right-long ms-1"></i>`;
+            dockActionBtn.setAttribute('data-bs-toggle', 'modal');
+            dockActionBtn.setAttribute('data-bs-target', activeItem.targetModal);
         }
     }
 
-    function setCardIndex(newIndex) {
-        const total = SHOWCASE_DATA[currentMode].cards.length;
-        currentCardIndex = (newIndex + total) % total;
+    function setProjectIndex(newIndex) {
+        const total = PORTFOLIO_DATA.projects.length;
+        currentProjectIndex = (newIndex + total) % total;
         updateSection1Positions();
     }
 
     // =========================================================================
-    // 4. SECTION 2: 3D ORBITAL SYSTEM & WATERMARK
+    // 4. SECTION 2: 3D ORBITAL UNIVERSE AROUND DEVELOPER EMBLEM
     // =========================================================================
-    function renderSection2Benefits() {
+    function renderSection2Pillars() {
         const stage = document.getElementById('orbitalParallaxStage');
         if (!stage) return;
 
-        const data = SHOWCASE_DATA[currentMode];
         const watermark = document.getElementById('orbitalWatermark');
-        if (watermark) watermark.textContent = data.watermark;
+        if (watermark) watermark.textContent = PORTFOLIO_DATA.watermark;
 
-        // Keep compass emblem & orbital rings, update orbital cards
         const existingCards = stage.querySelectorAll('.orbital-card');
         existingCards.forEach((c) => c.remove());
 
-        data.benefits.forEach((item, index) => {
+        PORTFOLIO_DATA.pillars.forEach((item, index) => {
             const cardEl = document.createElement('div');
             cardEl.className = 'orbital-card';
-            cardEl.setAttribute('data-benefit-index', index);
+            cardEl.setAttribute('data-pillar-index', index);
 
             cardEl.innerHTML = `
                 <div class="orbital-icon-box">
-                    <i class="${item.icon}"></i>
+                    <i class="${item.icon} ${item.iconColor}"></i>
                 </div>
                 <h4 class="orbital-card-title">${item.title}</h4>
                 <p class="orbital-card-text">${item.desc}</p>
             `;
 
             cardEl.addEventListener('click', () => {
-                setBenefitIndex(index);
+                setPillarIndex(index);
             });
 
             stage.appendChild(cardEl);
         });
 
-        // Render vertical indicator dots
         renderOrbitalDots();
         updateOrbitalPositions();
     }
@@ -447,12 +331,11 @@
         const nav = document.getElementById('orbitalProgressNav');
         if (!nav) return;
 
-        const data = SHOWCASE_DATA[currentMode];
         nav.innerHTML = '';
 
-        data.benefits.forEach((item, index) => {
+        PORTFOLIO_DATA.pillars.forEach((item, index) => {
             const btn = document.createElement('button');
-            btn.className = `orbital-dot-btn ${index === currentBenefitIndex ? 'active' : ''}`;
+            btn.className = `orbital-dot-btn ${index === currentPillarIndex ? 'active' : ''}`;
             btn.setAttribute('aria-label', item.title);
 
             btn.innerHTML = `
@@ -461,7 +344,7 @@
             `;
 
             btn.addEventListener('click', () => {
-                setBenefitIndex(index);
+                setPillarIndex(index);
             });
 
             nav.appendChild(btn);
@@ -476,21 +359,19 @@
         cards.forEach((card, i) => {
             card.classList.remove('orbit-pos-0', 'orbit-pos-1', 'orbit-pos-2', 'orbit-pos-3');
 
-            // Compute circular offset
-            const offset = (i - currentBenefitIndex + total) % total;
+            const offset = (i - currentPillarIndex + total) % total;
             card.classList.add(`orbit-pos-${offset}`);
         });
 
-        // Update dots active state
         const dots = document.querySelectorAll('.orbital-dot-btn');
         dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentBenefitIndex);
+            dot.classList.toggle('active', i === currentPillarIndex);
         });
     }
 
-    function setBenefitIndex(index) {
-        const total = SHOWCASE_DATA[currentMode].benefits.length;
-        currentBenefitIndex = (index + total) % total;
+    function setPillarIndex(index) {
+        const total = PORTFOLIO_DATA.pillars.length;
+        currentPillarIndex = (index + total) % total;
         updateOrbitalPositions();
     }
 
@@ -509,10 +390,10 @@
 
         section.addEventListener('mousemove', (e) => {
             const rect = section.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
             const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-            targetRotateY = x * 22; // max 22 deg tilt
+            targetRotateY = x * 22;
             targetRotateX = -y * 18;
         });
 
@@ -533,74 +414,21 @@
     }
 
     // =========================================================================
-    // 6. POPULATE BOOKING MODAL WITH ACTIVE TOUR PACKAGE
-    // =========================================================================
-    function populateBookingModal(card) {
-        const titleEl = document.getElementById('modalBookingPackageTitle');
-        const priceEl = document.getElementById('modalBookingPrice');
-        const durationEl = document.getElementById('modalBookingDuration');
-        const packageInput = document.getElementById('modalBookingPackageInput');
-
-        if (titleEl) titleEl.textContent = card.title + ' — ' + card.packageLabel;
-        if (priceEl) priceEl.textContent = card.price;
-        if (durationEl) durationEl.textContent = card.duration;
-        if (packageInput) packageInput.value = `${card.title} (${card.duration} - ${card.price})`;
-    }
-
-    // =========================================================================
-    // 7. INITIALIZE DUAL MODE SWITCHER
-    // =========================================================================
-    function initModeSwitcher() {
-        const btnTourism = document.getElementById('modeBtnTourism');
-        const btnPortfolio = document.getElementById('modeBtnPortfolio');
-        const sec1Badge = document.getElementById('expeditionsBadge');
-        const sec1Title = document.getElementById('expeditionsTitle');
-        const sec1Sub = document.getElementById('expeditionsSubtitle');
-        const sec2Badge = document.getElementById('orbitalBadge');
-        const sec2Title = document.getElementById('orbitalTitle');
-        const sec2Sub = document.getElementById('orbitalSubtitle');
-
-        function switchMode(mode) {
-            currentMode = mode;
-            currentCardIndex = 0;
-            currentBenefitIndex = 0;
-
-            if (btnTourism) btnTourism.classList.toggle('active', mode === 'tourism');
-            if (btnPortfolio) btnPortfolio.classList.toggle('active', mode === 'portfolio');
-
-            const data = SHOWCASE_DATA[mode];
-            if (sec1Badge) sec1Badge.textContent = data.section1Badge;
-            if (sec1Title) sec1Title.textContent = data.section1Title;
-            if (sec1Sub) sec1Sub.textContent = data.section1Sub;
-            if (sec2Badge) sec2Badge.textContent = data.orbitalSectionBadge;
-            if (sec2Title) sec2Title.textContent = data.orbitalSectionTitle;
-            if (sec2Sub) sec2Sub.textContent = data.orbitalSectionSub;
-
-            renderSection1Cards();
-            renderSection2Benefits();
-        }
-
-        if (btnTourism) btnTourism.addEventListener('click', () => switchMode('tourism'));
-        if (btnPortfolio) btnPortfolio.addEventListener('click', () => switchMode('portfolio'));
-    }
-
-    // =========================================================================
-    // 8. BIND CONTROLS (NAV BUTTONS, KEYBOARD, TOUCH)
+    // 6. SCROLL & CONTROLS BINDING
     // =========================================================================
     function bindControls() {
         const prevBtn = document.getElementById('trailPrevBtn');
         const nextBtn = document.getElementById('trailNextBtn');
 
-        if (prevBtn) prevBtn.addEventListener('click', () => setCardIndex(currentCardIndex - 1));
-        if (nextBtn) nextBtn.addEventListener('click', () => setCardIndex(currentCardIndex + 1));
+        if (prevBtn) prevBtn.addEventListener('click', () => setProjectIndex(currentProjectIndex - 1));
+        if (nextBtn) nextBtn.addEventListener('click', () => setProjectIndex(currentProjectIndex + 1));
 
-        // Arrow keys when viewport is visible
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') setCardIndex(currentCardIndex - 1);
-            if (e.key === 'ArrowRight') setCardIndex(currentCardIndex + 1);
+            if (e.key === 'ArrowLeft') setProjectIndex(currentProjectIndex - 1);
+            if (e.key === 'ArrowRight') setProjectIndex(currentProjectIndex + 1);
         });
 
-        // Wheel scroll support on Section 1
+        // Wheel navigation on Section 1
         const sec1 = document.getElementById('expeditionsSection');
         if (sec1) {
             let lastScrollTime = 0;
@@ -608,14 +436,25 @@
                 const now = Date.now();
                 if (now - lastScrollTime > 600 && Math.abs(e.deltaY) > 25) {
                     if (e.deltaY > 0) {
-                        setCardIndex(currentCardIndex + 1);
+                        setProjectIndex(currentProjectIndex + 1);
                     } else {
-                        setCardIndex(currentCardIndex - 1);
+                        setProjectIndex(currentProjectIndex - 1);
                     }
                     lastScrollTime = now;
                 }
             }, { passive: true });
+
+            sec1.addEventListener('mouseenter', () => { isHovering = true; });
+            sec1.addEventListener('mouseleave', () => { isHovering = false; });
         }
+
+        // Auto-rotation every 7 seconds when user is not actively interacting
+        autoRotateInterval = setInterval(() => {
+            if (!isHovering) {
+                setProjectIndex(currentProjectIndex + 1);
+                setPillarIndex(currentPillarIndex + 1);
+            }
+        }, 7000);
     }
 
     // =========================================================================
@@ -623,9 +462,8 @@
     // =========================================================================
     document.addEventListener('DOMContentLoaded', () => {
         initFireflyCanvas();
-        initModeSwitcher();
         renderSection1Cards();
-        renderSection2Benefits();
+        renderSection2Pillars();
         initOrbitalMouseParallax();
         bindControls();
     });
