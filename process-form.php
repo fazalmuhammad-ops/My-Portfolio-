@@ -3,12 +3,14 @@
  * Backend Form Processing Script
  * Project: A.A. Fazal Muhammad - University Portfolio
  * Purpose: Handles POST submission from contact.php, sanitizes input, validates required fields,
- *          inserts the entry into MySQL database (if online), logs to messages.txt,
- *          and redirects back with status query parameter.
+ *          logs to messages.txt, inserts into MySQL database (if online),
+ *          and dispatches an instant email notification to fazalaamuhammad@gmail.com.
  */
 
 // Include DB connection
 require_once __DIR__ . '/includes/db.php';
+// Include Mailer Service
+require_once __DIR__ . '/includes/mailer.php';
 
 // Only allow POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -47,7 +49,7 @@ if (!filter_var($cleanEmail, FILTER_VALIDATE_EMAIL)) {
 $clientIp = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
 
 $logEntry = sprintf(
-    "[%s] IP: %s | Name: %s | Email: %s | Subject: %s\nMessage: %s\n--------------------------------------------------------\n\n",
+    "[%s] IP: %s | Name: %s | Email: %s | Subject: %s\nMessage: %s\n--------------------------------------------------------\n",
     date('Y-m-d H:i:s'),
     $clientIp,
     $cleanFullname,
@@ -82,7 +84,30 @@ try {
     // If MySQL insert encounters an issue, safely ignore as backup log succeeded
 }
 
-// Redirect back with success status
-header("Location: contact.php?status=success");
+// 5. Dispatch Direct Email Notification to fazalaamuhammad@gmail.com
+try {
+    $mailResult = PortfolioMailer::sendNotification(
+        $cleanFullname,
+        $cleanEmail,
+        $cleanSubject,
+        $cleanMessage,
+        $clientIp
+    );
+
+    // Record email dispatch outcome into log file
+    $mailLog = sprintf(
+        "[%s] EMAIL NOTIFICATION -> Recipient: fazalaamuhammad@gmail.com | Method: %s | Result: %s\n--------------------------------------------------------\n\n",
+        date('Y-m-d H:i:s'),
+        $mailResult['method'] ?? 'unknown',
+        (!empty($mailResult['success'])) ? 'DISPATCHED' : 'LOGGED / QUEUED'
+    );
+    @file_put_contents(__DIR__ . '/messages.txt', $mailLog, FILE_APPEND | LOCK_EX);
+} catch (Throwable $e) {
+    // Prevent email failures from ever breaking the user experience
+}
+
+// Redirect back with success status and sender name for personalized confirmation
+$nameParam = urlencode($cleanFullname);
+header("Location: contact.php?status=success&name={$nameParam}");
 exit();
 ?>

@@ -34,10 +34,13 @@ $errorMessage = isset($_GET['msg']) ? trim($_GET['msg']) : '';
                             <i class="fa-solid fa-circle-check fs-3 text-success"></i>
                             <div>
                                 <strong class="d-block">Message Received Successfully!</strong>
-                                <span>Thank you! Your message has been safely recorded and stored.</span>
+                                <span>Thank you<?php echo !empty($_GET['name']) ? ', <strong>' . htmlspecialchars($_GET['name']) . '</strong>' : ''; ?>! Your message has been safely recorded and dispatched to <strong>fazalaamuhammad@gmail.com</strong>.</span>
                             </div>
                         </div>
                         <div class="d-flex align-items-center gap-2">
+                            <a href="mailto:fazalaamuhammad@gmail.com" class="btn btn-sm btn-outline-success px-3 rounded-pill fw-semibold shadow-sm">
+                                <i class="fa-solid fa-envelope me-1"></i> Open in Gmail
+                            </a>
                             <a href="view-messages.php" class="btn btn-sm btn-success text-white px-3 rounded-pill fw-semibold shadow-sm">
                                 <i class="fa-solid fa-inbox me-1"></i> View Inbox
                             </a>
@@ -154,7 +157,7 @@ $errorMessage = isset($_GET['msg']) ? trim($_GET['msg']) : '';
                 <div class="contact-card">
                     <h3 class="fw-bold mb-2">Send a Message</h3>
                     <p class="text-secondary small mb-4">
-                        Fill out the details below. Submitted messages are safely sanitized and stored for local testing.
+                        Fill out the details below. Submitted messages are safely sanitized, logged, and delivered directly to <strong>fazalaamuhammad@gmail.com</strong>.
                     </p>
 
                     <!-- Form target: process-form.php -->
