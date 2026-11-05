@@ -1,89 +1,574 @@
 /* ==========================================================================
-   Interactive Portfolio Hero Stylesheet (Sri Tech-Style SVG Character Engine)
-   Concept: Interactive vector character adapted with Fazal's portrait & 3 desktop zones
+   Interactive Portfolio Hero Stylesheet (Sri Tech-Style Fullscreen Experience)
+   Concept: Cursor-reactive character working on a laptop with 3 interaction zones
    ========================================================================== */
 
-/* Custom refined gradients and subtle backdrops */
-.hero-radial-bg {
-  background: radial-gradient(circle at 50% 55%, 
-    #ffffff 0%, 
-    #fbf6f7 32%, 
-    #f5e6ea 58%, 
-    #ecd3db 76%, 
-    #d8a8b6 90%, 
-    #7a2f43 115%
-  );
+:root {
+    --hero-bg-deep: #0b1120;
+    --hero-rose-edge: #4a1525;
+    --hero-maroon-dark: #2d0b16;
+    --hero-glow-white: rgba(255, 255, 255, 0.95);
+    --hero-accent-rose: #f43f5e;
 }
 
-/* Gentle ambient white glow behind character */
-.center-glow {
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.45) 45%, rgba(255, 255, 255, 0) 75%);
+/* --- Interactive Hero Section Container (100vh Fullscreen Viewport) --- */
+.interactive-hero-section {
+    position: relative;
+    background: radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.14) 0%, rgba(74, 21, 37, 0.35) 45%, rgba(45, 11, 22, 0.68) 75%, #0b1120 100%),
+                linear-gradient(180deg, #0b1120 0%, #111827 50%, #0b1120 100%);
+    color: #ffffff;
+    min-height: calc(100vh - 76px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    perspective: 1200px;
+    padding: 30px 0 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Subtle animated cursor pulse */
-@keyframes cursorPulse {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.9;
-  }
-  50% {
-    transform: translate(4px, 4px) scale(0.92);
-    opacity: 0.45;
-  }
-}
-.animate-cursor-pulse {
-  animation: cursorPulse 2.4s ease-in-out infinite;
-}
-
-/* Floating speech capsule animation */
-@keyframes softFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-.animate-float {
-  animation: softFloat 4s ease-in-out infinite;
+/* Focused White-to-Rose Glow behind Character */
+.hero-character-backlight {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 780px;
+    height: 780px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.30) 0%, rgba(244, 63, 94, 0.22) 35%, rgba(74, 21, 37, 0.16) 65%, transparent 80%);
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 1;
+    animation: pulseBacklight 8s ease-in-out infinite alternate;
 }
 
-/* Custom scroll indicator bounce */
-@keyframes subtleBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
-}
-.animate-subtle-bounce {
-  animation: subtleBounce 2s ease-in-out infinite;
+@keyframes pulseBacklight {
+    0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.85; }
+    100% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
 }
 
-/* Prevent text selection when hovering rapidly across zones */
-.no-select {
-  user-select: none;
-  -webkit-user-select: none;
+/* Soft Ambient Dusty-Rose Edge Vignettes */
+.hero-edge-glow-left {
+    position: absolute;
+    top: 15%;
+    left: -8%;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(225, 29, 72, 0.20) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(65px);
+    pointer-events: none;
+    z-index: 1;
 }
 
-/* High-res rendering & hardware acceleration for SVG character */
-#character-canvas {
-  filter: drop-shadow(0 20px 30px rgba(74, 21, 35, 0.15));
-  will-change: transform;
+.hero-edge-glow-right {
+    position: absolute;
+    top: 20%;
+    right: -8%;
+    width: 580px;
+    height: 580px;
+    background: radial-gradient(circle, rgba(244, 63, 94, 0.18) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(65px);
+    pointer-events: none;
+    z-index: 1;
 }
 
-#char-head-group,
-#char-headset,
-#right-arm-path,
-#right-hand {
-  will-change: transform;
-  transform-origin: center;
+/* --- 3 Horizontal Cursor Detection Zones --- */
+.hero-interaction-zones {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    z-index: 15;
+    pointer-events: auto;
 }
 
-/* Hero Section Base Adjustments */
-#hero-section {
-  min-height: calc(100vh - 76px);
-  position: relative;
+.hero-zone {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    cursor: default;
 }
 
-/* Responsive fine-tuning for interactive stage */
-@media (max-width: 768px) {
-  #hero-section {
-    min-height: auto;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
+/* --- Left-Side Note & Instruction --- */
+.hero-left-note {
+    position: relative;
+    z-index: 20;
+    pointer-events: none;
+}
+.hero-left-note a, 
+.hero-left-note button {
+    pointer-events: auto;
+}
+
+.hero-author-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    color: #e2e8f0;
+}
+
+.hero-instruction-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px dashed rgba(244, 63, 94, 0.45);
+    backdrop-filter: blur(12px);
+    padding: 8px 18px;
+    border-radius: 30px;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hero-instruction-text {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #fda4af;
+    letter-spacing: 0.02em;
+}
+
+.animated-cursor-indicator {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #f43f5e;
+    animation: cursorSweep 2.2s infinite ease-in-out;
+}
+
+@keyframes cursorSweep {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-5px, -2px) scale(1.15); }
+    50% { transform: translate(6px, 2px) scale(0.95); }
+    75% { transform: translate(-3px, 3px) scale(1.1); }
+}
+
+/* --- Center Interactive Character & Workstation Stage --- */
+.hero-stage-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+}
+
+.character-workstation {
+    position: relative;
+    width: 440px;
+    max-width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Dominant Video Hero Card (Houses the 720x1280 Video) --- */
+.video-hero-card {
+    position: relative;
+    width: 410px;
+    max-width: 88vw;
+    height: 590px;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #020617;
+    border: 3px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 
+                0 0 50px rgba(244, 63, 94, 0.28), 
+                0 0 35px rgba(255, 255, 255, 0.15);
+    transform-style: preserve-3d;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1400px) {
+    .character-workstation {
+        width: 470px;
+    }
+    .video-hero-card {
+        width: 440px;
+        height: 630px;
+    }
+}
+
+.hero-character-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    background: #0f172a;
+    transition: transform 0.4s ease;
+}
+
+/* Glass overlay rim inside video card */
+.video-glass-rim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 26px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.35);
+    z-index: 2;
+}
+
+/* Corner Cyber Accents */
+.video-corner-accent {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f43f5e;
+    pointer-events: none;
+    z-index: 3;
+}
+.video-corner-accent.top-left {
+    top: 12px;
+    left: 12px;
+    border-right: none;
+    border-bottom: none;
+}
+.video-corner-accent.top-right {
+    top: 12px;
+    right: 12px;
+    border-left: none;
+    border-bottom: none;
+}
+
+/* Fullscreen Toggle Button */
+.video-fullscreen-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    cursor: pointer;
+    z-index: 25;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+.video-fullscreen-btn:hover {
+    background: #f43f5e;
+    border-color: #f43f5e;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(244, 63, 94, 0.6);
+}
+
+/* Native Fullscreen Mode via Browser Fullscreen API */
+.video-hero-card:fullscreen,
+.video-hero-card:-webkit-full-screen {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    border-radius: 0 !important;
+    border: none !important;
+    background: #020617 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.video-hero-card:fullscreen .hero-character-video,
+.video-hero-card:-webkit-full-screen .hero-character-video {
+    width: auto !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    object-fit: contain !important;
+}
+
+.video-hero-card:fullscreen .video-fullscreen-btn,
+.video-hero-card:-webkit-full-screen .video-fullscreen-btn {
+    top: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+    background: rgba(15, 23, 42, 0.9);
+}
+
+/* Floating Status Pill on Video */
+.video-status-pill {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 6px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: #e2e8f0;
+    font-weight: 500;
+    z-index: 4;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.video-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #10b981;
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+    0% { transform: scale(0.9); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+/* Workstation Desk Shadow */
+.workstation-desk-shadow {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 420px;
+    height: 38px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* --- Right-Side Contextual Speech Bubble / Reaction Box --- */
+.hero-reaction-bubble {
+    position: relative;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.reaction-card {
+    background: rgba(15, 23, 42, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(244, 63, 94, 0.18);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 340px;
+    pointer-events: auto;
+}
+
+.reaction-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: #f43f5e;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.reaction-pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #f43f5e;
+    animation: bubbleDotPulse 1.8s infinite;
+}
+
+@keyframes bubbleDotPulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+.reaction-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.35;
+    margin-bottom: 8px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.25s ease;
+}
+
+.reaction-subtext {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* Portfolio Cue Pointing Indicator */
+.portfolio-cue-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 0.78rem;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 4px 12px;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+.portfolio-cue-pill:hover {
+    transform: translateY(2px);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   ZONE REACTION STATES (Triggered by interactive-hero.js)
+   ========================================================================== */
+
+/* 1. Normal Working State (Default) */
+.state-working .video-hero-card {
+    transform: perspective(1000px) rotateX(4deg) rotateY(0deg) scale(0.98);
+}
+
+/* 2. Left-Looking State */
+.state-left .video-hero-card {
+    transform: perspective(1000px) rotateX(2deg) rotateY(-18deg) rotateZ(-2deg) translateX(-14px) scale(1.02);
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: 0 30px 75px rgba(0, 0, 0, 0.85), 0 0 55px rgba(56, 189, 248, 0.38);
+}
+.state-left .reaction-card {
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.25);
+}
+
+/* 3. Right-Looking State */
+.state-right .video-hero-card {
+    transform: perspective(1000px) rotateX(2deg) rotateY(18deg) rotateZ(2deg) translateX(14px) scale(1.02);
+    border-color: rgba(244, 63, 94, 0.5);
+    box-shadow: 0 30px 75px rgba(0, 0, 0, 0.85), 0 0 55px rgba(244, 63, 94, 0.38);
+}
+.state-right .reaction-card {
+    border-color: rgba(244, 63, 94, 0.45);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 30px rgba(244, 63, 94, 0.25);
+}
+
+/* 4. Center Greeting State */
+.state-center .video-hero-card {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(40px) scale(1.05);
+    border-color: rgba(250, 204, 21, 0.6);
+    box-shadow: 0 35px 85px rgba(0, 0, 0, 0.9), 0 0 65px rgba(250, 204, 21, 0.4);
+}
+.state-center .reaction-card {
+    border-color: rgba(250, 204, 21, 0.5);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 40px rgba(250, 204, 21, 0.3);
+}
+
+/* --- Bottom Scroll Cue Indicator --- */
+.hero-scroll-cue {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    text-align: center;
+}
+
+.hero-scroll-link {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.8rem;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.3s ease;
+}
+.hero-scroll-link:hover {
+    color: #ffffff;
+}
+
+.scroll-mouse-icon {
+    width: 20px;
+    height: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    position: relative;
+}
+.scroll-wheel-dot {
+    width: 4px;
+    height: 6px;
+    background: #f43f5e;
+    border-radius: 2px;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: mouseScrollWheel 1.8s infinite ease-out;
+}
+@keyframes mouseScrollWheel {
+    0% { transform: translate(-50%, 0); opacity: 1; }
+    80% { transform: translate(-50%, 10px); opacity: 0; }
+    100% { transform: translate(-50%, 0); opacity: 0; }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Mobile & Tablet Layouts)
+   ========================================================================== */
+@media (max-width: 991.98px) {
+    .interactive-hero-section {
+        min-height: auto;
+        padding: 40px 0 50px;
+    }
+    .hero-interaction-zones {
+        display: none;
+    }
+    .hero-left-note {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    .hero-instruction-box {
+        margin: 12px auto 0;
+    }
+    .character-workstation {
+        width: 320px;
+    }
+    .video-hero-card {
+        width: 310px;
+        height: 480px;
+    }
+    .hero-reaction-bubble {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+    }
+    .reaction-card {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+    }
+    .reaction-tag,
+    .reaction-text {
+        justify-content: center;
+    }
+    .hero-scroll-cue {
+        display: none;
+    }
 }

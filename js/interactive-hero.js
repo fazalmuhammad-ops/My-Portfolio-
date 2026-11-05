@@ -1,326 +1,355 @@
 /**
- * Interactive Portfolio Hero Animation Controller
- * Adapted for A.A. Fazal Muhammad with Sri Tech-Style SVG Character Engine
- *
- * Implements 3 horizontal zones on desktop:
- * - Left: Smooth head look left + "Anyone here on the left?" + 2.5s hold + return
- * - Right: Smooth head look right + "Anyone here on the right?" + 2.5s hold + return
- * - Center: Greeting Sequence: Look forward alertly -> Headset drops to neck -> Wave hello -> Point downward
- *
- * Driven by requestAnimationFrame with interpolation (LERP) for high performance.
+ * Interactive Portfolio Hero Video Controller (Sri Tech-Style Interactive Hero)
+ * Powered by: HTML5 High-Performance Video Engine & 3-Zone Cursor Tracker
+ * 
+ * Timeline Segments (8-second video sequence):
+ * - WORKING (0.0s - 1.9s): Typing / Working on laptop
+ * - LEFT (2.0s - 3.6s): Notices something & looks left
+ * - RIGHT (3.7s - 5.2s): Looks right
+ * - CENTER (5.3s - 8.0s): Notices visitor, removes headset, waves hello, points down
  */
 
 (function () {
-  'use strict';
+    'use strict';
 
-  function initInteractiveHero() {
-    const heroSection = document.getElementById('hero-section');
-    if (!heroSection) return;
-
-    // SVG Character Elements
-    const headGroup = document.getElementById('char-head-group');
-    const eyesGroup = document.getElementById('char-eyes-mouth');
-    const pupilLeft = document.getElementById('pupil-left');
-    const pupilRight = document.getElementById('pupil-right');
-    const mouth = document.getElementById('char-mouth');
-    const headset = document.getElementById('char-headset');
-    const leftArmPath = document.getElementById('left-arm-path');
-    const rightArmPath = document.getElementById('right-arm-path');
-    const rightHand = document.getElementById('right-hand');
-
-    // Speech Pill elements
-    const speechContainer = document.getElementById('speech-pill-container');
-    const speechText = document.getElementById('speech-pill-text');
-    const speechDot = document.getElementById('speech-indicator-dot');
-
-    // Desktop interaction zones
-    const zoneLeft = document.getElementById('zone-left');
-    const zoneCenter = document.getElementById('zone-center');
-    const zoneRight = document.getElementById('zone-right');
-
-    if (!headGroup || !rightArmPath || !rightHand) return;
-
-    // States: 'idle', 'left', 'right', 'center_greet'
-    let currentState = 'idle';
-    let holdTimeout = null;
-    let centerTimer = null;
-    let waveStartTime = 0;
-
-    // Animation targets & current values (LERP)
-    const anim = {
-      headRotation: 0,
-      targetHeadRotation: 0,
-      headTranslateX: 0,
-      targetHeadTranslateX: 0,
-      headTranslateY: 0,
-      targetHeadTranslateY: 0,
-
-      pupilOffsetX: 0,
-      targetPupilOffsetX: 0,
-      pupilOffsetY: 0,
-      targetPupilOffsetY: 0,
-
-      // Headset on neck offset
-      headsetTranslateY: 0,
-      targetHeadsetTranslateY: 0,
-      headsetScale: 1,
-      targetHeadsetScale: 1,
-
-      // Right arm: 0 = Typing, 1 = Waving hello, 2 = Pointing down
-      armPose: 0,
-      targetArmPose: 0,
-
-      // Mouth shape factor (0 = neutral/working, 1 = wide smile)
-      mouthSmile: 0,
-      targetMouthSmile: 0
+    const TIMELINES = {
+        working: { start: 0.0, end: 1.9, loop: true },
+        left:    { start: 2.0, end: 3.6, hold: 2800 },
+        right:   { start: 3.7, end: 5.2, hold: 2800 },
+        center:  { start: 5.3, end: 7.95, hold: 7200 }
     };
 
-    // Helper: Linear Interpolation
-    function lerp(start, end, factor) {
-      return start + (end - start) * factor;
-    }
+    const MESSAGES = {
+        working: {
+            tag: 'Live Coding Environment',
+            title: 'Full-Stack Engineering',
+            desc: 'Building responsive web platforms, networking architectures, and modern systems.'
+        },
+        left: {
+            tag: 'Left Interaction Zone',
+            title: 'Anyone here on the left?',
+            desc: 'Observing campus networking topology and user interfaces on the left monitor.'
+        },
+        right: {
+            tag: 'Right Interaction Zone',
+            title: 'Anyone here on the right?',
+            desc: 'Scanning real-time database queries and application telemetry on the right.'
+        },
+        center: [
+            {
+                tag: 'Main Greeting',
+                title: "Hey, it's you!",
+                desc: 'Delighted to connect with you. Thanks for visiting my academic portfolio.'
+            },
+            {
+                tag: 'Welcome Visitor',
+                title: 'Hiiii!',
+                desc: 'Explore my university projects, BitHack award achievements, and technical skills.'
+            },
+            {
+                tag: 'Explore Below',
+                title: 'Check out the portfolio',
+                desc: 'Scroll down to traverse the 3D Signature Expeditions and core pillars.'
+            }
+        ]
+    };
 
-    // Set contextual speech text with smooth fade
-    function updateSpeech(text, visible, dotColor) {
-      if (!speechContainer || !speechText) return;
-      if (!visible) {
-        speechContainer.style.opacity = '0';
-        speechContainer.style.transform = 'translateY(8px)';
-        return;
-      }
-      speechText.textContent = text;
-      if (speechDot && dotColor) speechDot.style.backgroundColor = dotColor;
-      speechContainer.style.opacity = '1';
-      speechContainer.style.transform = 'translateY(0px)';
-    }
+    let currentState = 'working';
+    let holdTimer = null;
+    let centerMessageInterval = null;
+    let centerMessageIndex = 0;
 
-    // --- State Transitions ---
+    // DOM Elements
+    let heroSection = null;
+    let video = null;
+    let videoStatusText = null;
+    let reactionTag = null;
+    let reactionText = null;
+    let reactionDesc = null;
 
-    function returnToIdle() {
-      currentState = 'idle';
-      anim.targetHeadRotation = 0;
-      anim.targetHeadTranslateX = 0;
-      anim.targetHeadTranslateY = 0;
-      anim.targetPupilOffsetX = 0;
-      anim.targetPupilOffsetY = 0;
-      anim.targetHeadsetTranslateY = 0;
-      anim.targetHeadsetScale = 1;
-      anim.targetArmPose = 0;
-      anim.targetMouthSmile = 0;
-      updateSpeech('', false);
-    }
+    /**
+     * Switch state and seek/play corresponding video segment
+     */
+    function applyState(newState) {
+        if (!heroSection || !video) return;
 
-    function triggerLeftReaction() {
-      if (currentState === 'left') return;
-      if (holdTimeout) clearTimeout(holdTimeout);
-      if (centerTimer) clearTimeout(centerTimer);
+        currentState = newState;
 
-      currentState = 'left';
-      updateSpeech("Anyone here on the left?", true, "#8c2d46");
+        // Update CSS classes
+        heroSection.classList.remove('state-working', 'state-left', 'state-right', 'state-center');
+        heroSection.classList.add(`state-${newState}`);
 
-      // Character looks left
-      anim.targetHeadRotation = -8;
-      anim.targetHeadTranslateX = -10;
-      anim.targetHeadTranslateY = -2;
-      anim.targetPupilOffsetX = -3.5;
-      anim.targetPupilOffsetY = -0.5;
-      anim.targetHeadsetTranslateY = 0;
-      anim.targetHeadsetScale = 1;
-      anim.targetArmPose = 0;
-      anim.targetMouthSmile = 0.2;
-
-      // Hold reaction for 2.5 seconds, then return to normal working state
-      holdTimeout = setTimeout(() => {
-        returnToIdle();
-      }, 2500);
-    }
-
-    function triggerRightReaction() {
-      if (currentState === 'right') return;
-      if (holdTimeout) clearTimeout(holdTimeout);
-      if (centerTimer) clearTimeout(centerTimer);
-
-      currentState = 'right';
-      updateSpeech("Anyone here on the right?", true, "#8c2d46");
-
-      // Character looks right
-      anim.targetHeadRotation = 8;
-      anim.targetHeadTranslateX = 10;
-      anim.targetHeadTranslateY = -2;
-      anim.targetPupilOffsetX = 3.5;
-      anim.targetPupilOffsetY = -0.5;
-      anim.targetHeadsetTranslateY = 0;
-      anim.targetHeadsetScale = 1;
-      anim.targetArmPose = 0;
-      anim.targetMouthSmile = 0.2;
-
-      // Hold reaction for 2.5 seconds, then return to normal working state
-      holdTimeout = setTimeout(() => {
-        returnToIdle();
-      }, 2500);
-    }
-
-    function triggerCenterGreeting() {
-      if (currentState === 'center_greet') return;
-      if (holdTimeout) clearTimeout(holdTimeout);
-      if (centerTimer) clearTimeout(centerTimer);
-
-      currentState = 'center_greet';
-
-      // Step 1: Look directly at visitor, alert & excited
-      anim.targetHeadRotation = 0;
-      anim.targetHeadTranslateX = 0;
-      anim.targetHeadTranslateY = -6; // lifts head attentively
-      anim.targetPupilOffsetX = 0;
-      anim.targetPupilOffsetY = 0.5;
-      anim.targetMouthSmile = 0.5;
-      updateSpeech("Hey, it's you!", true, "#c5617a");
-
-      // Step 2: Remove complete headset, place it around neck (after 600ms)
-      centerTimer = setTimeout(() => {
-        if (currentState !== 'center_greet') return;
-        anim.targetHeadsetTranslateY = 72; // drops down to rest neatly on collar/neck
-        anim.targetHeadsetScale = 1.08;
-
-        // Step 3: Wave hello! (after another 500ms)
-        centerTimer = setTimeout(() => {
-          if (currentState !== 'center_greet') return;
-          anim.targetArmPose = 1; // waving mode
-          anim.targetMouthSmile = 1.0;
-          waveStartTime = performance.now();
-          updateSpeech("Hiiii!", true, "#8c2d46");
-
-          // Step 4: Point downward toward portfolio (after 1800ms of waving)
-          centerTimer = setTimeout(() => {
-            if (currentState !== 'center_greet') return;
-            anim.targetArmPose = 2; // pointing downward mode
-            anim.targetHeadTranslateY = 0;
-            anim.targetPupilOffsetY = 3.0; // looking down at pointer
-            updateSpeech("Check out the portfolio", true, "#4a1523");
-
-            // Hold downward greeting for 3.2 seconds, then relax back to working
-            holdTimeout = setTimeout(() => {
-              returnToIdle();
-            }, 3200);
-
-          }, 1800);
-        }, 500);
-      }, 600);
-    }
-
-    // --- Interaction Zone Listeners (Desktop) ---
-    if (zoneLeft) {
-      zoneLeft.addEventListener('mouseenter', triggerLeftReaction);
-    }
-
-    if (zoneRight) {
-      zoneRight.addEventListener('mouseenter', triggerRightReaction);
-    }
-
-    if (zoneCenter) {
-      zoneCenter.addEventListener('mouseenter', triggerCenterGreeting);
-    }
-
-    // Mobile & Tablet: Tap on canvas or section triggers friendly center greeting
-    heroSection.addEventListener('click', (e) => {
-      if (window.innerWidth < 768) {
-        triggerCenterGreeting();
-      }
-    });
-
-    heroSection.addEventListener('touchend', (e) => {
-      triggerCenterGreeting();
-    }, { passive: true });
-
-    // --- Core Animation Loop with requestAnimationFrame ---
-    function renderLoop(time) {
-      const ease = 0.085;
-      anim.headRotation = lerp(anim.headRotation, anim.targetHeadRotation, ease);
-      anim.headTranslateX = lerp(anim.headTranslateX, anim.targetHeadTranslateX, ease);
-      anim.headTranslateY = lerp(anim.headTranslateY, anim.targetHeadTranslateY, ease);
-      anim.pupilOffsetX = lerp(anim.pupilOffsetX, anim.targetPupilOffsetX, ease);
-      anim.pupilOffsetY = lerp(anim.pupilOffsetY, anim.targetPupilOffsetY, ease);
-      anim.headsetTranslateY = lerp(anim.headsetTranslateY, anim.targetHeadsetTranslateY, 0.07);
-      anim.headsetScale = lerp(anim.headsetScale, anim.targetHeadsetScale, 0.07);
-      anim.armPose = lerp(anim.armPose, anim.targetArmPose, 0.09);
-      anim.mouthSmile = lerp(anim.mouthSmile, anim.targetMouthSmile, ease);
-
-      // Subtle breathing idle sway when in normal typing state
-      let breathSway = 0;
-      if (currentState === 'idle') {
-        breathSway = Math.sin(time * 0.002) * 1.5;
-      }
-
-      // Apply Head transform
-      if (headGroup) {
-        headGroup.setAttribute(
-          'transform',
-          `translate(${anim.headTranslateX}, ${anim.headTranslateY + breathSway}) rotate(${anim.headRotation} 250 245)`
-        );
-      }
-
-      // Apply Pupils transform (if present)
-      if (pupilLeft) {
-        pupilLeft.setAttribute('cx', 228 + anim.pupilOffsetX);
-        pupilLeft.setAttribute('cy', 235 + anim.pupilOffsetY);
-      }
-      if (pupilRight) {
-        pupilRight.setAttribute('cx', 272 + anim.pupilOffsetX);
-        pupilRight.setAttribute('cy', 235 + anim.pupilOffsetY);
-      }
-
-      // Apply Headset transform (moves down to neck during greeting)
-      if (headset) {
-        headset.setAttribute(
-          'transform',
-          `translate(0, ${anim.headsetTranslateY}) scale(${anim.headsetScale})`
-        );
-      }
-
-      // Apply Dynamic Mouth smile shape (if present)
-      if (mouth) {
-        const smileDepth = 272 + (anim.mouthSmile * 6);
-        const smileWidth = 242 - (anim.mouthSmile * 4);
-        const smileRight = 258 + (anim.mouthSmile * 4);
-        mouth.setAttribute('d', `M${smileWidth} 271 Q250 ${smileDepth} ${smileRight} 271`);
-      }
-
-      // ARM ANIMATION BLENDING
-      // Pose 0: Normal Typing
-      // Pose 1: Waving Hello
-      // Pose 2: Pointing Downward
-      if (rightArmPath && rightHand) {
-        if (anim.armPose < 0.5) {
-          // Typing subtle keyboard motion
-          const typeFlick = (currentState === 'idle') ? Math.sin(time * 0.012) * 2 : 0;
-          rightArmPath.setAttribute('d', `M330 380 Q305 ${410 + typeFlick} 280 ${425 + typeFlick}`);
-          rightHand.setAttribute('transform', `translate(275, ${422 + typeFlick})`);
-        } else if (anim.armPose >= 0.5 && anim.armPose < 1.5) {
-          // Waving hand
-          const waveProgress = (time - waveStartTime) * 0.008;
-          const waveAngle = Math.sin(waveProgress * 3.5) * 18; // oscillating wave
-          
-          // Arm lifted upwards
-          rightArmPath.setAttribute('d', 'M330 375 Q360 310 350 250');
-          // Hand waving back and forth
-          rightHand.setAttribute('transform', `translate(350, 245) rotate(${waveAngle} 0 0)`);
-        } else {
-          // Pointing downward towards portfolio
-          rightArmPath.setAttribute('d', 'M330 375 Q340 430 320 480');
-          rightHand.setAttribute('transform', 'translate(320, 485) rotate(45 0 0)');
+        // Update status pill text
+        if (videoStatusText) {
+            const labels = {
+                working: 'Coding & Modeling',
+                left: 'Looking Left',
+                right: 'Looking Right',
+                center: 'Greeting Visitor'
+            };
+            videoStatusText.textContent = labels[newState] || 'Active';
         }
-      }
 
-      requestAnimationFrame(renderLoop);
+        // Clear existing message interval
+        if (centerMessageInterval) {
+            clearInterval(centerMessageInterval);
+            centerMessageInterval = null;
+        }
+
+        // Seek video to target segment
+        const segment = TIMELINES[newState] || TIMELINES.working;
+        video.currentTime = segment.start;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // Autoplay policy handled safely
+            });
+        }
+
+        // Update Reaction Text
+        if (newState === 'center') {
+            centerMessageIndex = 0;
+            displayCenterMessage(0);
+
+            centerMessageInterval = setInterval(() => {
+                centerMessageIndex = (centerMessageIndex + 1) % MESSAGES.center.length;
+                displayCenterMessage(centerMessageIndex);
+            }, 2300);
+
+        } else {
+            const data = MESSAGES[newState] || MESSAGES.working;
+            updateReactionBox(data.tag, data.title, data.desc);
+        }
     }
 
-    // Start requestAnimationFrame loop
-    requestAnimationFrame(renderLoop);
-  }
+    function displayCenterMessage(index) {
+        const item = MESSAGES.center[index];
+        if (item) {
+            updateReactionBox(item.tag, item.title, item.desc);
+        }
+    }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initInteractiveHero);
-  } else {
-    initInteractiveHero();
-  }
+    function updateReactionBox(tag, title, desc) {
+        if (reactionTag) reactionTag.textContent = tag;
+        if (reactionText) {
+            reactionText.style.opacity = '0';
+            setTimeout(() => {
+                reactionText.textContent = title;
+                reactionText.style.opacity = '1';
+            }, 120);
+        }
+        if (reactionDesc) reactionDesc.textContent = desc;
+    }
+
+    /**
+     * Trigger a zone reaction with automatic hold timer before returning to normal working state
+     */
+    function triggerZoneReaction(zone) {
+        if (holdTimer) {
+            clearTimeout(holdTimer);
+            holdTimer = null;
+        }
+
+        applyState(zone);
+
+        const segment = TIMELINES[zone];
+        if (segment && segment.hold) {
+            holdTimer = setTimeout(() => {
+                applyState('working');
+            }, segment.hold);
+        }
+    }
+
+    /**
+     * Video Time Update Watcher - Loops segments smoothly
+     */
+    function setupVideoLoop() {
+        if (!video) return;
+
+        video.addEventListener('timeupdate', () => {
+            const segment = TIMELINES[currentState];
+            if (!segment) return;
+
+            if (currentState === 'working') {
+                // Loop the working segment
+                if (video.currentTime >= segment.end) {
+                    video.currentTime = segment.start;
+                }
+            } else {
+                // Pause at end of reaction segment
+                if (video.currentTime >= segment.end) {
+                    video.pause();
+                }
+            }
+        });
+
+        // Ensure video is muted for policy compliance
+        video.muted = true;
+        video.playsInline = true;
+    }
+
+    /**
+     * 3D Mouse Parallax Tilt on the Video Card
+     */
+    function setupMouseParallax() {
+        const stage = document.getElementById('interactiveHeroSection');
+        const card = document.getElementById('videoHeroCard');
+        if (!stage || !card) return;
+
+        let targetRotX = 0;
+        let targetRotY = 0;
+        let currentRotX = 0;
+        let currentRotY = 0;
+
+        stage.addEventListener('mousemove', (e) => {
+            if (window.innerWidth <= 991.98) return;
+            const rect = stage.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+            targetRotY = x * 16;
+            targetRotX = -y * 12;
+        });
+
+        stage.addEventListener('mouseleave', () => {
+            targetRotX = 0;
+            targetRotY = 0;
+        });
+
+        function renderParallax() {
+            currentRotX += (targetRotX - currentRotX) * 0.08;
+            currentRotY += (targetRotY - currentRotY) * 0.08;
+
+            if (currentState === 'working') {
+                card.style.transform = `perspective(1000px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) scale(0.98)`;
+            }
+
+            requestAnimationFrame(renderParallax);
+        }
+
+        renderParallax();
+    }
+
+    /**
+     * Native Fullscreen Video Toggle
+     */
+    function setupFullscreenToggle() {
+        const btn = document.getElementById('heroFullscreenBtn');
+        const card = document.getElementById('videoHeroCard');
+        const icon = document.getElementById('fullscreenIcon');
+        if (!btn || !card) return;
+
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (card.requestFullscreen) {
+                    card.requestFullscreen();
+                } else if (card.webkitRequestFullscreen) {
+                    card.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+            }
+        });
+
+        function onFullscreenChange() {
+            const isFull = !!(document.fullscreenElement || document.webkitFullscreenElement);
+            if (icon) {
+                if (isFull) {
+                    icon.classList.remove('fa-expand');
+                    icon.classList.add('fa-compress');
+                    btn.title = 'Exit Fullscreen Video (ESC)';
+                } else {
+                    icon.classList.remove('fa-compress');
+                    icon.classList.add('fa-expand');
+                    btn.title = 'Toggle Fullscreen Video';
+                }
+            }
+        }
+
+        document.addEventListener('fullscreenchange', onFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', onFullscreenChange);
+    }
+
+    /**
+     * Setup 3 Horizontal Interaction Zones
+     */
+    function initInteractiveHero() {
+        heroSection = document.getElementById('interactiveHeroSection');
+        video = document.getElementById('heroVideo');
+        videoStatusText = document.getElementById('videoStatusText');
+
+        reactionTag = document.getElementById('reactionTag');
+        reactionText = document.getElementById('reactionText');
+        reactionDesc = document.getElementById('reactionDesc');
+
+        if (!heroSection || !video) return;
+
+        setupVideoLoop();
+        setupMouseParallax();
+        setupFullscreenToggle();
+
+        const zoneLeft = document.getElementById('zoneLeft');
+        const zoneCenter = document.getElementById('zoneCenter');
+        const zoneRight = document.getElementById('zoneRight');
+
+        const isMobile = window.innerWidth <= 991.98;
+
+        if (isMobile) {
+            // On mobile, focus on the welcoming center greeting
+            applyState('center');
+            return;
+        }
+
+        // Start in normal working state
+        applyState('working');
+
+        // Zone Event Listeners
+        if (zoneLeft) {
+            zoneLeft.addEventListener('mouseenter', () => {
+                triggerZoneReaction('left');
+            });
+        }
+
+        if (zoneRight) {
+            zoneRight.addEventListener('mouseenter', () => {
+                triggerZoneReaction('right');
+            });
+        }
+
+        if (zoneCenter) {
+            zoneCenter.addEventListener('mouseenter', () => {
+                triggerZoneReaction('center');
+            });
+        }
+
+        // Click on video toggles greeting
+        const card = document.getElementById('videoHeroCard');
+        if (card) {
+            card.addEventListener('click', () => {
+                triggerZoneReaction('center');
+            });
+        }
+
+        // Resize check
+        window.addEventListener('resize', () => {
+            const nowMobile = window.innerWidth <= 991.98;
+            if (nowMobile && currentState !== 'center') {
+                applyState('center');
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initInteractiveHero);
+    } else {
+        initInteractiveHero();
+    }
+
 })();
