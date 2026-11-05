@@ -67,7 +67,7 @@ include 'includes/header.php';
                     <!-- Interactive Video Hero Card -->
                     <div class="video-hero-card" id="videoHeroCard" title="Move cursor left, right, or center to interact!">
                         <video id="heroVideo" 
-                               src="images/hero.mp4" 
+                               src="images/hero.mp4?v=<?php echo file_exists('images/hero.mp4') ? filemtime('images/hero.mp4') : time(); ?>" 
                                poster="images/profile.jpg"
                                playsinline 
                                muted 
