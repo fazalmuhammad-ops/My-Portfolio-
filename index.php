@@ -4,78 +4,155 @@ $pageTitle = "Home | A.A. Fazal Muhammad - DIT Portfolio";
 include 'includes/header.php';
 ?>
 
-<!-- Hero Section -->
-<section class="hero-section py-5 py-lg-6">
-    <div class="container py-4">
-        <div class="row align-items-center g-5">
-            <!-- Left Column: Introduction & Call-to-Action -->
-            <div class="col-lg-7 text-center text-lg-start">
-                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-10 border border-white border-opacity-20 mb-3">
-                    <span class="badge bg-primary rounded-pill px-2 py-1">USJ</span>
-                    <span class="small text-light fw-medium">Department of ICT &bull; FHSS</span>
+<!-- ======================================================================= -->
+<!-- INTERACTIVE PORTFOLIO HERO (Sri Tech-Style Interactive Intro) -->
+<!-- ======================================================================= -->
+<section class="interactive-hero-section position-relative" id="interactiveHeroSection">
+    <!-- Focused White-to-Rose Glow behind Character + Edge Glows -->
+    <div class="hero-character-backlight"></div>
+    <div class="hero-edge-glow-left"></div>
+    <div class="hero-edge-glow-right"></div>
+
+    <!-- 3 Horizontal Interaction Detection Zones (Left, Center, Right) -->
+    <div class="hero-interaction-zones" id="interactionZones">
+        <div class="hero-zone hero-zone-left" id="zoneLeft" title="Left interaction zone"></div>
+        <div class="hero-zone hero-zone-center" id="zoneCenter" title="Center greeting zone"></div>
+        <div class="hero-zone hero-zone-right" id="zoneRight" title="Right interaction zone"></div>
+    </div>
+
+    <div class="container position-relative py-3" style="z-index: 10;">
+        <div class="row align-items-center g-4 g-xl-5">
+
+            <!-- LEFT AREA: Personal Intro + Cursor Instruction -->
+            <div class="col-lg-4 col-xl-4 hero-left-note text-center text-lg-start">
+                <div class="hero-author-badge mb-3">
+                    <span class="badge bg-primary rounded-pill px-2 py-1">USJ &bull; DIT</span>
+                    <span>Dept. of ICT, FHSS</span>
                 </div>
 
-                <h1 class="hero-title mb-3">
-                    Hello, I'm <br>
+                <h1 class="fw-bold display-5 text-white mb-2" style="letter-spacing: -0.02em;">
+                    I'm <br class="d-none d-lg-block">
                     <span class="hero-gradient-text">A.A. Fazal Muhammad</span>
                 </h1>
 
-                <p class="hero-subtitle mb-4">
-                    Diploma in Information Technology Student
+                <p class="text-white text-opacity-80 fw-medium fs-6 mb-3">
+                    Full-Stack Web Developer & Network Systems Designer
                 </p>
 
-                <p class="text-light text-opacity-75 lead fs-6 mb-4 col-xl-10">
-                    Welcome to my academic and practical portfolio. I specialize in building responsive web applications, designing robust local area computer networks, and managing relational databases.
-                </p>
+                <!-- Subtle Supporting Instruction & Animated Cursor Indicator -->
+                <div class="d-inline-flex align-items-center gap-2 hero-instruction-box">
+                    <span class="animated-cursor-indicator">
+                        <i class="fa-solid fa-arrow-pointer"></i>
+                    </span>
+                    <span class="hero-instruction-text">Move cursor to call me !</span>
+                </div>
 
-                <!-- Action Buttons -->
-                <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3 mb-4">
-                    <a href="projects.php" class="btn btn-primary btn-lg px-4 py-2 rounded-pill d-inline-flex align-items-center gap-2">
-                        <span>View My Projects</span>
+                <!-- Action CTA Buttons -->
+                <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2 mt-4">
+                    <a href="projects.php" class="btn btn-primary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2 shadow-sm">
+                        <span>View Projects</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <a href="contact.php" class="btn btn-outline-light btn-lg px-4 py-2 rounded-pill d-inline-flex align-items-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i>
+                    <a href="contact.php" class="btn btn-outline-light rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2">
+                        <i class="fa-solid fa-paper-plane text-primary"></i>
                         <span>Contact Me</span>
                     </a>
                 </div>
+            </div>
 
-                <!-- Quick Highlights -->
-                <div class="row g-3 pt-3 border-top border-white border-opacity-10 text-start">
-                    <div class="col-3">
-                        <h4 class="fw-bold text-white mb-0">USJ</h4>
-                        <small class="text-white text-opacity-60" style="font-size: 0.78rem;">Sri Jayewardenepura</small>
+            <!-- CENTER AREA: Dominant Interactive Character + Laptop Workstation -->
+            <div class="col-lg-4 col-xl-4 hero-stage-wrapper text-center my-3 my-lg-0">
+                <div class="character-workstation mx-auto" id="characterWorkstation">
+
+                    <!-- Character Avatar & Headset Rig -->
+                    <div class="character-avatar-rig" id="characterAvatarRig">
+                        <div class="character-portrait-frame">
+                            <img src="images/profile.jpg?v=<?php echo file_exists('images/profile.jpg') ? filemtime('images/profile.jpg') : '1'; ?>" 
+                                 alt="A.A. Fazal Muhammad" 
+                                 class="character-portrait-img"
+                                 id="characterImg">
+                        </div>
+
+                        <!-- Developer Headset (drops around neck on center greeting!) -->
+                        <div class="developer-headset" id="developerHeadset">
+                            <div class="headset-band"></div>
+                            <div class="headset-earpiece left"></div>
+                            <div class="headset-earpiece right"></div>
+                        </div>
+
+                        <!-- Waving Hello Hand & Arm -->
+                        <div class="character-wave-arm" id="characterWaveArm">
+                            <i class="fa-solid fa-hand wave-hand-icon"></i>
+                        </div>
                     </div>
-                    <div class="col-3">
-                        <h4 class="fw-bold text-white mb-0">DIT</h4>
-                        <small class="text-white text-opacity-60" style="font-size: 0.78rem;">Information Tech</small>
+
+                    <!-- 3D Laptop Workstation with Live Code & Screen Glow -->
+                    <div class="laptop-workstation-rig">
+                        <!-- Laptop Display / Lid -->
+                        <div class="laptop-screen-lid">
+                            <div class="laptop-display-content">
+                                <div class="terminal-header-dots">
+                                    <span class="term-dot red"></span>
+                                    <span class="term-dot yellow"></span>
+                                    <span class="term-dot green"></span>
+                                </div>
+                                <div class="terminal-code-body text-start">
+                                    <div><span class="term-kw">const</span> dev = <span class="term-str">"Fazal Muhammad"</span>;</div>
+                                    <div><span class="term-kw">await</span> dev.<span class="term-fn">renderInteractiveHero</span>();</div>
+                                    <div class="term-comment">// BitHack '26 Runner-Up &bull; USJ</div>
+                                </div>
+                                <div class="screen-bottom-status">
+                                    <span>terminal &bull; bash</span>
+                                    <span class="text-success">&bull; ONLINE</span>
+                                </div>
+                            </div>
+                            <div class="laptop-screen-glow"></div>
+                        </div>
+
+                        <!-- Laptop Keyboard Base (Deck) -->
+                        <div class="laptop-base-deck">
+                            <div class="keyboard-keys-mesh"></div>
+                            <div class="laptop-trackpad"></div>
+                        </div>
                     </div>
-                    <div class="col-3">
-                        <h4 class="fw-bold text-white mb-0 text-warning">BitHack</h4>
-                        <small class="text-white text-opacity-60" style="font-size: 0.78rem;">Runner-Up '26</small>
-                    </div>
-                    <div class="col-3">
-                        <h4 class="fw-bold text-white mb-0">3</h4>
-                        <small class="text-white text-opacity-60" style="font-size: 0.78rem;">Projects</small>
-                    </div>
+
+                    <!-- Desk Shadow Reflection -->
+                    <div class="workstation-desk-shadow"></div>
                 </div>
             </div>
 
-            <!-- Right Column: Profile Image -->
-            <div class="col-lg-5 text-center">
-                <div class="profile-wrapper">
-                    <div class="profile-ring"></div>
-                    <div class="profile-image-inner">
-                        <img src="images/profile.jpg?v=<?php echo file_exists('images/profile.jpg') ? filemtime('images/profile.jpg') : '1'; ?>" alt="A.A. Fazal Muhammad" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Fazal+Muhammad&background=0f172a&color=38bdf8&size=512';">
+            <!-- RIGHT AREA: Contextual Reaction Message Card -->
+            <div class="col-lg-4 col-xl-4 hero-reaction-bubble text-center text-lg-start">
+                <div class="reaction-card mx-auto ms-lg-0" id="reactionCard">
+                    <div class="reaction-tag" id="reactionTag">
+                        <span class="reaction-pulse-dot"></span>
+                        <span>Live Coding Environment</span>
                     </div>
-                    <!-- Status Badge -->
-                    <div class="status-floating-badge">
-                        <span class="d-inline-block rounded-circle bg-success me-1" style="width: 8px; height: 8px;"></span>
-                        <span>Open to Opportunities</span>
-                    </div>
+                    <h3 class="reaction-text" id="reactionText">
+                        Full-Stack Engineering
+                    </h3>
+                    <p class="reaction-subtext" id="reactionDesc">
+                        Hover cursor to the left, right, or center to trigger real-time character responses.
+                    </p>
+
+                    <a href="#expeditionsSection" class="portfolio-cue-pill text-decoration-none">
+                        <span>Check out the portfolio</span>
+                        <i class="fa-solid fa-arrow-down-long"></i>
+                    </a>
                 </div>
             </div>
+
         </div>
+    </div>
+
+    <!-- BOTTOM: Exploration Cue Indicator -->
+    <div class="hero-scroll-cue">
+        <a href="#expeditionsSection" class="hero-scroll-link">
+            <div class="scroll-mouse-icon">
+                <div class="scroll-wheel-dot"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </a>
     </div>
 </section>
 

@@ -1,0 +1,673 @@
+/* ==========================================================================
+   Interactive Portfolio Hero Stylesheet (Sri Tech-Style Cursor Interactive Hero)
+   Concept: Cursor-reactive character working on a laptop with 3 interaction zones
+   ========================================================================== */
+
+/* --- Custom Variables for Interactive Hero --- */
+:root {
+    --hero-bg-deep: #0b1120;
+    --hero-rose-edge: #4a1525;
+    --hero-maroon-dark: #2d0b16;
+    --hero-glow-white: rgba(255, 255, 255, 0.95);
+    --hero-glow-cyan: rgba(56, 189, 248, 0.35);
+    --hero-accent-rose: #f43f5e;
+    --hero-laptop-deck: #1e293b;
+    --hero-laptop-screen: #0f172a;
+}
+
+/* --- Interactive Hero Section Container --- */
+.interactive-hero-section {
+    position: relative;
+    background: radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.08) 0%, rgba(74, 21, 37, 0.28) 45%, rgba(45, 11, 22, 0.55) 75%, #0b1120 100%),
+                linear-gradient(180deg, #0b1120 0%, #111827 50%, #0b1120 100%);
+    color: #ffffff;
+    min-height: 860px;
+    overflow: hidden;
+    perspective: 1200px;
+    padding: 40px 0 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Focused White-to-Rose Glow behind Character */
+.hero-character-backlight {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    width: 620px;
+    height: 620px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(244, 63, 94, 0.16) 40%, rgba(74, 21, 37, 0.12) 65%, transparent 80%);
+    border-radius: 50%;
+    filter: blur(50px);
+    pointer-events: none;
+    z-index: 1;
+    animation: pulseBacklight 8s ease-in-out infinite alternate;
+}
+
+@keyframes pulseBacklight {
+    0% { transform: translate(-50%, -52%) scale(0.95); opacity: 0.85; }
+    100% { transform: translate(-50%, -52%) scale(1.08); opacity: 1; }
+}
+
+/* Soft Ambient Dusty-Rose Edge Vignettes */
+.hero-edge-glow-left {
+    position: absolute;
+    top: 15%;
+    left: -8%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-edge-glow-right {
+    position: absolute;
+    top: 20%;
+    right: -8%;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(244, 63, 94, 0.14) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* --- 3 Horizontal Cursor Detection Zones --- */
+.hero-interaction-zones {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    z-index: 15;
+    pointer-events: auto;
+}
+
+.hero-zone {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    cursor: default;
+    transition: background 0.3s ease;
+}
+
+/* Visual debugging feedback on subtle hover (very subtle ambient tint) */
+.hero-zone-left:hover ~ .hero-stage-wrapper { --zone-state: left; }
+.hero-zone-center:hover ~ .hero-stage-wrapper { --zone-state: center; }
+.hero-zone-right:hover ~ .hero-stage-wrapper { --zone-state: right; }
+
+/* --- Left-Side Note & Instruction --- */
+.hero-left-note {
+    position: relative;
+    z-index: 20;
+    pointer-events: none;
+}
+.hero-left-note a, 
+.hero-left-note button {
+    pointer-events: auto;
+}
+
+.hero-author-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    color: #e2e8f0;
+}
+
+.hero-instruction-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px dashed rgba(244, 63, 94, 0.4);
+    backdrop-filter: blur(12px);
+    padding: 8px 18px;
+    border-radius: 30px;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+}
+
+.hero-instruction-text {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #fda4af;
+    letter-spacing: 0.02em;
+}
+
+.animated-cursor-indicator {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #f43f5e;
+    animation: cursorSweep 2.2s infinite ease-in-out;
+}
+
+@keyframes cursorSweep {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-5px, -2px) scale(1.15); }
+    50% { transform: translate(6px, 2px) scale(0.95); }
+    75% { transform: translate(-3px, 3px) scale(1.1); }
+}
+
+/* --- Center Interactive Character & Workstation Stage --- */
+.hero-stage-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+}
+
+.character-workstation {
+    position: relative;
+    width: 380px;
+    max-width: 90vw;
+    height: 490px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Character Head & Portrait Element */
+.character-avatar-rig {
+    position: relative;
+    width: 260px;
+    height: 310px;
+    margin-bottom: -55px; /* Sits naturally behind the laptop */
+    z-index: 2;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.character-portrait-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 50% 50% 28% 28% / 45% 45% 20% 20%;
+    overflow: hidden;
+    position: relative;
+    background: #0f172a;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 40px rgba(244, 63, 94, 0.25);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.character-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 12%;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+/* Headset Overlay (Resting on ears during working, lower around neck on greeting) */
+.developer-headset {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 180px;
+    pointer-events: none;
+    z-index: 4;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.headset-band {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    height: 35px;
+    border: 4px solid #334155;
+    border-bottom: none;
+    border-radius: 90px 90px 0 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.headset-earpiece {
+    position: absolute;
+    width: 32px;
+    height: 48px;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 2px solid #64748b;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+.headset-earpiece.left { top: 75px; left: 10px; transform: rotate(-8deg); }
+.headset-earpiece.right { top: 75px; right: 10px; transform: rotate(8deg); }
+
+/* Waving Hand & Arm (Hidden during normal typing, animates on center greeting) */
+.character-wave-arm {
+    position: absolute;
+    top: 110px;
+    right: -25px;
+    width: 60px;
+    height: 60px;
+    z-index: 6;
+    opacity: 0;
+    transform: scale(0.6) rotate(-20deg);
+    transform-origin: bottom center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.wave-hand-icon {
+    font-size: 2.5rem;
+    color: #fbbf24;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+/* --- Realistic 3D Laptop Workstation --- */
+.laptop-workstation-rig {
+    position: relative;
+    width: 360px;
+    height: 220px;
+    z-index: 5;
+    transform-style: preserve-3d;
+    transform: rotateX(24deg);
+    margin-top: 10px;
+}
+
+/* Laptop Screen Lid */
+.laptop-screen-lid {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) rotateX(-12deg);
+    width: 330px;
+    height: 195px;
+    background: #020617;
+    border: 3px solid #334155;
+    border-radius: 12px 12px 2px 2px;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.8), 0 0 35px rgba(56, 189, 248, 0.25);
+    overflow: hidden;
+    transform-origin: bottom center;
+}
+
+/* Live Terminal Code Display on Screen */
+.laptop-display-content {
+    width: 100%;
+    height: 100%;
+    padding: 10px 14px;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: #38bdf8;
+    background: #090d16;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+.terminal-header-dots {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 6px;
+}
+.term-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+.term-dot.red { background: #ef4444; }
+.term-dot.yellow { background: #f59e0b; }
+.term-dot.green { background: #10b981; }
+
+.terminal-code-body {
+    line-height: 1.45;
+}
+.term-kw { color: #f43f5e; font-weight: 600; }
+.term-fn { color: #a855f7; }
+.term-str { color: #34d399; }
+.term-comment { color: #64748b; font-style: italic; }
+
+.screen-bottom-status {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.62rem;
+    color: #94a3b8;
+}
+
+/* Glowing Screen Backlight Casting on Developer */
+.laptop-screen-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 80%);
+    pointer-events: none;
+}
+
+/* Laptop Keyboard Base (Deck) */
+.laptop-base-deck {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%) rotateX(68deg);
+    width: 350px;
+    height: 130px;
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    border: 2px solid #475569;
+    border-radius: 8px 8px 16px 16px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), 0 5px 20px rgba(56, 189, 248, 0.2);
+    transform-origin: top center;
+    padding: 10px;
+}
+
+.keyboard-keys-mesh {
+    width: 290px;
+    height: 60px;
+    margin: 4px auto 8px;
+    background: repeating-linear-gradient(0deg, #0f172a, #0f172a 4px, #1e293b 5px, #1e293b 8px);
+    border: 1px solid #334155;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.laptop-trackpad {
+    width: 85px;
+    height: 38px;
+    margin: 0 auto;
+    background: #111827;
+    border: 1px solid #334155;
+    border-radius: 4px;
+}
+
+/* Reflective Desk Shadow */
+.workstation-desk-shadow {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 440px;
+    height: 40px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.75) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* --- Right-Side Contextual Speech Bubble / Reaction Box --- */
+.hero-reaction-bubble {
+    position: relative;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.reaction-card {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(244, 63, 94, 0.18);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 340px;
+    pointer-events: auto;
+}
+
+.reaction-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: #f43f5e;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.reaction-pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #f43f5e;
+    animation: bubbleDotPulse 1.8s infinite;
+}
+
+@keyframes bubbleDotPulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+.reaction-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.35;
+    margin-bottom: 8px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.25s ease;
+}
+
+.reaction-subtext {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* Portfolio Cue Pointing Indicator */
+.portfolio-cue-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 0.78rem;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 4px 12px;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+.portfolio-cue-pill:hover {
+    transform: translateY(2px);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   INTERACTIVE ZONE REACTION STATES (Triggered by interactive-hero.js)
+   ========================================================================== */
+
+/* 1. Normal Working State (Default) */
+.state-working .character-avatar-rig {
+    transform: perspective(1000px) rotateX(10deg) rotateY(0deg) scale(0.98);
+}
+.state-working .character-portrait-img {
+    transform: translateY(6px);
+}
+.state-working .developer-headset {
+    top: 15px; /* Firmly on ears */
+}
+
+/* 2. Left-Looking State */
+.state-left .character-avatar-rig {
+    transform: perspective(1000px) rotateX(4deg) rotateY(-22deg) rotateZ(-3deg) translateX(-15px) scale(1.02);
+}
+.state-left .character-portrait-img {
+    transform: translateX(-12px);
+}
+.state-left .reaction-card {
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.25);
+}
+
+/* 3. Right-Looking State */
+.state-right .character-avatar-rig {
+    transform: perspective(1000px) rotateX(4deg) rotateY(22deg) rotateZ(3deg) translateX(15px) scale(1.02);
+}
+.state-right .character-portrait-img {
+    transform: translateX(12px);
+}
+.state-right .reaction-card {
+    border-color: rgba(244, 63, 94, 0.45);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 30px rgba(244, 63, 94, 0.25);
+}
+
+/* 4. Center Greeting State (Excited, Headset around neck, Waving, Pointing down) */
+.state-center .character-avatar-rig {
+    transform: perspective(1000px) rotateX(-2deg) rotateY(0deg) translateZ(40px) scale(1.06);
+}
+.state-center .character-portrait-img {
+    transform: translateY(-4px) scale(1.04);
+}
+.state-center .developer-headset {
+    top: 95px; /* Smoothly drops around neck! */
+    transform: translateX(-50%) scale(0.92);
+}
+.state-center .character-wave-arm {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    animation: waveHelloHand 1.6s ease-in-out infinite alternate;
+}
+.state-center .reaction-card {
+    border-color: rgba(250, 204, 21, 0.5);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 40px rgba(250, 204, 21, 0.3);
+}
+
+@keyframes waveHelloHand {
+    0% { transform: rotate(-15deg); }
+    50% { transform: rotate(18deg); }
+    100% { transform: rotate(-15deg); }
+}
+
+/* --- Bottom Scroll Cue Indicator --- */
+.hero-scroll-cue {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    text-align: center;
+}
+
+.hero-scroll-link {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.8rem;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.3s ease;
+}
+.hero-scroll-link:hover {
+    color: #ffffff;
+}
+
+.scroll-mouse-icon {
+    width: 20px;
+    height: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    position: relative;
+}
+.scroll-wheel-dot {
+    width: 4px;
+    height: 6px;
+    background: #f43f5e;
+    border-radius: 2px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: mouseScrollWheel 1.8s infinite ease-out;
+}
+@keyframes mouseScrollWheel {
+    0% { transform: translate(-50%, 0); opacity: 1; }
+    80% { transform: translate(-50%, 12px); opacity: 0; }
+    100% { transform: translate(-50%, 0); opacity: 0; }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Mobile & Tablet Layouts)
+   Prompt Rule: On mobile, remove the left/right interaction layout and focus
+   on the center experience. Keep the character large, centered, clearly visible.
+   ========================================================================== */
+@media (max-width: 991.98px) {
+    .interactive-hero-section {
+        min-height: auto;
+        padding: 40px 0 50px;
+    }
+    .hero-interaction-zones {
+        display: none; /* Disable multi-zone hover split on touch devices */
+    }
+    .hero-left-note {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    .hero-instruction-box {
+        margin: 12px auto 0;
+    }
+    .hero-stage-wrapper {
+        min-height: 440px;
+    }
+    .character-workstation {
+        width: 320px;
+        height: 420px;
+    }
+    .character-avatar-rig {
+        width: 220px;
+        height: 260px;
+        margin-bottom: -45px;
+    }
+    .developer-headset {
+        width: 190px;
+        height: 155px;
+    }
+    .laptop-workstation-rig {
+        width: 300px;
+        height: 180px;
+    }
+    .laptop-screen-lid {
+        width: 280px;
+        height: 165px;
+    }
+    .laptop-base-deck {
+        width: 300px;
+        height: 110px;
+    }
+    .hero-reaction-bubble {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+    }
+    .reaction-card {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+    }
+    .reaction-tag {
+        justify-content: center;
+    }
+    .reaction-text {
+        justify-content: center;
+    }
+    .hero-scroll-cue {
+        display: none;
+    }
+}

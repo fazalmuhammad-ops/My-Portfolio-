@@ -108,5 +108,7 @@
     <script src="js/main.js"></script>
     <!-- 3D Signature Journeys Engine -->
     <script src="js/journeys-3d.js"></script>
+    <!-- Interactive Cursor-Reactive Hero Engine -->
+    <script src="js/interactive-hero.js"></script>
 </body>
 </html>
