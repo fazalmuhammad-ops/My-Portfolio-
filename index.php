@@ -64,59 +64,29 @@ include 'includes/header.php';
             <div class="col-lg-4 col-xl-4 hero-stage-wrapper text-center my-3 my-lg-0">
                 <div class="character-workstation mx-auto" id="characterWorkstation">
 
-                    <!-- Character Avatar & Headset Rig -->
-                    <div class="character-avatar-rig" id="characterAvatarRig">
-                        <div class="character-portrait-frame">
-                            <img src="images/profile.jpg?v=<?php echo file_exists('images/profile.jpg') ? filemtime('images/profile.jpg') : '1'; ?>" 
-                                 alt="A.A. Fazal Muhammad" 
-                                 class="character-portrait-img"
-                                 id="characterImg">
-                        </div>
+                    <!-- Interactive Video Hero Card -->
+                    <div class="video-hero-card" id="videoHeroCard" title="Move cursor left, right, or center to interact!">
+                        <video id="heroVideo" 
+                               src="images/hero.mp4" 
+                               poster="images/profile.jpg"
+                               playsinline 
+                               muted 
+                               preload="auto" 
+                               class="hero-character-video"></video>
+                        
+                        <!-- Subtle glass rim overlay & corner cyber accents -->
+                        <div class="video-glass-rim"></div>
+                        <div class="video-corner-accent top-left"></div>
+                        <div class="video-corner-accent top-right"></div>
 
-                        <!-- Developer Headset (drops around neck on center greeting!) -->
-                        <div class="developer-headset" id="developerHeadset">
-                            <div class="headset-band"></div>
-                            <div class="headset-earpiece left"></div>
-                            <div class="headset-earpiece right"></div>
-                        </div>
-
-                        <!-- Waving Hello Hand & Arm -->
-                        <div class="character-wave-arm" id="characterWaveArm">
-                            <i class="fa-solid fa-hand wave-hand-icon"></i>
-                        </div>
-                    </div>
-
-                    <!-- 3D Laptop Workstation with Live Code & Screen Glow -->
-                    <div class="laptop-workstation-rig">
-                        <!-- Laptop Display / Lid -->
-                        <div class="laptop-screen-lid">
-                            <div class="laptop-display-content">
-                                <div class="terminal-header-dots">
-                                    <span class="term-dot red"></span>
-                                    <span class="term-dot yellow"></span>
-                                    <span class="term-dot green"></span>
-                                </div>
-                                <div class="terminal-code-body text-start">
-                                    <div><span class="term-kw">const</span> dev = <span class="term-str">"Fazal Muhammad"</span>;</div>
-                                    <div><span class="term-kw">await</span> dev.<span class="term-fn">renderInteractiveHero</span>();</div>
-                                    <div class="term-comment">// BitHack '26 Runner-Up &bull; USJ</div>
-                                </div>
-                                <div class="screen-bottom-status">
-                                    <span>terminal &bull; bash</span>
-                                    <span class="text-success">&bull; ONLINE</span>
-                                </div>
-                            </div>
-                            <div class="laptop-screen-glow"></div>
-                        </div>
-
-                        <!-- Laptop Keyboard Base (Deck) -->
-                        <div class="laptop-base-deck">
-                            <div class="keyboard-keys-mesh"></div>
-                            <div class="laptop-trackpad"></div>
+                        <!-- Live Status Pill on bottom of video -->
+                        <div class="video-status-pill">
+                            <span class="video-status-dot"></span>
+                            <span id="videoStatusText">Coding & Modeling</span>
                         </div>
                     </div>
 
-                    <!-- Desk Shadow Reflection -->
+                    <!-- Workstation Desk Reflection -->
                     <div class="workstation-desk-shadow"></div>
                 </div>
             </div>

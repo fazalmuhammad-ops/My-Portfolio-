@@ -1,31 +1,24 @@
 /**
- * Interactive Portfolio Hero Controller (Sri Tech-Style Interactive Intro)
- * Features:
- * - 3 Horizontal Interaction Zones: LEFT, CENTER, RIGHT
- * - State management: Working, Left-reaction, Right-reaction, Center-greeting
- * - 2-3 second reaction hold, then returns smoothly to normal working state
- * - Smooth interpolation with requestAnimationFrame
- * - Mobile detection: Centers character, focuses on center greeting experience
- * - Extensible Frame Sequencer: Can switch between CSS 3D Character Rig and AI Image Frames
+ * Interactive Portfolio Hero Video Controller (Sri Tech-Style Interactive Hero)
+ * Powered by: HTML5 High-Performance Video Engine & 3-Zone Cursor Tracker
+ * 
+ * Timeline Segments (8-second video sequence):
+ * - WORKING (0.0s - 1.9s): Typing / Working on laptop
+ * - LEFT (2.0s - 3.6s): Notices something & looks left
+ * - RIGHT (3.7s - 5.2s): Looks right
+ * - CENTER (5.3s - 8.0s): Notices visitor, removes headset, waves hello, points down
  */
 
 (function () {
     'use strict';
 
-    // Interaction State Machine
-    const STATES = {
-        WORKING: 'working',
-        LEFT: 'left',
-        RIGHT: 'right',
-        CENTER: 'center'
+    const TIMELINES = {
+        working: { start: 0.0, end: 1.9, loop: true },
+        left:    { start: 2.0, end: 3.6, hold: 2800 },
+        right:   { start: 3.7, end: 5.2, hold: 2800 },
+        center:  { start: 5.3, end: 7.95, hold: 7200 }
     };
 
-    let currentState = STATES.WORKING;
-    let holdTimer = null;
-    let centerMessageInterval = null;
-    let centerMessageIndex = 0;
-
-    // Contextual Messages (Strictly elegant without emojis, matching the prompt)
     const MESSAGES = {
         working: {
             tag: 'Live Coding Environment',
@@ -61,43 +54,67 @@
         ]
     };
 
+    let currentState = 'working';
+    let holdTimer = null;
+    let centerMessageInterval = null;
+    let centerMessageIndex = 0;
+
     // DOM Elements
     let heroSection = null;
-    let zoneLeft = null;
-    let zoneCenter = null;
-    let zoneRight = null;
+    let video = null;
+    let videoStatusText = null;
     let reactionTag = null;
     let reactionText = null;
     let reactionDesc = null;
 
     /**
-     * Update the hero UI to match a given state
+     * Switch state and seek/play corresponding video segment
      */
     function applyState(newState) {
-        if (!heroSection) return;
+        if (!heroSection || !video) return;
 
         currentState = newState;
 
-        // Clear existing state classes
+        // Update CSS classes
         heroSection.classList.remove('state-working', 'state-left', 'state-right', 'state-center');
         heroSection.classList.add(`state-${newState}`);
 
-        // Clear any running center message cycle
+        // Update status pill text
+        if (videoStatusText) {
+            const labels = {
+                working: 'Coding & Modeling',
+                left: 'Looking Left',
+                right: 'Looking Right',
+                center: 'Greeting Visitor'
+            };
+            videoStatusText.textContent = labels[newState] || 'Active';
+        }
+
+        // Clear existing message interval
         if (centerMessageInterval) {
             clearInterval(centerMessageInterval);
             centerMessageInterval = null;
         }
 
-        // Update Text / Reaction Speech Bubble
-        if (newState === STATES.CENTER) {
+        // Seek video to target segment
+        const segment = TIMELINES[newState] || TIMELINES.working;
+        video.currentTime = segment.start;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // Autoplay policy handled safely
+            });
+        }
+
+        // Update Reaction Text
+        if (newState === 'center') {
             centerMessageIndex = 0;
             displayCenterMessage(0);
 
-            // Cycle through greeting messages: "Hey, it's you!" -> "Hiiii!" -> "Check out the portfolio"
             centerMessageInterval = setInterval(() => {
                 centerMessageIndex = (centerMessageIndex + 1) % MESSAGES.center.length;
                 displayCenterMessage(centerMessageIndex);
-            }, 2400);
+            }, 2300);
 
         } else {
             const data = MESSAGES[newState] || MESSAGES.working;
@@ -119,71 +136,133 @@
             setTimeout(() => {
                 reactionText.textContent = title;
                 reactionText.style.opacity = '1';
-            }, 150);
+            }, 120);
         }
         if (reactionDesc) reactionDesc.textContent = desc;
     }
 
     /**
-     * Trigger a zone reaction with a 2-3 second hold timer before returning to working state
+     * Trigger a zone reaction with automatic hold timer before returning to normal working state
      */
     function triggerZoneReaction(zone) {
-        // Clear existing hold timer
         if (holdTimer) {
             clearTimeout(holdTimer);
             holdTimer = null;
         }
 
-        if (zone === 'left') {
-            applyState(STATES.LEFT);
-            // Hold reaction for ~2.8 seconds, then smoothly return to normal working state
-            holdTimer = setTimeout(() => {
-                applyState(STATES.WORKING);
-            }, 2800);
+        applyState(zone);
 
-        } else if (zone === 'right') {
-            applyState(STATES.RIGHT);
-            // Hold reaction for ~2.8 seconds, then smoothly return to normal working state
+        const segment = TIMELINES[zone];
+        if (segment && segment.hold) {
             holdTimer = setTimeout(() => {
-                applyState(STATES.WORKING);
-            }, 2800);
-
-        } else if (zone === 'center') {
-            applyState(STATES.CENTER);
-            // Hold center greeting for ~7 seconds (allows cycling through messages), then returns to working
-            holdTimer = setTimeout(() => {
-                applyState(STATES.WORKING);
-            }, 7500);
+                applyState('working');
+            }, segment.hold);
         }
+    }
+
+    /**
+     * Video Time Update Watcher - Loops segments smoothly
+     */
+    function setupVideoLoop() {
+        if (!video) return;
+
+        video.addEventListener('timeupdate', () => {
+            const segment = TIMELINES[currentState];
+            if (!segment) return;
+
+            if (currentState === 'working') {
+                // Loop the working segment
+                if (video.currentTime >= segment.end) {
+                    video.currentTime = segment.start;
+                }
+            } else {
+                // Pause at end of reaction segment
+                if (video.currentTime >= segment.end) {
+                    video.pause();
+                }
+            }
+        });
+
+        // Ensure video is muted for policy compliance
+        video.muted = true;
+        video.playsInline = true;
+    }
+
+    /**
+     * 3D Mouse Parallax Tilt on the Video Card
+     */
+    function setupMouseParallax() {
+        const stage = document.getElementById('interactiveHeroSection');
+        const card = document.getElementById('videoHeroCard');
+        if (!stage || !card) return;
+
+        let targetRotX = 0;
+        let targetRotY = 0;
+        let currentRotX = 0;
+        let currentRotY = 0;
+
+        stage.addEventListener('mousemove', (e) => {
+            if (window.innerWidth <= 991.98) return;
+            const rect = stage.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+            targetRotY = x * 16;
+            targetRotX = -y * 12;
+        });
+
+        stage.addEventListener('mouseleave', () => {
+            targetRotX = 0;
+            targetRotY = 0;
+        });
+
+        function renderParallax() {
+            currentRotX += (targetRotX - currentRotX) * 0.08;
+            currentRotY += (targetRotY - currentRotY) * 0.08;
+
+            if (currentState === 'working') {
+                card.style.transform = `perspective(1000px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) scale(0.98)`;
+            }
+
+            requestAnimationFrame(renderParallax);
+        }
+
+        renderParallax();
     }
 
     /**
      * Setup 3 Horizontal Interaction Zones
      */
-    function initInteractionZones() {
+    function initInteractiveHero() {
         heroSection = document.getElementById('interactiveHeroSection');
-        if (!heroSection) return;
-
-        zoneLeft = document.getElementById('zoneLeft');
-        zoneCenter = document.getElementById('zoneCenter');
-        zoneRight = document.getElementById('zoneRight');
+        video = document.getElementById('heroVideo');
+        videoStatusText = document.getElementById('videoStatusText');
 
         reactionTag = document.getElementById('reactionTag');
         reactionText = document.getElementById('reactionText');
         reactionDesc = document.getElementById('reactionDesc');
 
-        // Check for Mobile / Small Screens
+        if (!heroSection || !video) return;
+
+        setupVideoLoop();
+        setupMouseParallax();
+
+        const zoneLeft = document.getElementById('zoneLeft');
+        const zoneCenter = document.getElementById('zoneCenter');
+        const zoneRight = document.getElementById('zoneRight');
+
         const isMobile = window.innerWidth <= 991.98;
+
         if (isMobile) {
-            // On mobile, focus on the center greeting experience
-            applyState(STATES.CENTER);
+            // On mobile, focus on the welcoming center greeting
+            applyState('center');
             return;
         }
 
-        // Initialize in normal working state
-        applyState(STATES.WORKING);
+        // Start in normal working state
+        applyState('working');
 
-        // Desktop: Mouse hover listeners for the 3 horizontal zones
+        // Zone Event Listeners
         if (zoneLeft) {
             zoneLeft.addEventListener('mouseenter', () => {
                 triggerZoneReaction('left');
@@ -202,28 +281,27 @@
             });
         }
 
-        // Interactive Stage Click Toggle
-        const workstationEl = document.getElementById('characterWorkstation');
-        if (workstationEl) {
-            workstationEl.addEventListener('click', () => {
+        // Click on video toggles greeting
+        const card = document.getElementById('videoHeroCard');
+        if (card) {
+            card.addEventListener('click', () => {
                 triggerZoneReaction('center');
             });
         }
 
-        // Window resize handler for mobile responsiveness
+        // Resize check
         window.addEventListener('resize', () => {
             const nowMobile = window.innerWidth <= 991.98;
-            if (nowMobile && currentState !== STATES.CENTER) {
-                applyState(STATES.CENTER);
+            if (nowMobile && currentState !== 'center') {
+                applyState('center');
             }
         });
     }
 
-    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initInteractionZones);
+        document.addEventListener('DOMContentLoaded', initInteractiveHero);
     } else {
-        initInteractionZones();
+        initInteractiveHero();
     }
 
 })();
