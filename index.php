@@ -289,88 +289,213 @@ include 'includes/header.php';
     </div>
 </section>
 
-<!-- 3-Column Features Section -->
-<section class="py-5 bg-white">
-    <div class="container py-4">
-        <!-- Section Title -->
+<!-- ======================================================================= -->
+<!-- 3D AREAS OF EXPERTISE (Holographic Competencies Showcase) -->
+<!-- ======================================================================= -->
+<section class="expertise-3d-section" id="expertiseSection">
+    <!-- 3D Perspective Matrix Grid Floor & Ambient Orbs -->
+    <div class="expertise-grid-floor"></div>
+    <div class="expertise-orb orb-blue"></div>
+    <div class="expertise-orb orb-emerald"></div>
+    <div class="expertise-orb orb-indigo"></div>
+
+    <div class="container position-relative" style="z-index: 5;">
+        <!-- Section Header -->
         <div class="text-center mb-5">
-            <span class="section-badge">Core Competencies</span>
-            <h2 class="section-title">Areas of Expertise</h2>
-            <p class="text-muted col-md-7 mx-auto">
-                My academic curriculum and personal projects are centered around foundational technologies that drive modern IT infrastructure and web solutions.
+            <span class="expertise-badge-pill mb-3">
+                <i class="fa-solid fa-cube text-primary"></i> 3D Core Competencies
+            </span>
+            <h2 class="fw-bold display-5 text-white mb-2" style="letter-spacing: -0.02em;">
+                Areas of Expertise
+            </h2>
+            <p class="text-white text-opacity-75 col-md-8 mx-auto fs-6 mb-0">
+                Foundational disciplines, rigorous university curriculum, and practical engineering skills powering modern web platforms, campus network simulations, and relational databases.
             </p>
         </div>
 
-        <!-- 3 Feature Cards Grid -->
-        <div class="row g-4">
-            <!-- Feature 1: Web Development -->
-            <div class="col-md-4">
-                <div class="feature-card">
-                    <div class="feature-icon-box icon-blue">
-                        <i class="fa-solid fa-code"></i>
+        <!-- 3 Floating 3D Cards Grid -->
+        <div class="row g-4 justify-content-center">
+
+            <!-- Card 1: Web Development -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card-3d-wrap card-theme-blue">
+                    <div class="card-3d-inner">
+                        <!-- Holographic glare & cyber corners -->
+                        <div class="card-3d-glare"></div>
+                        <div class="cyber-corner top-left"></div>
+                        <div class="cyber-corner top-right"></div>
+                        <div class="cyber-corner bottom-left"></div>
+                        <div class="cyber-corner bottom-right"></div>
+
+                        <!-- Top: Icon & Telemetry -->
+                        <div class="d-flex align-items-center justify-content-between mb-4 layer-z-icon">
+                            <div class="icon-box-3d">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <span class="telemetry-badge">
+                                <span class="telemetry-pulse-dot"></span> Full-Stack
+                            </span>
+                        </div>
+
+                        <!-- Header & Description -->
+                        <div class="layer-z-header">
+                            <h3 class="fw-bold text-white h4 mb-2">Web Development</h3>
+                            <p class="text-secondary small mb-3 leading-relaxed">
+                                Architecting high-performance, responsive web interfaces with semantic HTML5, modern CSS3, vanilla JavaScript, and secure PHP server-side backends.
+                            </p>
+                        </div>
+
+                        <!-- Skill Micro-Pills -->
+                        <div class="skill-checklist-3d layer-z-content">
+                            <div class="skill-item-pill">
+                                <i class="fa-solid fa-circle-check text-primary"></i>
+                                <span>Semantic HTML5 & Modern CSS3</span>
+                            </div>
+                            <div class="skill-item-pill">
+                                <i class="fa-solid fa-circle-check text-primary"></i>
+                                <span>Interactive JavaScript (ES6+)</span>
+                            </div>
+                            <div class="skill-item-pill">
+                                <i class="fa-solid fa-circle-check text-primary"></i>
+                                <span>Bootstrap 5 Responsive Grid</span>
+                            </div>
+                            <div class="skill-item-pill">
+                                <i class="fa-solid fa-circle-check text-primary"></i>
+                                <span>PHP 8.2 & Modular Architecture</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Link Button -->
+                        <div class="layer-z-btn pt-2 border-top border-secondary border-opacity-10">
+                            <a href="projects.php?filter=web-dev" class="btn-action-3d">
+                                <span>Explore Web Projects</span>
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </a>
+                        </div>
                     </div>
-                    <h4 class="fw-bold mb-3">Web Development</h4>
-                    <p class="text-secondary mb-4">
-                        Designing responsive, user-friendly frontend interfaces using modern HTML5, CSS3, JavaScript, and Bootstrap 5, combined with secure PHP backends.
-                    </p>
-                    <ul class="list-unstyled text-secondary small d-flex flex-column gap-2 mb-4">
-                        <li><i class="fa-solid fa-circle-check text-primary me-2"></i>Semantic HTML5 & Modern CSS3</li>
-                        <li><i class="fa-solid fa-circle-check text-primary me-2"></i>Interactive JavaScript (ES6+)</li>
-                        <li><i class="fa-solid fa-circle-check text-primary me-2"></i>Bootstrap 5 Responsive Grid</li>
-                        <li><i class="fa-solid fa-circle-check text-primary me-2"></i>PHP Server-Side Processing</li>
-                    </ul>
-                    <a href="projects.php?filter=web-dev" class="text-decoration-none fw-semibold text-primary small d-inline-flex align-items-center gap-1">
-                        <span>Explore Web Projects</span>
-                        <i class="fa-solid fa-arrow-right fa-xs"></i>
-                    </a>
                 </div>
             </div>
 
-            <!-- Feature 2: Computer Networking -->
-            <div class="col-md-4">
-                <div class="feature-card">
-                    <div class="feature-icon-box icon-emerald">
-                        <i class="fa-solid fa-network-wired"></i>
+            <!-- Card 2: Computer Networking -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card-3d-wrap card-theme-emerald">
+                    <div class="card-3d-inner">
+                        <!-- Holographic glare & cyber corners -->
+                        <div class="card-3d-glare"></div>
+                        <div class="cyber-corner top-left"></div>
+                        <div class="cyber-corner top-right"></div>
+                        <div class="cyber-corner bottom-left"></div>
+                        <div class="cyber-corner bottom-right"></div>
+
+                        <!-- Top: Icon & Telemetry -->
+                        <div class="d-flex align-items-center justify-content-between mb-4 layer-z-icon">
+                            <div class="icon-box-3d">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
+                            <span class="telemetry-badge">
+                                <span class="telemetry-pulse-dot"></span> Cisco Sim
+                            </span>
+                        </div>
+
+                        <!-- Header & Description -->
+                        <div class="layer-z-header">
+                            <h3 class="fw-bold text-white h4 mb-2">Computer Networking</h3>
+                            <p class="text-secondary small mb-3 leading-relaxed">
+                                Designing and simulating high-availability campus LAN topologies, VLAN segmentation, dynamic routing protocols, and firewall ACL security.
+                            </p>
+                        </div>
+
+                        <!-- Skill Micro-Pills -->
+                        <div class="skill-checklist-3d layer-z-content">
+                            <div class="skill-item-pill">
+                                <i class="fa-solid fa-circle-check text-success"></i>
+                                <span>IPv4 & IPv6 Subnetting (VLSM)</span>
+                            </div>
+                            <div class="skill-item-pill">
+                                <i class="fa-solid fa-circle-check text-success"></i>
+                                <span>Cisco Packet Tracer Lab Sim</span>
+                            </div>
+                            <div class="skill-item-pill">
+                                <i class="fa-solid fa-circle-check text-success"></i>
+                                <span>VLANs, Trunking & Inter-VLAN</span>
+                            </div>
+                            <div class="skill-item-pill">
+                                <i class="fa-solid fa-circle-check text-success"></i>
+                                <span>OSPF Routing & ACL Firewalls</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Link Button -->
+                        <div class="layer-z-btn pt-2 border-top border-secondary border-opacity-10">
+                            <a href="projects.php?filter=networking" class="btn-action-3d">
+                                <span>Explore Network Lab</span>
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </a>
+                        </div>
                     </div>
-                    <h4 class="fw-bold mb-3">Computer Networking</h4>
-                    <p class="text-secondary mb-4">
-                        Designing, configuring, and troubleshooting Local Area Networks (LAN), subnets, routing protocols, and enterprise infrastructure simulations.
-                    </p>
-                    <ul class="list-unstyled text-secondary small d-flex flex-column gap-2 mb-4">
-                        <li><i class="fa-solid fa-circle-check text-success me-2"></i>IPv4 & IPv6 Subnetting (VLSM)</li>
-                        <li><i class="fa-solid fa-circle-check text-success me-2"></i>Cisco Packet Tracer Simulation</li>
-                        <li><i class="fa-solid fa-circle-check text-success me-2"></i>Switching, VLANs & Trunking</li>
-                        <li><i class="fa-solid fa-circle-check text-success me-2"></i>Basic Network Security & Firewalls</li>
-                    </ul>
-                    <a href="projects.php?filter=networking" class="text-decoration-none fw-semibold text-success small d-inline-flex align-items-center gap-1">
-                        <span>Explore Networking Projects</span>
-                        <i class="fa-solid fa-arrow-right fa-xs"></i>
-                    </a>
                 </div>
             </div>
 
-            <!-- Feature 3: Database Management -->
-            <div class="col-md-4">
-                <div class="feature-card">
-                    <div class="feature-icon-box icon-indigo">
-                        <i class="fa-solid fa-database"></i>
+            <!-- Card 3: Database Management -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card-3d-wrap card-theme-indigo">
+                    <div class="card-3d-inner">
+                        <!-- Holographic glare & cyber corners -->
+                        <div class="card-3d-glare"></div>
+                        <div class="cyber-corner top-left"></div>
+                        <div class="cyber-corner top-right"></div>
+                        <div class="cyber-corner bottom-left"></div>
+                        <div class="cyber-corner bottom-right"></div>
+
+                        <!-- Top: Icon & Telemetry -->
+                        <div class="d-flex align-items-center justify-content-between mb-4 layer-z-icon">
+                            <div class="icon-box-3d">
+                                <i class="fa-solid fa-database"></i>
+                            </div>
+                            <span class="telemetry-badge">
+                                <span class="telemetry-pulse-dot"></span> Relational
+                            </span>
+                        </div>
+
+                        <!-- Header & Description -->
+                        <div class="layer-z-header">
+                            <h3 class="fw-bold text-white h4 mb-2">Database Management</h3>
+                            <p class="text-secondary small mb-3 leading-relaxed">
+                                Structuring relational database models, executing 3NF normalization, formulating complex SQL transactions, and optimizing backend data pipelines.
+                            </p>
+                        </div>
+
+                        <!-- Skill Micro-Pills -->
+                        <div class="skill-checklist-3d layer-z-content">
+                            <div class="skill-item-pill">
+                                <i class="fa-solid fa-circle-check text-info"></i>
+                                <span>MySQL & MariaDB Management</span>
+                            </div>
+                            <div class="skill-item-pill">
+                                <i class="fa-solid fa-circle-check text-info"></i>
+                                <span>ER Diagram Modeling & Schema</span>
+                            </div>
+                            <div class="skill-item-pill">
+                                <i class="fa-solid fa-circle-check text-info"></i>
+                                <span>Normalization (1NF, 2NF, 3NF)</span>
+                            </div>
+                            <div class="skill-item-pill">
+                                <i class="fa-solid fa-circle-check text-info"></i>
+                                <span>CRUD Operations & PHP PDO/MySQLi</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Link Button -->
+                        <div class="layer-z-btn pt-2 border-top border-secondary border-opacity-10">
+                            <a href="projects.php" class="btn-action-3d">
+                                <span>Explore Database Solutions</span>
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </a>
+                        </div>
                     </div>
-                    <h4 class="fw-bold mb-3">Database Management</h4>
-                    <p class="text-secondary mb-4">
-                        Creating structured relational databases, performing normalization up to 3NF, formulating complex SQL queries, and integrating with web applications.
-                    </p>
-                    <ul class="list-unstyled text-secondary small d-flex flex-column gap-2 mb-4">
-                        <li><i class="fa-solid fa-circle-check text-primary me-2"></i>MySQL & MariaDB Management</li>
-                        <li><i class="fa-solid fa-circle-check text-primary me-2"></i>ER Diagram Modeling & Schema Design</li>
-                        <li><i class="fa-solid fa-circle-check text-primary me-2"></i>Data Normalization (1NF, 2NF, 3NF)</li>
-                        <li><i class="fa-solid fa-circle-check text-primary me-2"></i>CRUD Operations & PHP PDO/MySQLi</li>
-                    </ul>
-                    <a href="projects.php" class="text-decoration-none fw-semibold text-primary small d-inline-flex align-items-center gap-1">
-                        <span>Explore Database Solutions</span>
-                        <i class="fa-solid fa-arrow-right fa-xs"></i>
-                    </a>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
