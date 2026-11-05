@@ -74,6 +74,14 @@ include 'includes/header.php';
                                preload="auto" 
                                class="hero-character-video"></video>
                         
+                        <!-- Fullscreen Toggle Button -->
+                        <button type="button" 
+                                class="video-fullscreen-btn" 
+                                id="heroFullscreenBtn" 
+                                title="Toggle Fullscreen Video (Click to view full screen)">
+                            <i class="fa-solid fa-expand" id="fullscreenIcon"></i>
+                        </button>
+
                         <!-- Subtle glass rim overlay & corner cyber accents -->
                         <div class="video-glass-rim"></div>
                         <div class="video-corner-accent top-left"></div>

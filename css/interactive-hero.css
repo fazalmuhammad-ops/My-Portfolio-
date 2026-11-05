@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Interactive Portfolio Hero Stylesheet (Sri Tech-Style Interactive Video Hero)
+   Interactive Portfolio Hero Stylesheet (Sri Tech-Style Fullscreen Experience)
    Concept: Cursor-reactive character working on a laptop with 3 interaction zones
    ========================================================================== */
 
@@ -11,16 +11,19 @@
     --hero-accent-rose: #f43f5e;
 }
 
-/* --- Interactive Hero Section Container --- */
+/* --- Interactive Hero Section Container (100vh Fullscreen Viewport) --- */
 .interactive-hero-section {
     position: relative;
-    background: radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.12) 0%, rgba(74, 21, 37, 0.32) 45%, rgba(45, 11, 22, 0.65) 75%, #0b1120 100%),
+    background: radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.14) 0%, rgba(74, 21, 37, 0.35) 45%, rgba(45, 11, 22, 0.68) 75%, #0b1120 100%),
                 linear-gradient(180deg, #0b1120 0%, #111827 50%, #0b1120 100%);
     color: #ffffff;
-    min-height: 880px;
+    min-height: calc(100vh - 76px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     perspective: 1200px;
-    padding: 50px 0 70px;
+    padding: 30px 0 50px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -30,11 +33,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 680px;
-    height: 680px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.28) 0%, rgba(244, 63, 94, 0.20) 35%, rgba(74, 21, 37, 0.14) 65%, transparent 80%);
+    width: 780px;
+    height: 780px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.30) 0%, rgba(244, 63, 94, 0.22) 35%, rgba(74, 21, 37, 0.16) 65%, transparent 80%);
     border-radius: 50%;
-    filter: blur(55px);
+    filter: blur(60px);
     pointer-events: none;
     z-index: 1;
     animation: pulseBacklight 8s ease-in-out infinite alternate;
@@ -50,11 +53,11 @@
     position: absolute;
     top: 15%;
     left: -8%;
-    width: 520px;
-    height: 520px;
-    background: radial-gradient(circle, rgba(225, 29, 72, 0.18) 0%, transparent 70%);
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(225, 29, 72, 0.20) 0%, transparent 70%);
     border-radius: 50%;
-    filter: blur(60px);
+    filter: blur(65px);
     pointer-events: none;
     z-index: 1;
 }
@@ -63,11 +66,11 @@
     position: absolute;
     top: 20%;
     right: -8%;
-    width: 550px;
-    height: 550px;
-    background: radial-gradient(circle, rgba(244, 63, 94, 0.16) 0%, transparent 70%);
+    width: 580px;
+    height: 580px;
+    background: radial-gradient(circle, rgba(244, 63, 94, 0.18) 0%, transparent 70%);
     border-radius: 50%;
-    filter: blur(60px);
+    filter: blur(65px);
     pointer-events: none;
     z-index: 1;
 }
@@ -155,7 +158,6 @@
     position: relative;
     z-index: 10;
     width: 100%;
-    min-height: 560px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -164,7 +166,7 @@
 
 .character-workstation {
     position: relative;
-    width: 360px;
+    width: 440px;
     max-width: 90vw;
     display: flex;
     flex-direction: column;
@@ -174,21 +176,31 @@
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* --- Video Hero Card (Houses the 720x1280 Character Video) --- */
+/* --- Dominant Video Hero Card (Houses the 720x1280 Video) --- */
 .video-hero-card {
     position: relative;
-    width: 340px;
+    width: 410px;
     max-width: 88vw;
-    height: 520px;
-    border-radius: 26px;
+    height: 590px;
+    border-radius: 28px;
     overflow: hidden;
     background: #020617;
-    border: 3px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 
-                0 0 45px rgba(244, 63, 94, 0.25), 
-                0 0 25px rgba(255, 255, 255, 0.12);
+    border: 3px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 
+                0 0 50px rgba(244, 63, 94, 0.28), 
+                0 0 35px rgba(255, 255, 255, 0.15);
     transform-style: preserve-3d;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1400px) {
+    .character-workstation {
+        width: 470px;
+    }
+    .video-hero-card {
+        width: 440px;
+        height: 630px;
+    }
 }
 
 .hero-character-video {
@@ -206,48 +218,110 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    border-radius: 24px;
-    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    border-radius: 26px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.35);
     z-index: 2;
 }
 
 /* Corner Cyber Accents */
 .video-corner-accent {
     position: absolute;
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     border: 2px solid #f43f5e;
     pointer-events: none;
     z-index: 3;
 }
 .video-corner-accent.top-left {
-    top: 10px;
-    left: 10px;
+    top: 12px;
+    left: 12px;
     border-right: none;
     border-bottom: none;
 }
 .video-corner-accent.top-right {
-    top: 10px;
-    right: 10px;
+    top: 12px;
+    right: 12px;
     border-left: none;
     border-bottom: none;
+}
+
+/* Fullscreen Toggle Button */
+.video-fullscreen-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    cursor: pointer;
+    z-index: 25;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+.video-fullscreen-btn:hover {
+    background: #f43f5e;
+    border-color: #f43f5e;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(244, 63, 94, 0.6);
+}
+
+/* Native Fullscreen Mode via Browser Fullscreen API */
+.video-hero-card:fullscreen,
+.video-hero-card:-webkit-full-screen {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    border-radius: 0 !important;
+    border: none !important;
+    background: #020617 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.video-hero-card:fullscreen .hero-character-video,
+.video-hero-card:-webkit-full-screen .hero-character-video {
+    width: auto !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    object-fit: contain !important;
+}
+
+.video-hero-card:fullscreen .video-fullscreen-btn,
+.video-hero-card:-webkit-full-screen .video-fullscreen-btn {
+    top: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+    background: rgba(15, 23, 42, 0.9);
 }
 
 /* Floating Status Pill on Video */
 .video-status-pill {
     position: absolute;
-    bottom: 12px;
+    bottom: 14px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(15, 23, 42, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(10px);
     border-radius: 30px;
-    padding: 5px 14px;
+    padding: 6px 16px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     color: #e2e8f0;
     font-weight: 500;
     z-index: 4;
@@ -275,8 +349,8 @@
     bottom: -25px;
     left: 50%;
     transform: translateX(-50%);
-    width: 380px;
-    height: 35px;
+    width: 420px;
+    height: 38px;
     background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 0%, transparent 70%);
     pointer-events: none;
     z-index: 1;
@@ -376,9 +450,9 @@
 
 /* 2. Left-Looking State */
 .state-left .video-hero-card {
-    transform: perspective(1000px) rotateX(2deg) rotateY(-18deg) rotateZ(-2deg) translateX(-12px) scale(1.02);
-    border-color: rgba(56, 189, 248, 0.4);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(56, 189, 248, 0.35);
+    transform: perspective(1000px) rotateX(2deg) rotateY(-18deg) rotateZ(-2deg) translateX(-14px) scale(1.02);
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: 0 30px 75px rgba(0, 0, 0, 0.85), 0 0 55px rgba(56, 189, 248, 0.38);
 }
 .state-left .reaction-card {
     border-color: rgba(56, 189, 248, 0.45);
@@ -387,9 +461,9 @@
 
 /* 3. Right-Looking State */
 .state-right .video-hero-card {
-    transform: perspective(1000px) rotateX(2deg) rotateY(18deg) rotateZ(2deg) translateX(12px) scale(1.02);
-    border-color: rgba(244, 63, 94, 0.45);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(244, 63, 94, 0.35);
+    transform: perspective(1000px) rotateX(2deg) rotateY(18deg) rotateZ(2deg) translateX(14px) scale(1.02);
+    border-color: rgba(244, 63, 94, 0.5);
+    box-shadow: 0 30px 75px rgba(0, 0, 0, 0.85), 0 0 55px rgba(244, 63, 94, 0.38);
 }
 .state-right .reaction-card {
     border-color: rgba(244, 63, 94, 0.45);
@@ -398,9 +472,9 @@
 
 /* 4. Center Greeting State */
 .state-center .video-hero-card {
-    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(35px) scale(1.05);
-    border-color: rgba(250, 204, 21, 0.55);
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 60px rgba(250, 204, 21, 0.35);
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(40px) scale(1.05);
+    border-color: rgba(250, 204, 21, 0.6);
+    box-shadow: 0 35px 85px rgba(0, 0, 0, 0.9), 0 0 65px rgba(250, 204, 21, 0.4);
 }
 .state-center .reaction-card {
     border-color: rgba(250, 204, 21, 0.5);
@@ -410,7 +484,7 @@
 /* --- Bottom Scroll Cue Indicator --- */
 .hero-scroll-cue {
     position: absolute;
-    bottom: 18px;
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
@@ -433,7 +507,7 @@
 
 .scroll-mouse-icon {
     width: 20px;
-    height: 32px;
+    height: 30px;
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 12px;
     position: relative;
@@ -444,14 +518,14 @@
     background: #f43f5e;
     border-radius: 2px;
     position: absolute;
-    top: 6px;
+    top: 5px;
     left: 50%;
     transform: translateX(-50%);
     animation: mouseScrollWheel 1.8s infinite ease-out;
 }
 @keyframes mouseScrollWheel {
     0% { transform: translate(-50%, 0); opacity: 1; }
-    80% { transform: translate(-50%, 12px); opacity: 0; }
+    80% { transform: translate(-50%, 10px); opacity: 0; }
     100% { transform: translate(-50%, 0); opacity: 0; }
 }
 
@@ -473,12 +547,12 @@
     .hero-instruction-box {
         margin: 12px auto 0;
     }
-    .hero-stage-wrapper {
-        min-height: 460px;
+    .character-workstation {
+        width: 320px;
     }
     .video-hero-card {
-        width: 300px;
-        height: 460px;
+        width: 310px;
+        height: 480px;
     }
     .hero-reaction-bubble {
         margin-top: 25px;

@@ -231,6 +231,53 @@
     }
 
     /**
+     * Native Fullscreen Video Toggle
+     */
+    function setupFullscreenToggle() {
+        const btn = document.getElementById('heroFullscreenBtn');
+        const card = document.getElementById('videoHeroCard');
+        const icon = document.getElementById('fullscreenIcon');
+        if (!btn || !card) return;
+
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (card.requestFullscreen) {
+                    card.requestFullscreen();
+                } else if (card.webkitRequestFullscreen) {
+                    card.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+            }
+        });
+
+        function onFullscreenChange() {
+            const isFull = !!(document.fullscreenElement || document.webkitFullscreenElement);
+            if (icon) {
+                if (isFull) {
+                    icon.classList.remove('fa-expand');
+                    icon.classList.add('fa-compress');
+                    btn.title = 'Exit Fullscreen Video (ESC)';
+                } else {
+                    icon.classList.remove('fa-compress');
+                    icon.classList.add('fa-expand');
+                    btn.title = 'Toggle Fullscreen Video';
+                }
+            }
+        }
+
+        document.addEventListener('fullscreenchange', onFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', onFullscreenChange);
+    }
+
+    /**
      * Setup 3 Horizontal Interaction Zones
      */
     function initInteractiveHero() {
@@ -246,6 +293,7 @@
 
         setupVideoLoop();
         setupMouseParallax();
+        setupFullscreenToggle();
 
         const zoneLeft = document.getElementById('zoneLeft');
         const zoneCenter = document.getElementById('zoneCenter');
