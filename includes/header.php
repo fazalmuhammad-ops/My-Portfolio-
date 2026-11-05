@@ -22,7 +22,7 @@ $currentScript = basename($_SERVER['PHP_SELF']);
     <!-- Google Fonts: Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Bootstrap 5.3.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -38,6 +38,38 @@ $currentScript = basename($_SERVER['PHP_SELF']);
     <link rel="stylesheet" href="css/interactive-hero.css">
     <!-- 3D Areas of Expertise CSS -->
     <link rel="stylesheet" href="css/expertise-3d.css">
+    <!-- Tailwind CSS (Scoped for Interactive Hero with preflight disabled) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        corePlugins: {
+          preflight: false,
+        },
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+              display: ['"Outfit"', 'sans-serif'],
+            },
+            colors: {
+              maroon: {
+                50: '#fdf7f8',
+                100: '#faeff2',
+                200: '#f5dbe2',
+                300: '#ebb9c6',
+                400: '#dc8ea1',
+                500: '#c5617a',
+                700: '#8c2d46',
+                800: '#6a1f33',
+                900: '#4a1523',
+                950: '#2d0c15',
+              },
+              dusty: '#d4a5b0',
+            }
+          }
+        }
+      }
+    </script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
