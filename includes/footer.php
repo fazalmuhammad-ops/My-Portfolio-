@@ -108,8 +108,6 @@
     <script src="js/main.js"></script>
     <!-- 3D Signature Journeys Engine -->
     <script src="js/journeys-3d.js"></script>
-    <!-- Interactive Cursor-Reactive Hero Engine -->
-    <script src="js/interactive-hero.js"></script>
     <!-- 3D Areas of Expertise Engine -->
     <script src="js/expertise-3d.js"></script>
 </body>

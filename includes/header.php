@@ -34,8 +34,6 @@ $currentScript = basename($_SERVER['PHP_SELF']);
     <link rel="stylesheet" href="css/style.css">
     <!-- 3D Signature Journeys CSS -->
     <link rel="stylesheet" href="css/journeys-3d.css">
-    <!-- Interactive Cursor-Reactive Hero CSS -->
-    <link rel="stylesheet" href="css/interactive-hero.css">
     <!-- 3D Areas of Expertise CSS -->
     <link rel="stylesheet" href="css/expertise-3d.css">
 </head>
