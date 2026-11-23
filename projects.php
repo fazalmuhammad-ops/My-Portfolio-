@@ -98,15 +98,19 @@ include 'includes/header.php';
                         <div class="card-3d-inner">
                             <div class="card-3d-glare"></div>
 
-                            <!-- 3D Visual Header -->
-                            <div class="project-3d-visual" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #78350f 100%);">
+                            <!-- 3D Visual Header with Real Project Photo -->
+                            <div class="project-3d-visual">
+                                <img src="images/project-core-rider.jpg?v=<?php echo file_exists('images/project-core-rider.jpg') ? filemtime('images/project-core-rider.jpg') : '1'; ?>" 
+                                     alt="Core Rider - Smart Mobility & Ride-Pooling Mobile Application" 
+                                     class="project-3d-img"
+                                     loading="lazy">
+                                <div class="project-3d-img-overlay"></div>
+
                                 <!-- Floating Award Trophy Badge -->
                                 <span class="project-3d-award-badge">
                                     <i class="fa-solid fa-trophy"></i>
                                     <span>Runner-Up</span>
                                 </span>
-
-                                <i class="fa-solid fa-motorcycle text-warning project-3d-icon-float"></i>
 
                                 <span class="project-3d-category-badge bg-warning text-dark">
                                     <i class="fa-solid fa-mobile-screen-button me-1"></i> Mobile App
@@ -153,9 +157,14 @@ include 'includes/header.php';
                         <div class="card-3d-inner">
                             <div class="card-3d-glare"></div>
 
-                            <!-- 3D Visual Header -->
-                            <div class="project-3d-visual" style="background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #0f766e 100%);">
-                                <i class="fa-solid fa-plane-departure text-info project-3d-icon-float"></i>
+                            <!-- 3D Visual Header with Real Project Photo -->
+                            <div class="project-3d-visual">
+                                <img src="images/project-lanka-travellers.jpg?v=<?php echo file_exists('images/project-lanka-travellers.jpg') ? filemtime('images/project-lanka-travellers.jpg') : '1'; ?>" 
+                                     alt="Lanka Travellers - Modern Tourism & Travel Platform" 
+                                     class="project-3d-img"
+                                     loading="lazy">
+                                <div class="project-3d-img-overlay"></div>
+
                                 <span class="project-3d-category-badge bg-success text-white">
                                     <i class="fa-solid fa-earth-asia me-1"></i> Web Dev
                                 </span>
@@ -198,9 +207,14 @@ include 'includes/header.php';
                         <div class="card-3d-inner">
                             <div class="card-3d-glare"></div>
 
-                            <!-- 3D Visual Header -->
-                            <div class="project-3d-visual" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);">
-                                <i class="fa-solid fa-laptop-code text-info project-3d-icon-float"></i>
+                            <!-- 3D Visual Header with Real Project Photo -->
+                            <div class="project-3d-visual">
+                                <img src="images/project-portfolio.jpg?v=<?php echo file_exists('images/project-portfolio.jpg') ? filemtime('images/project-portfolio.jpg') : '1'; ?>" 
+                                     alt="My Portfolio - Full-Stack Dynamic PHP Web Platform" 
+                                     class="project-3d-img"
+                                     loading="lazy">
+                                <div class="project-3d-img-overlay"></div>
+
                                 <span class="project-3d-category-badge bg-primary text-white">
                                     <i class="fa-solid fa-code me-1"></i> Web Dev
                                 </span>

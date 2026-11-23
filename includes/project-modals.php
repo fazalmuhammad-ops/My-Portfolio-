@@ -26,6 +26,8 @@
                     </div>
                 </div>
 
+                <div class="rounded-3 overflow-hidden mb-4 shadow-sm border border-secondary border-opacity-25" style="max-height: 240px;"><img src="images/project-core-rider.jpg" alt="Core Rider Smart Mobility Preview" class="w-100" style="height: 240px; object-fit: cover;"></div>
+
                 <h6 class="fw-bold text-white mb-2">Project Overview & Problem Statement:</h6>
                 <p class="text-secondary small leading-relaxed mb-4">
                     Commuters and university students frequently face unreliable intra-campus transportation, steep single-passenger fares, and an absence of verified passenger safety. <strong>Core Rider</strong> was conceived and rapidly prototyped during the BitHack 2026 hackathon to solve these challenges through affordable, verified, on-demand ride-pooling and micro-transit sharing.
