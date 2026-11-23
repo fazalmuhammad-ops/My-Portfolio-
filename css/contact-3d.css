@@ -1,0 +1,515 @@
+/* ==========================================================================
+   3D Contact Hub - Interactive Holographic Communication Terminal
+   A.A. Fazal Muhammad - Portfolio Architecture
+   ========================================================================== */
+
+:root {
+    --c3d-cyan-glow: rgba(56, 189, 248, 0.35);
+    --c3d-indigo-glow: rgba(99, 102, 241, 0.35);
+    --c3d-emerald-glow: rgba(16, 185, 129, 0.35);
+    --c3d-card-bg: rgba(15, 23, 42, 0.78);
+    --c3d-border: rgba(255, 255, 255, 0.12);
+}
+
+/* --- 3D Contact Stage Canvas --- */
+.contact-3d-stage {
+    position: relative;
+    background: radial-gradient(ellipse at 50% 0%, #1e1b4b 0%, #0f172a 45%, #090d16 80%, #030712 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    padding-bottom: 90px;
+    overflow: hidden;
+    perspective: 1400px;
+}
+
+/* 3D Perspective Matrix Grid Floor */
+.contact-grid-floor {
+    position: absolute;
+    bottom: -10%;
+    left: -20%;
+    right: -20%;
+    height: 480px;
+    background-image: 
+        linear-gradient(rgba(56, 189, 248, 0.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.09) 1px, transparent 1px);
+    background-size: 45px 45px;
+    transform: rotateX(72deg);
+    transform-origin: bottom center;
+    pointer-events: none;
+    z-index: 1;
+    mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.95) 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.95) 100%);
+}
+
+/* Ambient Floating Glowing 3D Orbs */
+.contact-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(85px);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.65;
+    animation: c3dOrbDrift 12s ease-in-out infinite alternate;
+}
+.contact-orb.orb-cyan {
+    top: 15%;
+    left: 5%;
+    width: 440px;
+    height: 440px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, transparent 70%);
+}
+.contact-orb.orb-indigo {
+    top: 35%;
+    right: 5%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, transparent 70%);
+    animation-delay: -5s;
+}
+.contact-orb.orb-emerald {
+    bottom: 5%;
+    left: 35%;
+    width: 460px;
+    height: 460px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, transparent 70%);
+    animation-delay: -9s;
+}
+
+@keyframes c3dOrbDrift {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, -30px) scale(1.08); }
+    100% { transform: translate(-25px, 25px) scale(0.95); }
+}
+
+/* --- 3D Hero Banner Container --- */
+.contact-3d-banner {
+    position: relative;
+    padding: 70px 0 35px;
+    z-index: 10;
+}
+
+.contact-badge-orbital {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    font-size: 0.85rem;
+    color: #e2e8f0;
+    margin-bottom: 18px;
+}
+
+.contact-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 10px #10b981, 0 0 20px #10b981;
+    animation: c3dPulseDot 2s ease-in-out infinite;
+}
+@keyframes c3dPulseDot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+.contact-3d-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 14px;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.contact-3d-lead {
+    color: #94a3b8;
+    font-size: 1.05rem;
+    max-width: 660px;
+    margin: 0 auto 28px;
+    line-height: 1.6;
+}
+
+/* Quick Metrics Row */
+.contact-metrics-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 25px;
+}
+.contact-metric-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 30px;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    backdrop-filter: blur(8px);
+}
+.contact-metric-pill i {
+    color: #38bdf8;
+}
+
+/* --- 3D Cards Base Architecture --- */
+.contact-3d-wrap {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    height: 100%;
+}
+
+.contact-3d-inner {
+    position: relative;
+    background: var(--c3d-card-bg);
+    border: 1px solid var(--c3d-border);
+    border-radius: 22px;
+    overflow: hidden;
+    height: 100%;
+    transform-style: preserve-3d;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: box-shadow 0.35s ease, border-color 0.35s ease;
+    will-change: transform;
+    backdrop-filter: blur(14px);
+}
+
+.contact-3d-wrap:hover .contact-3d-inner {
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: 0 30px 65px rgba(0, 0, 0, 0.85), 0 0 45px var(--c3d-cyan-glow);
+}
+
+/* Dynamic Glare Reflection */
+.contact-3d-glare {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    border-radius: 22px;
+    mix-blend-mode: overlay;
+    transition: opacity 0.3s ease;
+}
+
+/* --- Left Column: 3D Contact Info Station --- */
+.contact-info-3d {
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.contact-badge-pop {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    transform: translateZ(45px);
+    margin-bottom: 16px;
+}
+
+.contact-info-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    transform: translateZ(35px);
+}
+
+.contact-info-desc {
+    color: #94a3b8;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    transform: translateZ(20px);
+}
+
+/* 3D Contact Information Nodes */
+.info-nodes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 30px;
+    transform: translateZ(30px);
+    transform-style: preserve-3d;
+}
+
+.info-node-3d {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(30, 41, 59, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.25s ease;
+    transform: translateZ(15px);
+    text-decoration: none;
+    color: inherit;
+}
+.info-node-3d:hover {
+    background: rgba(51, 65, 85, 0.7);
+    border-color: rgba(56, 189, 248, 0.4);
+    transform: translateZ(25px) translateX(4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    color: inherit;
+}
+
+.info-node-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #38bdf8;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+.info-node-3d:hover .info-node-icon {
+    transform: scale(1.1);
+    background: #38bdf8;
+    color: #0f172a;
+}
+
+.info-node-label {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+}
+.info-node-val {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    word-break: break-word;
+}
+
+/* 3D Social Buttons & Inbox Shortcut */
+.social-buttons-3d {
+    display: flex;
+    gap: 10px;
+    transform: translateZ(35px);
+    margin-bottom: 18px;
+}
+.social-btn-3d {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+.social-btn-3d:hover {
+    background: #2563eb;
+    border-color: #38bdf8;
+    color: #ffffff;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+}
+
+.btn-inbox-3d {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 18px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #cbd5e1;
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    transform: translateZ(40px);
+}
+.btn-inbox-3d:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+    color: #ffffff;
+    transform: translateZ(45px) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Right Column: 3D Interactive Form Terminal --- */
+.contact-form-3d {
+    padding: 38px;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.form-title-3d {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+    transform: translateZ(35px);
+}
+
+.form-subtitle-3d {
+    color: #94a3b8;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 26px;
+    transform: translateZ(20px);
+}
+
+.form-group-3d {
+    margin-bottom: 18px;
+    transform: translateZ(22px);
+    transform-style: preserve-3d;
+}
+
+.form-label-3d {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.input-group-3d {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(30, 41, 59, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.input-group-3d:focus-within {
+    border-color: #38bdf8;
+    background: rgba(30, 41, 59, 0.9);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+    transform: translateZ(12px);
+}
+
+.input-icon-3d {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    background: rgba(15, 23, 42, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    transition: color 0.3s ease;
+}
+.input-group-3d:focus-within .input-icon-3d {
+    color: #38bdf8;
+}
+
+.input-field-3d {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 12px 16px;
+    color: #ffffff;
+    font-size: 0.92rem;
+    outline: none;
+}
+.input-field-3d::placeholder {
+    color: #64748b;
+}
+
+textarea.input-field-3d {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* 3D Submit Action Button */
+.btn-submit-3d {
+    width: 100%;
+    padding: 14px 28px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #06b6d4 100%);
+    border: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.45);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateZ(35px);
+    margin-top: 10px;
+}
+.btn-submit-3d:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #0891b2 100%);
+    box-shadow: 0 14px 40px rgba(37, 99, 235, 0.65), 0 0 25px rgba(6, 182, 212, 0.4);
+    transform: translateZ(42px) translateY(-3px);
+    color: #ffffff;
+}
+.btn-submit-3d:active {
+    transform: translateZ(25px) translateY(1px);
+}
+
+/* Alert Styling in 3D Dark Canvas */
+.status-alert-3d {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border-radius: 16px;
+    color: #ffffff;
+}
+.status-alert-3d.alert-success {
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 30px rgba(16, 185, 129, 0.25);
+}
+.status-alert-3d.alert-danger {
+    border-color: rgba(239, 68, 68, 0.5);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 30px rgba(239, 68, 68, 0.25);
+}
+
+/* Responsive fine-tuning */
+@media (max-width: 991.98px) {
+    .contact-3d-title {
+        font-size: 2.2rem;
+    }
+    .contact-info-3d, .contact-form-3d {
+        padding: 28px 22px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .contact-3d-banner {
+        padding: 50px 0 25px;
+    }
+    .contact-3d-title {
+        font-size: 1.8rem;
+    }
+}

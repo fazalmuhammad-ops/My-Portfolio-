@@ -112,5 +112,7 @@
     <script src="js/expertise-3d.js"></script>
     <!-- 3D Projects Showcase Engine -->
     <script src="js/projects-3d.js"></script>
+    <!-- 3D Contact Hub Engine -->
+    <script src="js/contact-3d.js"></script>
 </body>
 </html>

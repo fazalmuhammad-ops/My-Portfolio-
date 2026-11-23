@@ -38,6 +38,8 @@ $currentScript = basename($_SERVER['PHP_SELF']);
     <link rel="stylesheet" href="css/expertise-3d.css">
     <!-- 3D Projects Showcase CSS -->
     <link rel="stylesheet" href="css/projects-3d.css">
+    <!-- 3D Contact Hub CSS -->
+    <link rel="stylesheet" href="css/contact-3d.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
