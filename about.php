@@ -1,6 +1,6 @@
 <?php
 // Set custom page title
-$pageTitle = "About Me | A.A. Fazal Muhammad - DIT Student";
+$pageTitle = "About Me | A.A. Fazal Muhammad - CS Undergraduate & DIT";
 include 'includes/header.php';
 ?>
 
@@ -26,17 +26,40 @@ include 'includes/header.php';
                 <div class="pe-lg-3">
                     <span class="section-badge">Who I Am</span>
                     <h2 class="fw-bold mb-3">A.A. Fazal Muhammad</h2>
+
+                    <!-- Clean Education Highlight Badge -->
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge bg-success-subtle text-success-emphasis border border-success border-opacity-25 rounded-pill px-3 py-1.5 fw-semibold d-inline-flex align-items-center gap-2 shadow-2xs">
+                            <span class="d-inline-block rounded-circle bg-success" style="width: 8px; height: 8px; box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);"></span>
+                            <span>Pursuing BSc in Computer Science &bull; Eastern University, Trincomalee Campus</span>
+                        </span>
+                    </div>
                     
-                    <!-- Exact Bio Requirement -->
-                    <div class="p-3 bg-primary-subtle border-start border-4 border-primary rounded mb-4">
-                        <p class="mb-0 fw-semibold text-primary-emphasis">
-                            <i class="fa-solid fa-graduation-cap me-2"></i>
-                            DIT Student at Department of ICT, Faculty of Humanities and Social Sciences, University of Sri Jayewardenepura.
-                        </p>
+                    <!-- Primary Academic Highlight Banner -->
+                    <div class="p-3 bg-white border border-secondary border-opacity-20 rounded-3 shadow-sm mb-4 position-relative overflow-hidden">
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="rounded-circle bg-success bg-opacity-10 text-success d-flex align-items-center justify-content-center flex-shrink-0" style="width: 44px; height: 44px;">
+                                <i class="fa-solid fa-graduation-cap fa-lg"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex align-items-center justify-content-between flex-wrap gap-1 mb-1">
+                                    <span class="badge bg-success text-white rounded-pill px-2 py-0.5 fw-semibold" style="font-size: 0.72rem;">Undergraduate Degree</span>
+                                    <span class="text-success small fw-semibold d-inline-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-circle-notch fa-spin fa-2xs"></i> Currently Pursuing
+                                    </span>
+                                </div>
+                                <h6 class="fw-bold text-dark mb-1 fs-6">BSc in Computer Science</h6>
+                                <p class="text-secondary small mb-2">Eastern University, Sri Lanka &bull; Trincomalee Campus</p>
+                                <div class="pt-2 border-top border-light-subtle d-flex align-items-center gap-2 text-muted" style="font-size: 0.8rem;">
+                                    <i class="fa-solid fa-certificate text-primary"></i>
+                                    <span>Also completed DIT at University of Sri Jayewardenepura (Dept. of ICT, FHSS)</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <p class="text-secondary leading-relaxed mb-3">
-                        I am an enthusiastic Information Technology student dedicated to learning foundational computer science principles and applying them to practical, real-world problems. My academic curriculum at the University of Sri Jayewardenepura has provided me with hands-on exposure to full-stack web technologies, networking topologies, and database architecture.
+                        I am an enthusiastic Computer Science undergraduate and Information Technology student dedicated to mastering software engineering principles, algorithms, and networked systems to solve practical, real-world problems. Currently pursuing a <strong>BSc in Computer Science at Eastern University, Sri Lanka (Trincomalee Campus)</strong> alongside my foundational curriculum in the Diploma in Information Technology at the University of Sri Jayewardenepura, I have developed strong proficiencies across full-stack web technologies, systems design, and database architecture.
                     </p>
 
                     <p class="text-secondary leading-relaxed mb-4">
@@ -45,43 +68,86 @@ include 'includes/header.php';
 
                     <!-- Academic Info Card -->
                     <div class="bio-card p-4 mb-4">
-                        <h5 class="fw-bold mb-3 text-dark d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-university text-primary"></i> Academic Details
-                        </h5>
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <i class="fa-solid fa-school"></i>
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-2 border-bottom">
+                            <h5 class="fw-bold mb-0 text-dark d-flex align-items-center gap-2">
+                                <i class="fa-solid fa-university text-primary"></i> Academic Credentials
+                            </h5>
+                            <span class="badge bg-success-subtle text-success border border-success border-opacity-25 rounded-pill px-2 py-1 small fw-semibold">
+                                <i class="fa-solid fa-check-circle me-1"></i> Active Studies
+                            </span>
+                        </div>
+
+                        <!-- Degree 1: Eastern University Trincomalee Campus -->
+                        <div class="p-3 rounded-3 mb-3" style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2);">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-1 mb-2">
+                                <span class="badge bg-success text-white rounded-pill px-2 py-0.5" style="font-size: 0.7rem;">Undergraduate Degree</span>
+                                <span class="badge bg-success-subtle text-success border border-success border-opacity-25 rounded-pill px-2 py-0.5 small fw-semibold">
+                                    Currently Pursuing
+                                </span>
                             </div>
-                            <div>
-                                <small class="text-muted d-block">University</small>
-                                <span class="fw-semibold">University of Sri Jayewardenepura</span>
+                            <div class="info-item border-0 pt-0 pb-2">
+                                <div class="info-icon" style="background: rgba(16, 185, 129, 0.12); color: #059669;">
+                                    <i class="fa-solid fa-user-graduate"></i>
+                                </div>
+                                <div>
+                                    <small class="text-muted d-block">Degree Programme</small>
+                                    <span class="fw-bold text-dark">BSc in Computer Science</span>
+                                </div>
+                            </div>
+                            <div class="info-item border-0 pt-1 pb-2">
+                                <div class="info-icon" style="background: rgba(16, 185, 129, 0.12); color: #059669;">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                </div>
+                                <div>
+                                    <small class="text-muted d-block">University & Campus</small>
+                                    <span class="fw-semibold text-secondary">Eastern University, Sri Lanka &bull; Trincomalee Campus</span>
+                                </div>
+                            </div>
+                            <div class="info-item border-0 pt-1 pb-0">
+                                <div class="info-icon" style="background: rgba(16, 185, 129, 0.12); color: #059669;">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <small class="text-muted d-block">Campus Location</small>
+                                    <span class="fw-semibold text-secondary">Konesapuri, Nilaveli, Trincomalee, Sri Lanka</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <i class="fa-solid fa-landmark"></i>
+
+                        <!-- Degree 2: University of Sri Jayewardenepura -->
+                        <div class="p-3 rounded-3" style="background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.2);">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-1 mb-2">
+                                <span class="badge bg-primary text-white rounded-pill px-2 py-0.5" style="font-size: 0.7rem;">Diploma Programme</span>
+                                <span class="badge bg-primary-subtle text-primary border border-primary border-opacity-25 rounded-pill px-2 py-0.5 small fw-semibold">
+                                    Coursework Completed
+                                </span>
                             </div>
-                            <div>
-                                <small class="text-muted d-block">Faculty & Department</small>
-                                <span class="fw-semibold">Faculty of Humanities & Social Sciences &bull; Dept. of ICT</span>
+                            <div class="info-item border-0 pt-0 pb-2">
+                                <div class="info-icon" style="background: rgba(59, 130, 246, 0.12); color: #2563eb;">
+                                    <i class="fa-solid fa-certificate"></i>
+                                </div>
+                                <div>
+                                    <small class="text-muted d-block">Programme</small>
+                                    <span class="fw-bold text-dark">Diploma in Information Technology (DIT)</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <i class="fa-solid fa-certificate"></i>
+                            <div class="info-item border-0 pt-1 pb-2">
+                                <div class="info-icon" style="background: rgba(59, 130, 246, 0.12); color: #2563eb;">
+                                    <i class="fa-solid fa-school"></i>
+                                </div>
+                                <div>
+                                    <small class="text-muted d-block">University & Department</small>
+                                    <span class="fw-semibold text-secondary">University of Sri Jayewardenepura &bull; Dept. of ICT, FHSS</span>
+                                </div>
                             </div>
-                            <div>
-                                <small class="text-muted d-block">Programme</small>
-                                <span class="fw-semibold">Diploma in Information Technology (DIT)</span>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <div>
-                                <small class="text-muted d-block">Campus Location</small>
-                                <span class="fw-semibold">Gangodawila, Nugegoda, Sri Lanka</span>
+                            <div class="info-item border-0 pt-1 pb-0">
+                                <div class="info-icon" style="background: rgba(59, 130, 246, 0.12); color: #2563eb;">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <small class="text-muted d-block">Campus Location</small>
+                                    <span class="fw-semibold text-secondary">Gangodawila, Nugegoda, Sri Lanka</span>
+                                </div>
                             </div>
                         </div>
                     </div>
